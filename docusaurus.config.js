@@ -6,9 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
+  title: 'CS 484: Secure Web Application Development',
   tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://cs484.kaytwo.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -27,7 +27,8 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        docs: {
+        docs: {        routeBasePath: '/', // Serve the docs at the site's root
+
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -84,11 +85,11 @@ const config = {
           items: [
             {
               label: "Piazza Q&A",
-              href: "https://piazza.com/class/kjs0fa9l97y53k",
+              href: "https://piazza.com/uic/fall2022/cs484/",
             },
             {
               label: "Gradescope",
-              href: "https://www.gradescope.com/courses/225629",
+              href: "https://www.gradescope.com/courses/416725",
             }
           ],
         },
