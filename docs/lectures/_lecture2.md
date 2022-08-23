@@ -8,5 +8,5 @@ contents:
     - link: https://www.cloudflare.com/learning/security/what-is-web-application-security
       name: What is Web Application Security?
     - link: https://docs.google.com/forms/d/e/1FAIpQLSdsVm1oh5W0QWuEapkQ_73dIr_cwVo9PmqPavpaMO0xLYfLgg/viewform
-      name: Complete this survey (required)
+      name: Complete this survey before class (required)
 ---
