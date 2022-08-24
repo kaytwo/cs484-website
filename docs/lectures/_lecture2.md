@@ -9,4 +9,6 @@ contents:
       name: What is Web Application Security?
     - link: https://docs.google.com/forms/d/e/1FAIpQLSdsVm1oh5W0QWuEapkQ_73dIr_cwVo9PmqPavpaMO0xLYfLgg/viewform
       name: Complete this survey before class (required)
+notes:
+  '[Animation of web application structure](http://nilclass.com/courses/how-websites-work/)'
 ---
