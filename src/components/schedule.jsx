@@ -16,6 +16,9 @@ const getSection = (element) => {
 };
 
 const Description = (props) => {
+  if (props.section == 'exams') return <></>;
+  if (!props.render && props.section == 'lectures')
+    return <>{props.name}</>;
   if (props.render || (props.section !== 'lectures' && props.section !== 'exams'))
     return <Link to={`/${props.file}`}>{props.name}</Link>;
   else return <></>;
