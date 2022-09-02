@@ -38,7 +38,7 @@ Please have `Node.js` installed for starting this project. For installing `Node.
 
 ## Cloning your homework assignment
 
-`TO DO`
+[This GitHub Classroom link](https://classroom.github.com/a/8Hso8Pyq) will allow you to accept the assignment.
 
 
 ## Installing required packages
@@ -64,7 +64,7 @@ This homework uses ExpressJS for quick and easy server setup along with SQlite t
 6. .gitignore - Contains information on what should be ignored from the local project while uploading to Git Repository
 
 ### New Files Used for setting Passport.js and Database connection 
-7. passportAuth.js (**IMP FILE**) - File containing initialization for local strategy and functions to serialize and deserialize the user data
+7. passportAuth.js (**IMPORTANT FILE**) - File containing initialization for local strategy and functions to serialize and deserialize the user data
 8. dbFunctions.js - Database connection and SQL Statements for performing CRUD Operations
 9. crudOperationsFunctions.js - Intermediate file containing functions which will call functions in 'dbFunctions.js'. This approach is helpful to do any sanity checks/ data manipulation before hitting database queries 
 10. views folder - The views folder contains all the .html pages that are used for this web application
@@ -105,8 +105,14 @@ After you are confident that your code works, you can push the code to GitHub, a
 
 ## Points 
 
-TO DO
+
+| Task | Points   |
+| ---- | ----------------   |
+|  Basic access control (pages only available to logged in users)     | 10   |
+| Admin access control (non-admins can't complete tasks) | 10 |
+| List of active requests populates correctly on the client side | 10 |
+| Email gets sent properly to client on completion | 10 |
 
 ## Due Date
 
-TO DO
+This assignment is due at 11:59 PM on Thursday, September 15th. We will release detailed test cases by Monday, September 12th. Extra credit in the course is available for anyone who writes meaningful test cases and submits them to the TA by Sunday, September 11th.
