@@ -57,11 +57,17 @@ the requests from the initial-data.json should be again displayed. This action o
 
 3. Add Requests tab contains a form to create service request. Please complete the functions for buttons `Create Request` and `Reset Form`. `Create Request` button should create a request and update the state ( Service Requests ). After creating the service request, this service request should be displayed when you switch to the `List requests` tab ( without page reload ). Whereas `Reset form` button should clear the contents of the form.
 
-## Testing your code (Coming Soon)
+## Testing your code
 
 The TA will release integration based test cases for the assignment during the week it is due. As with other assignments, any reasonable-quality test cases that you provide to the class (integration or unit, take your pick) will be eligible for extra credit.
 
 **IMPORTANT**: Test cases are not a list of TODOs. Many students had difficulty getting started on the previous assignment because they took the grading criteria / test cases as an ordered list of TODOs. Please take stock of the full application and requirements before you start writing your code; it will probably be worth your time to stand in front of a whiteboard and build an understanding of the application structure before choosing where to add what.
+
+**Test Cases**
+
+Please download / pull the test cases from this (https://github.com/Tejas-UIC/CS484_HW2_Skeleton.git) repository and create a folder `tests` inside `src` and put the test cases there. The test cases are in `src/tests` folder of the repository. In order to run the test cases, please make sure that you include all the dependencies from the `package.json` from this repo. Also, please include the vitest environment configurations from the `vite.config.js`. If you have not changed your `vite.config.js` or `package.json`, you may directly replace it with these files from the repository. 
+
+In order to run the test, you can change the `test` script in `package.json` to `vitest run`. Once you do this, you can run the tests by typing `npm run test` on terminal. This will run the vitest suite and will provide logging on the console about the test case results. Please note while submitting homework on gradescope, please include the following command in the `test` scripts - `vitest run --reporter=json --outputFile.json=./jest-output.json`. 
 
 ## Points 
 
