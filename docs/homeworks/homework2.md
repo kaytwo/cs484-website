@@ -43,19 +43,21 @@ Note - Please do not override the `initial-data.json` data with some additional 
 
 Your code must function identically to the fully functional application. There are no TODO lines in the code - part of the challenge of this assignment is choosing where and how to save state in your application.
 
-**Update** 
-
 Deliverables - 
 
 1. Complete the code section in `Chart.jsx` to create a word frequency array. The word frequency is formed based on the long descriptions in the service requests.
 An example about the format for creating this array is given. Please visit [react-tagcloud](https://www.npmjs.com/package/react-tagcloud) for more examples. This word frequency array is later passed on to TagCloud component. 
+
+**New** - Please do not perform text processing (remove punctuations(.,!), lowercasing, etc) while counting words. You can debug what's missing from the chart by comparing your chart div element to that of the snapshot.
 
 2. List Requests Tab should list the service requests. The representation should be similar like the last homework and should contain buttons to cancel and complete a request. For this homework, when a complete button is pressed the request's text ( name, email, long and short descriptions, etc ) should be striken through (e.g. ~~text~~) to indicate that the request is complete. 
 When a request is cancelled, it should be deleted and should be removed from the service request list. 
 When is page is loaded / reloaded, the default requests inside the `initial-data.json` should be displayed (i.e. the initial state given by `initial-data.json` should be restored). For example, when a user first loads the page the requests from initial-data.json should be displayed . Now if the user cancels a request, this request is deleted from the service request but if the user reloads the page, all
 the requests from the initial-data.json should be again displayed. This action only happens when a user reloads/loads the page. In case the user doesn't reload the page and switches tabs then the current state of the service requests should be displayed. 
 
-3. Add Requests tab contains a form to create service request. Please complete the functions for buttons `Create Request` and `Reset Form`. `Create Request` button should create a request and update the state ( Service Requests ). After creating the service request, this service request should be displayed when you switch to the `List requests` tab ( without page reload ). Whereas `Reset form` button should clear the contents of the form.
+**New** - Please append the new request to the existing state (new requests added will be displayed below the previous requests).
+
+3. Add Requests tab contains a form to create service request. Please complete the functions for buttons `Create Request` and `Reset Form`. `Create Request` button should create a request and update the state ( Service Requests ). After creating the service request, this service request should be displayed when you switch to the `List requests` tab ( without page reload ). `Reset form` button should clear the contents of the form.
 
 ## Testing your code
 
