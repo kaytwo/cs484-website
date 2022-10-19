@@ -5,10 +5,10 @@ layout: default
 due:
    type: due
    title: homework 3
-   date: 2022-10-07T13:59:00-5:00
+   date: 2022-11-04T13:59:00-5:00
    description: Homework 3 due
-github_link: https://classroom.github.com/a/3NWauEwD
-date: 2022-09-23
+github_link: https://classroom.github.com/a/i3IfdWLk
+date: 2022-10-19
 ---
 import Link from '@docusaurus/Link';
 import site from '@site/course.json'
@@ -26,7 +26,7 @@ Open the terminal window and type in `npm install`. This will install all the de
 
 ## Skeleton code
 
-The skeleton code for this application is an almost entirely complete, but the state is not persistent. You need to add code to make it work with supabase backend which will store the information about service requests.
+The [skeleton code](https://classroom.github.com/a/i3IfdWLk) for this application is an almost entirely complete, but the state is not persistent. You need to add code to make it work with supabase backend which will store the information about service requests.
 
 ## Navigating and starting project
 
