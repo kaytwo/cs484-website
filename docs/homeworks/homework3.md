@@ -91,3 +91,4 @@ The TA will release End-to-End based test cases for the assignment shortly. As w
 
 ## Due date
 
+This Homework is due on Friday 4th November, at 1:59 PM.
