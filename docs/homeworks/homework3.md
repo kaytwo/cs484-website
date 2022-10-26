@@ -15,6 +15,8 @@ import site from '@site/course.json'
 
 # Homework3 - Implementing 312 App using Supabase and React
 
+### Link to Brief Introduction - https://youtu.be/bc00pY7CEBM
+
 
 ## Installing required packages
 
