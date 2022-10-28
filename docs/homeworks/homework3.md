@@ -34,6 +34,8 @@ This is the same application you created during the last homework, so the functi
 
 For this project you will have to create a supabase account. Creating an account is easy as you login with your github credentials. Once you login create a new project and select the free tier. Supabase will setup a postgres SQL database for you. 
 
+In your skeleton code, a supabaseClient code is present. You can use the client code diretly by modifying the .env file. Please add the appropriate URL and anon key related to your account. While submiting your project though please make sure that you add .env file into the .gitignore
+
 
 ## Getting Started with setting up Database with Supabase
 
@@ -76,9 +78,17 @@ For the realtime APIs, you can login-in with another user (on a different browse
 
 ## Testing your code
 
-The TA will release End-to-End based test cases for the assignment shortly. As with other assignments, any reasonable-quality test cases that you provide to the class (integration or unit, take your pick) will be eligible for extra credit.
+There are no test cases for this homework. You can verify your work by checking if you have completed the above deliverables and also by comparing your functionality to that of the Brief Intro Video. 
 
-**IMPORTANT**: Test cases are not a list of TODOs. Many students had difficulty getting started on the previous assignment because they took the grading criteria / test cases as an ordered list of TODOs. Please take stock of the full application and requirements before you start writing your code; it will probably be worth your time to stand in front of a whiteboard and build an understanding of the application structure before choosing where to add what.
+## Submission Instructions
+
+The gradescope link for homework submission is created but this time, there is no autograder. You will have to submit your work such that it can be reproduced again and can be graded by the TA. 
+
+Apart from submitting your code you will also have to submit your RLS policies. For that you will have to submit a SQL Script which will create your table and enable RLS policies. Please refer to [these](https://docs.google.com/document/d/1jqXBt6VpHwiCwC3uYJz4T0uiQtG8N9b6_fgkfEJpIq4/edit?usp=sharing) steps and make a CREATE TABLE script. 
+
+Please also provide brief instructions on setting up your homework project (Github Oauth, Real time Settings, any additional .env variables, etc). 
+
+Note - Please add .env or any credential sensitive file in .gitignore before submitting your homework.
 
 ## Points 
 
