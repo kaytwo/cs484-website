@@ -76,6 +76,42 @@ Once you are logged-in you should be able to create a service request by going t
 
 For the realtime APIs, you can login-in with another user (on a different browser or in incognito mode ,etc) and make a change to service request / add service request and you should be able to see the changes appearing on the other browser. **Hint** - while implementing the realtime APIs code section, you can subscribe to a channel when a user is first authenticated and listen to changes like INSERT, UPDATE, DELETE and write a handler function which will update the list of service requests. 
 
+## Debugging for Supabase and React App
+
+
+1. Testing APIs with RLS enabled but no policies present-  If you are testing supabase APIs for INSERT, DELETE, 
+UPDATE, SELECT and if you have not implemented policy for specific action (INSERT, SELECT, DELETE, UPDATE )
+and are getting a 4xx error then first try to work by disabling entire RLS policies and then checking if 
+the API works and then add RLS policy for that action and check again. This same applies for Realtime APIs as well. For any error you encounter can open the browser developer tool and check the issue about the request by going to the networks tab.
+
+2. While inserting data, you need to pass the user_id ( which you will get from the session ), email, 
+name, short description, long description. You might not choose to insert the id as it is an auto increment and unique field.
+Once you insert the record, please make sure that you update the requests by calling the setRequest useState function
+But before calling the setRequest you will have to do some manipulations. The `requests` state contains array 
+of service requests ( just like the last homework ) but here you will have to append the 'id' for all
+the requests. Thus, once you insert the service request you could fetch that same request you created or fetch
+all requests where the accept_reject is false and then create and array of JSONs something like this ,
+
+```js
+// Fetch the data 
+const {data, error} = await supabase.from(...).select(...).eq('accept_reject' : false) 
+
+let newRequestsData = []
+
+// structure the new data
+// Please note the mapping from the service_request table and the requests object. sdescription is mapped to short_desc from table, etc
+data.forEach((item) => newRequestsData.push({ name: item.name, sdescription: item.short_desc, ldescription: item.long_desc, id: item.id, email: item.email, isCompleted: item.accept_reject })
+
+// set the new state
+setRequests(newRequestsData)
+```
+
+This is just one approach of updating state after creating a new service request. Your design could skip the
+above part if you configure your realtime APIs to listen to changes and then updating records or if you
+design and manage state in a different fashion. 
+
+3. If using async-await inside the useEffect you could wrap your code as described here - [https://devtrium.com/posts/async-functions-useeffect](https://devtrium.com/posts/async-functions-useeffect)
+
 ## Testing your code
 
 There are no test cases for this homework. You can verify your work by checking if you have completed the above deliverables and also by comparing your functionality to that of the Brief Intro Video. 
@@ -88,7 +124,7 @@ Apart from submitting your code you will also have to submit your RLS policies. 
 
 Please also provide brief instructions on setting up your homework project (Github Oauth, Real time Settings, any additional .env variables, etc). 
 
-Note - Please add .env or any credential sensitive file in .gitignore before submitting your homework.
+**Note** - Please add .env or any credential sensitive file in .gitignore before submitting your homework.
 
 ## Points 
 
