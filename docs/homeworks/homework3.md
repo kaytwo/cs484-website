@@ -5,7 +5,7 @@ layout: default
 due:
    type: due
    title: homework 3
-   date: 2022-11-04T13:59:00-5:00
+   date: 2022-11-04T23:59:00-5:00
    description: Homework 3 due
 github_link: https://classroom.github.com/a/i3IfdWLk
 date: 2022-10-19
@@ -139,4 +139,4 @@ Please also provide brief instructions on setting up your homework project (Gith
 
 ## Due date
 
-This Homework is due on Friday 4th November, at 1:59 PM.
+This Homework is due on Friday 4th November, at 11:59 PM.
