@@ -1,6 +1,6 @@
 ---
-title: homework 2.5 - Final Project proposal
-description: Building a client side web application to receive 
+title: homework F.0 - Final Project proposal
+description: Describe the cool thing you're gonna build
 layout: default
 due:
    type: due
