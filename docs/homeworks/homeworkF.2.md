@@ -7,7 +7,7 @@ due:
    title: final project MVP
    date: 2022-11-18T23:59:00-6:00
    description: Final project MVP due
-date: 2022-11-02
+date: 2022-11-18
 ---
 import Link from '@docusaurus/Link';
 import site from '@site/course.json'

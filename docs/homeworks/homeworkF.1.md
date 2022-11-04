@@ -7,7 +7,7 @@ due:
    title: final project tech stack and MVP proposal
    date: 2022-11-07T23:59:00-6:00
    description: Homework F.1 due
-date: 2022-11-02
+date: 2022-11-07
 ---
 import Link from '@docusaurus/Link';
 import site from '@site/course.json'

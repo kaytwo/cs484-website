@@ -16,5 +16,5 @@ contents:
   - name: WebKit Tracking Prevention Policy
     link: https://webkit.org/tracking-prevention-policy/
 notes: | 
-  Readings are tentative and subject to change!
+  Guest lecture by an awesome UIC CS alum. Readings are tentative and subject to change!
 ---
