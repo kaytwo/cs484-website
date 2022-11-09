@@ -33,12 +33,12 @@ These do not show up in the score board, but will be computed as part of your sc
 
 There are two forms of documentation available for the juice shop - the hints that are directly linked from the score board, and other materials available online. Using the hints available through the juice shop is totally acceptable, however to get the most out of the experience, give it a shot without reading through all of the hints right away.
 
-There are also various writeups and videos online that walk you through the entire task. Do NOT use those. Juice Shop has several anti-cheat mechanisms built into it that will make it easy to detect people who aren't attempting the assignment in good faith. It's all open source so you're free to inspect the anti-cheat mechanisms.
+There are also various writeups and videos online that walk you through the entire task (including a solutions appendix on the official documentation website). Do NOT use those. Juice Shop has several anti-cheat mechanisms built into it that will make it easy to detect people who aren't attempting the assignment in good faith. It's all open source so you're free to inspect the anti-cheat mechanisms.
 
 This is an individual assignment, but helping each other is encouraged - my two rules for helping are:
 
 1. Any help that you expect to take more than 30 seconds must be posted as a public question on Piazza.
-2. Any help on Piazza should not COMPLETELY give the answer away, but it is fine to come closer than the hints provided on [pwning.owasp-juice.shop](https://pwning.owasp-juice.shop/).
+2. Any help on Piazza should not COMPLETELY give the answer away, but it is fine to come closer than the hints provided in the main writeup on [pwning.owasp-juice.shop](https://pwning.owasp-juice.shop/).
 
 As I mentioned in the syllabus, **significant assistance for other students** can be converted into extra credit on your final grade. There is no cutoff for this (please don't ask what it is), but people who make a good faith effort will generally be rewarded.
 
