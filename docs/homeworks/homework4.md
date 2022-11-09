@@ -33,7 +33,7 @@ These do not show up in the score board, but will be computed as part of your sc
 
 There are two forms of documentation available for the juice shop - the hints that are directly linked from the score board, and other materials available online. Using the hints available through the juice shop is totally acceptable, however to get the most out of the experience, give it a shot without reading through all of the hints right away.
 
-There are also various writeups online that sometimes directly include exact answers without any explanation. Do NOT use those. Juice Shop has several anti-cheat mechanisms built into it that will make it easy to detect people who aren't attempting the assignment in good faith. It's all open source so you're free to inspect the anti-cheat mechanisms.
+There are also various writeups and videos online that walk you through the entire task. Do NOT use those. Juice Shop has several anti-cheat mechanisms built into it that will make it easy to detect people who aren't attempting the assignment in good faith. It's all open source so you're free to inspect the anti-cheat mechanisms.
 
 This is an individual assignment, but helping each other is encouraged - my two rules for helping are:
 
