@@ -1,6 +1,6 @@
 ---
 type: lecture
-date: 2022-11-16T14:00:00-6:00
+date: 2022-11-18T14:00:00-6:00
 title: Guest Lecture on Online Tracking by Peter Snyder
 contents:
   - name: State Partitioning
