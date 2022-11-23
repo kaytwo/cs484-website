@@ -5,6 +5,10 @@ title: Browser fingerprinting
 contents:
   - name: Browser fingerprinting
     link: https://blog.torproject.org/browser-fingerprinting-introduction-and-challenges-ahead/
+  - name: History sniffing
+    link: https://blog.mozilla.org/security/2010/03/31/plugging-the-css-history-leak/
+  - name: Video lecture
+    link: https://youtu.be/it-jVuzYGnM
 notes: | 
-  This lecture will be given asynchronously, WATCH THIS SPACE (and Piazza) for a link to the lecture video.
+  See above for video lecture: content is fair game for the final.
 ---
