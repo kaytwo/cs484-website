@@ -1,0 +1,36 @@
+---
+title: Welcome to CS 484
+description: Secure Web Application Development at UIC.
+template: splash
+hero:
+  tagline: Secure Web Application Development at UIC.
+  image:
+    file: ../../assets/houston.webp
+  actions:
+    - text: Course Schedule
+      link: /schedule
+      icon: information
+      variant: primary
+    - text: Syllabus
+      link: /syllabus
+      icon: document
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Next steps
+
+<CardGrid stagger>
+  <Card title="Upcoming Lecture" icon="pencil">
+    TODO: Show relevant information about the next lecture.
+  </Card>
+  <Card title="Upcoming Assignment" icon="add-document">
+    Show relevant information about the next assignment.
+  </Card>
+  <Card title="Upcoming Exam" icon="setting">
+    Show relevant information about the next exam.
+  </Card>
+  <Card title="Explore Lecture Content" icon="open-book">
+    Take a look at the lecture notes, slides, and course videos.
+  </Card>
+</CardGrid>

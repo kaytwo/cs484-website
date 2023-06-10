@@ -1,0 +1,10 @@
+:root,
+::backdrop {
+--sl-title-min-width: 39rem;
+}
+
+@media (min-width: 50rem) {
+    .hero {
+      padding-block: clamp(2.5rem, calc(1rem + 5vmin), 5rem);
+    }
+}
