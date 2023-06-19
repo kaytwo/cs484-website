@@ -1,8 +1,6 @@
 ---
 title: Syllabus
 slug: syllabus
-keywords: 
-  - syllabus
 ---
 
 
@@ -18,19 +16,19 @@ attacking, and defending web applications to provide students with a
 foundational understanding of how to design and deploy scalable and secure web 
 applications. 
 
-This class will teach students the concepts and techniques that enable web 
-applications to maintain high performance in the face of numerous users and 
-attackers. Students will learn and be able to apply software engineering 
-concepts to manage the complexity of client‐side and server‐side software. 
-Students will learn and be able to apply computer systems concepts to manage 
-the scalability of the web application, and provide performant service to large 
-numbers of simultaneous users. Students will learn and be able to apply 
-computer security concepts to designing a web application which is robust to 
-known and unknown attacks. Students will gain familiarity and facility with 
-modern tools which enable creating applications that apply the aforementioned 
-design, performance, and security concepts. Students will learn and be able to 
-apply fundamental security concepts so that they can evaluate the security of 
-future application designs in the face of potential future attacks. 
+This class will teach students the concepts and techniques that enable web
+applications to maintain high performance in the face of numerous users and
+attackers. Students will learn and be able to apply software engineering
+concepts to manage the complexity of client‐side and server‐side software.
+Students will learn and be able to apply computer systems concepts to manage the
+scalability of the web application, and provide performant service to large
+numbers of simultaneous users. Students will learn and be able to apply computer
+security concepts to designing a web application which is robust to known and
+unknown attacks. Students will gain familiarity and facility with modern tools
+which enable creating applications that apply the aforementioned design,
+performance, and security concepts. Students will learn and be able to apply
+fundamental security concepts so that they can evaluate the security of future
+application designs in the face of potential future attacks. 
 
 
 
@@ -49,12 +47,11 @@ be part of your learning experience in this class.
 ## Course Announcements
 Whenever possible, course information will be conveyed using this website.
 Course discussion will happen via Piazza. Course assignments and assignment
-grades will be collected and returned through Gradescope. We will use
-iClicker cloud for in-class participation. You are responsible
-for checking this website for the reading schedule and ensuring that you
-complete all assignments, and keeping up to date on Piazza for any
-corrections/clarifications regarding assignments or other important
-information.
+grades will be collected and returned through Gradescope. We will use iClicker
+cloud for in-class participation. You are responsible for checking this website
+for the reading schedule and ensuring that you complete all assignments, and
+keeping up to date on Piazza for any corrections/clarifications regarding
+assignments or other important information.
 
 ### Peer Instruction 
 This course will be taught using [Peer Instruction][pi], a teaching model which
@@ -65,27 +62,29 @@ places stronger emphasis on classroom discussion and student interaction.
 
 ##  Homework late policy
 
-Every assignment in this course is due at exactly the time stated on Gradescope, and while we will
-grade late assignments, they earn zero credit.
+Every assignment in this course is due at exactly the time stated on Gradescope,
+and while we will grade late assignments, they earn zero credit.
 
-Gradescope deadlines are *precise* - an assignment is late if it was turned in one millisecond or
-one month late.
+Gradescope deadlines are *precise* - an assignment is late if it was turned in
+one millisecond or one month late.
 
-Gradescope deadlines are *universal* - you must turn in your code, and it doesn't matter whether you
-didn't turn it in because it wasn't compiling, or couldn't upload it to git, or couldn't upload it
-to gradescope. You can turn in homework assignments an unlimited number of times, so we recommend
-that you turn them in early and often.
+Gradescope deadlines are *universal* - you must turn in your code, and it
+doesn't matter whether you didn't turn it in because it wasn't compiling, or
+couldn't upload it to git, or couldn't upload it to gradescope. You can turn in
+homework assignments an unlimited number of times, so we recommend that you turn
+them in early and often.
 
 Because these deadlines are so rigid, by default we will not include your lowest
-homework, and your three lowest discussion and quiz scores in your final grade for the class.
-The later assignments and exams in the course are more difficult than the earlier ones, and there is
-no exceptional late policy - we recommend that you do not use these unless you genuinely need to, so
-that they're available if unexpected issues come up.
+homework in your final grade for the class. The later assignments and exams in
+the course are more difficult than the earlier ones, and there is no exceptional
+late policy - we recommend that you do not use these unless you genuinely need
+to, so that they're available if unexpected issues come up.
 
-If your lowest homework, quiz, or participation grades are higher than your course average, we will
-include them in the calculation of your final grade. This means that your lowest 
-homework and quizzes can't *hurt* your final grade, they can only help it, so it will  always be worth it to
-complete every assignment.
+If your lowest homework, quiz, or participation grades are higher than your
+course average, we will include them in the calculation of your final grade.
+This means that your lowest homework and quizzes can't *hurt* your final grade,
+they can only help it, so it will  always be worth it to complete every
+assignment.
 
 
 ## Evaluation
@@ -104,10 +103,14 @@ The course grade weighting is:
 | Final Project (5 pt checkpoint + 10 pt final presentation)      | 15 | 
 | Module exams            | 50  |
 
-###  Reading Quizzes
-Reading quizzes will be given at the beginning of each class period using
-iClickers. Class participation credit will be given for answering a certain % of all questions asked each class period.
-Every student will have their four lowest quizzes dropped, and class participation will be graded out of 25 total classes (which means you can miss 4 classes and still receive 100% of the participation grade).
+### Beginning of class quizzes
+Quizzes based on a basic understanding of the assigned readings and videos will
+be given at the beginning of each class period using iClickers. Class
+participation credit will be given for answering a certain percentage of all
+questions asked each class period. Every student will have their four lowest
+quizzes dropped, and class participation will be graded out of 25 total classes
+(which means you can miss 4 classes and still receive 100% of the participation
+grade).
 
 
 ###  Class Participation
@@ -118,15 +121,15 @@ discussion questions and answering questions via iClicker.  (iClicker questions
 are graded for participation, not correctness.)  However, extra credit points
 may be added for substantial contributions, entirely at the instructor's
 discretion. Exceptional participation includes early reports of errors in
-assignments, helpful discussion on Piazza, contribution of helpful code to the
+assignments, helpful discussion, contribution of helpful code to the
 common good of the class (e.g. test cases and/or testing scripts) and thoughtful
 discussions during lecture.
 
 While class participation is a very effective way to successfully learn the
 material from this class, it is not a hard requirement. If you wish to forego
 attending class on a regular basis, your in class quiz and participation score
-will be computed as the higher of your final exam score and your achieved
-in-class score.
+will be computed as the higher of your exam score and your achieved in-class
+score.
 
 ### Overcoming challenges enables growth
 
@@ -153,8 +156,6 @@ to a mental health counselor about your concerns. Please visit the Counseling
 Center website for more information (https://counseling.uic.edu/). Further, if
 you think emotional concerns may be impacting your academic success, please
 contact your faculty and academic advisers to create a plan to stay on track.
-
-
 
 ## Student Disabilities
 
@@ -195,6 +196,17 @@ webpages from which you got inspiration. Plagiarism and cheating, as in copying
 the work of others, paying others to do your work, etc, is obviously prohibited,
 and will be reported.  We will be running MOSS, an automated plagiarism
 detection tool, on all handins.
+
+### Generative AI and Academic Integrity
+
+Generative AI tools are incredibly powerful. Anyone taking this class is an
+upper-division undergraduate or graduate student; *use of these tools is
+encouraged*. That being said, they won't do your work for you, please do not use
+their existence as an excuse to procrastinate on getting started with your
+assignments.
+
+
+### Ramifications
 
 There are consequences to cheating on two levels - the consequences for your
 grade, and the consequences at the university level.  Within class, the first
