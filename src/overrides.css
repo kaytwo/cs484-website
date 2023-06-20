@@ -1,10 +1,19 @@
 :root,
 ::backdrop {
---sl-title-min-width: 39rem;
+  --sl-title-min-width: 39rem;
 }
 
 @media (min-width: 50rem) {
-    .hero {
-      padding-block: clamp(2.5rem, calc(1rem + 5vmin), 5rem);
-    }
+  .hero {
+    padding-block: clamp(2.5rem, calc(1rem + 5vmin), 5rem);
+  }
+}
+
+:root:not([data-has-toc]):where([data-has-sidebar]) .main-pane {
+  width: 100%;
+}
+
+:root:not([data-has-toc]):where([data-has-sidebar]) .container {
+  margin-inline: 0px;
+  max-width: 100%;
 }

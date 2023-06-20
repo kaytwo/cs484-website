@@ -44,7 +44,7 @@ If we detect evidence of cheating, we reserve the right to ask you to perform th
 
 To submit your score, you will need to download your progress snapshot:
 
-![screenshot of export button](/img/export-status.png "Export status button")
+![screenshot of export button](/export-status.png "Export status button")
 
 Then upload this file to gradescope.
 

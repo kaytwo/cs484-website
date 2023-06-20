@@ -5,32 +5,20 @@ template: splash
 hero:
   tagline: Secure Web Application Development at UIC.
   image:
-    file: ../../assets/houston.webp
+    alt: a person of indeterminate gender sitting alone in a bar at night working on a laptop in the style of nighthawks by edward hopper
+    file: ../../assets/hacking.png
   actions:
     - text: Course Schedule
-      link: /schedule
+      link: /schedule/
       icon: information
       variant: primary
     - text: Syllabus
-      link: /syllabus
+      link: /syllabus/
       icon: document
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import ClassCardGrid from "../../components/ClassCardGrid.astro";
 
-## Next steps
+## Class coordinates
 
-<CardGrid stagger>
-  <Card title="Upcoming Lecture" icon="pencil">
-    TODO: Show relevant information about the next lecture.
-  </Card>
-  <Card title="Upcoming Assignment" icon="add-document">
-    Show relevant information about the next assignment.
-  </Card>
-  <Card title="Upcoming Exam" icon="setting">
-    Show relevant information about the next exam.
-  </Card>
-  <Card title="Explore Lecture Content" icon="open-book">
-    Take a look at the lecture notes, slides, and course videos.
-  </Card>
-</CardGrid>
+day, time, location, important links

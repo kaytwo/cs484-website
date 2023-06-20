@@ -28,11 +28,6 @@ export default defineConfig({
           label: 'Homeworks',
           autogenerate: { directory: 'homeworks' },
         },
-
-        {
-          label: 'Lectures',
-          autogenerate: { directory: 'lectures' },
-        },
       ],
       customCss: ['/src/overrides.css'],
     }),
