@@ -9,11 +9,12 @@
   }
 }
 
-:root:not([data-has-toc]):where([data-has-sidebar]) .main-pane {
-  width: 100%;
-}
-
-:root:not([data-has-toc]):where([data-has-sidebar]) .container {
-  margin-inline: 0px;
-  max-width: 100%;
+:root:not([data-has-toc]):where([data-has-sidebar]) {
+  .main-pane {
+    width: 100%;
+  }
+  .container {
+    margin-inline: 0px;
+    max-width: 100%;
+  }
 }

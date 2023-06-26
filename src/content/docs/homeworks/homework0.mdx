@@ -1,88 +1,207 @@
 ---
-title: homework 0 - turning in assignments
-description: Running Node.js programs, turning in using Gradescope
-due: 2023-08-26T13:59:00-5:00
-github_link: https://classroom.github.com/a/8Q0q3DmV
-release: 2023-08-22
+title: homework 0 - calibration & assignment turn in
+description: deploy and test your first web app
+due: 2023-08-25T15:00:00
+github_link: https://classroom.github.com/a/s4iccEBE
+release: 2023-08-21
 ---
 
-# Turning in assignments
+import { localizeTime } from "../../../utils.ts";
+import { Content as Deadlines } from "../../../components/Deadlines.md";
 
-This homework is a test run for submitting the future homework assignments
-for this class. You will test whether everything is working as expected by
-submitting this assignment to the Gradescope. Same method should be followed
-throughout the course for the submission of the assignments.
+## {frontmatter.description}
 
-**This assignment is a practice to make sure that each student is comfortable with:**
+**Quickstart**: <a href={frontmatter.github_link}>accept the assignment</a>  
+**Due**: {localizeTime(frontmatter.due)}
 
-- Installing node.js in your environment of choice
-- Cloning a clean copy of your assignment from the GitHub repository using
-  SSH and not by typing a password (the repository link
-  will be of the format
-  `git@github.com:ckclassrooms/cs484-hw0-YOURGITHUBUSERNAME.git`)
-- Making a code change, running the tests, committing it, and pushing it.
-- Navigating to the course Gradescope page and uploading those
-  changes (this upload goes through GitHub, not from the machine where
-  you are doing your programming).
+By the end of this assignment you will have your own web app deployed on the web
+for all to see. The coding part is dead simple - you just have to change the
+text in a few files. The more important part is getting your tools set up for
+_Continuous Integration_ and _Continuous Deployment_.
 
-## Tasks to complete before coding
+### Local development
 
-### Installing Node.js
+After accepting the assignment using the link above, you will be given access to
+a repository containing the skeleton code. You can clone your repository from
+`git@github.com:ckanich-classrooms/homework0-YOUR_GITHUB_USERNAME.git` and open
+that directory in your favorite IDE. I would recommend VS Code, as I will be
+using that for my demonstrations.
 
-The easiest way to get started is to go to https://nodejs.org/en/ and download the LTS version of Node.js for your laptop. This will allow you to use the `node` command to run JavaScript from the command line as well as `npm` to install packages and run node applications.
+#### Installing Node.js
 
-### Cloning your homework assignment
+We will be using Node.js to build and run JavaScript applications. The easiest
+way to get started is to go to the [Node.js download
+page](https://nodejs.org/en/download) and download the LTS version of Node.js
+for your laptop. This will allow you to use the `node` command to run JavaScript
+programs from the command line, and use the node package manager `npm` to
+download dependencies for your project, install additional packages, run package
+scripts, and more.
 
-Once you have [accepted the assignment](https://classroom.github.com/a/8Q0q3DmV), you can clone your repository from `git@github.com:ckclassrooms/cs484-hw0-YOURGITHUBUSERNAME.git` and open that directory in your favorite IDE. I would recommend VS Code, as I will be using that for any demonstrations.
+#### Running the template
 
-### Installing required packages
+Open your new project in your IDE, and in the console run `npm install` to
+download the code for all of the dependencies needed to fully run the project.
+You can then run the code in development mode by invoking the `dev` script by
+running the command `npm run dev`. This will run your app in a special mode
+where any updates to your source code are immediately pushed to the browser via
+a special plugin that isn't included in your code when you actually build it
+for production.
 
-In the terminal, type `npm install`. This will install all the dependencies listed in the `package.json` file and will create a folder `node_modules` where all these dependencies will be installed.
+#### Codespaces option
 
-###Starting application
+I've also enabled to the GitHub Codespaces feature. Codespaces creates a linux
+container in the cloud that allows you to run a fully featured Visual Studio
+Code, with access to all extensions and even extra linux containers for things
+like databases, without having to install anything on your local machine.
 
-To start the server and listen on incoming requests, run below command on terminal,
+I haven't tested it yet as a way to start working on _this assignment
+specifically_, but it should allow you to do every assignment for this class
+directly from your browser.
 
+### Getting the most out of your IDE
+
+Modern programming makes extensive use of strong typing - the ability to declare
+(or infer) at build time what type any given symbol refers to. Importantly, this
+allows your IDE to understand your code as you type, and give you suggestions
+for which methods to call, what value an argument should take, or inform you
+when you've used something incorrectly.
+
+To get full credit on this assignment, you must pass a **formatting** checker, a
+a **type** checker, and a **lint** checker.
+
+#### Format checking
+
+Formatting your code according to a standard makes it easy to look at code
+diffs, both by making the code easy to read, and by minimizing the chances that
+changes that don't impact the functionality of your code (like whitespace and
+newlines) show up in the diffs at all. **Your brain capacity** is the limiting
+factor in good programming, and you should be using tools that minimize your
+mental effort whenever possible.
+
+In this project, we use [Prettier](https://prettier.io/) with the default
+settings. In VSCode, you can install the extension and turn on
+`editor.formatOnSave` and set Prettier as the default formatter, and your code
+will be formatted correctly automatically. The points you get for proper
+formatting should be the three easiest points you've ever gotten.
+
+#### Type checking
+
+TypeScript introduces strong typing to JavaScript through a superset of the
+language. The TypeScript compiler can confirm every use of a symbol against the
+types for those objects/functions/operators/etc, and ensure that they are being
+used correctly. Visual Studio Code performs type checking by default on
+TypeScript files, so you should see any type errors by default as red squiggles
+and in the "Problems" panel.
+
+#### Lint checking
+
+Linting checks for issues that will not necessarily cause your code to crash or
+even run incorrectly, but nonetheless are very usually errors. Take for instance
+the [no-dupe-else-if](https://eslint.org/docs/latest/rules/no-dupe-else-if)
+rule, which states that you can't use the same conditional more than once in the
+same set of else-if statements. So while this code is correct JavaScript that
+can execute:
+
+```js
+if (a) {
+  foo();
+} else if (b) {
+  bar();
+} else if (b) {
+  baz();
+}
 ```
-npm start
 
-```
+The call to `baz()` will never happen, and it's very likely there's some
+programmer error happening here. Linters are designed with [dozens of
+rules](https://eslint.org/docs/latest/rules/) that help find issues like these
+for you.
 
-This should start the server and you should be able to see console log saying 'Server Up and Listening at 8080'.
-Note - If port 8080 is allocated, you can change the port number in the server.js file.
+### How to "fix" the code
 
-## The coding
+You only need to change two files in the repository: you need to edit
+`student.json` in the root of the repository to include your email address, and
+you need to change `src/main.ts` to include your own email address instead of
+`ckanich@uic.edu`. You'll need to edit `student.json` again later, but that's
+all for now.
 
-Homework0 is to get familiar with the NodeJS frameworks and some key modules used to setup a web server.
-This homework uses ExpressJS for quick and easy server setup. Please find below information on different files used in this HW.
+### How to look at your website
 
-1. server.js - Main file used to start/ stop server. This file contains all the endpoints (GET, POST)
-2. serverFunctions.js - Helper file containing functions for validations of user input
-3. testScript.test.js - JEST framework unit testing file containing unit tests.
-4. login.html - HTML/CSS page containing login form.
-5. package.json - JSON file containing information about the project, dependencies, starter commands, etc
-6. .gitignore - Contains information on what should be ignored from the local project while uploading to Git Repository
+If you want to experiment with your website, you can run `npm run dev` and your
+email address should show up as soon as you save `main.ts`. As long as my email
+address doesn't show up in the text of the site, and yours does as part of the
+string "website of youremail@uic.edu", you can make it look as pretty or ugly or
+ridiculous as you want. Go nuts!
 
-### To Do For HW0
+### Local testing
 
-The task is super simple: edit `sum` inside of serverFunctions.js so that it takes two (stringified) numbers, adds them, and returns the result. The provided test cases test both valid and invalid inputs.
+Once you have edited those files, you can run the local tests by running `npm
+run test` script. This script will look through your repository for specially
+named files (in our case, files that end in `.test.ts`, of which there is only
+one), and run them in the testing environment. The tests in this assignment are
+all in `src/main.test.ts` and are worth taking a look at to understand.
 
-### Checking your work
+Before getting to the Continuous Deployment section, you should be able to get
+the two "on the dev server" tests running for 10 points.
 
-We have provided test cases for you using the `jest` testing library. You don't need to edit the test files - for now, just know that this test will use predefined inputs and test for expected correct outputs. You can run the tests locally by running `npm run test`.
+### Remote testing
+
+**AKA Continuous Integration**
+
+When you're the only person working on a repository, it makes sense to run the
+tests locally. But once you start working in larger teams on important software,
+it's important that there's one source of truth for whether the tests are
+passing or not. To simulate that, this repository is set up to use GitHub
+actions to do continuous integration testing. The file
+`.github/workflows/ci.yaml` describes the list of tests that are run; it simply
+installs all of the dependencies, then runs the three format, lint, and type
+check scripts, and fails if any of them fail. You can see the output of the CI
+runs in the Actions tab for your repository.
+
+### Continuous Deployment
+
+So far, we've built and run our code locally, and on GitHub's servers. Now for
+the fun part - deploying our web app. You must deploy your web app to the
+Internet for full credit on this assignment. There are many free places to do
+so, including [Cloudflare Pages](https://pages.cloudflare.com/),
+[Netlify](https://netlify.com), and [Vercel](https://vercel.com). I recommend
+using one of those three as they are the easiest to set up and have features we
+will use later on in class, but you can use Amazon, GitHub pages, or any other
+service as long as the web app can be deployed successfully and stays online (we
+may re-run the autograder at any time). The one thing you may need to configure
+is the build command: we are using the [vite](https://vitejs.dev) bundler, so
+the command to build your code is `npm run build` and the files that should be
+served (the output of the build) are in `dist/`.
+
+To get the next 10 points, you need to follow the instructions at any of those
+services and deploy your web page. They will give you a url that ends in
+`pages.dev`, `netlify.app`, or `vercel.app` respectively (sometimes they give
+you a random string, but you can customize it if you want). Replace
+**http://domain.invalid** in `student.json` with your new web app URL, and
+deploy your app. If you've correctly set up the deployment service, all you need
+to do to deploy your app is `git push` your edits, and the service will receive
+a notification from GitHub that your code changed, then it will pull the code, build the website, and push the built website out to the Internet.
+
+If you've done all of this without introducing any type/format/lint errors, `npm
+run test` should all be passing and you are well on your way to 100% in the
+class. Great job! 🎉
 
 ### Submitting your work
 
-After you are confident that your code works, you can push the code to GitHub, and then submit it via Gradescope. You can find the link to our class gradescope at the bottom of this page.
-If
-you have issues with the autograder, please contact us via Piazza ASAP.
-**Please keep in mind that technical issues while submitting your assignment is not an
-acceptable excuse for improper or late submissions.**
+After you are confident that you are passing all of the tests, you can submit it
+via Gradescope. All the Gradescope autograder does is re-run the same tests
+again; if your tests are passing both on your local machine and on GitHub, it
+shouldn't fail on Gradescope. If you have issues with the autograder, please
+contact us via the class discussion board ASAP.
+
+<Deadlines />
 
 ## Points
 
-Causing the one test to pass is worth 10 points, and the entire assignment is worth 10 points. Note that this implicitly tests your ability to download Node, install packages, edit files, upload to github, etc.
+Each test is worth five points, each check is worth three points, for a total of
+29 points. Note that this implicitly tests your ability to download Node,
+install packages, edit files, upload to github, etc.
 
-## Due Date
-
-This assignment is due at 1:59 PM on Monday, August 29th. See the [syllabus](/syllabus/) for the late turnin policy.
+This is almost certainly the easiest assignment, so I recommend you aim for full
+points. Getting this done should take less than a half an hour, even if you've
+never used JavaScript before.

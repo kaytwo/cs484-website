@@ -16,6 +16,7 @@
     "@types/react": "^18.2.13",
     "@types/react-dom": "^18.2.6",
     "astro": "^2.6.5",
+    "dayjs": "^1.11.8",
     "marked": "^5.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

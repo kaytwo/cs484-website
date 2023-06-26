@@ -3,18 +3,17 @@ title: Syllabus
 slug: syllabus
 ---
 
-
-Web applications are simultaneously one of the most widely used and widely 
-attacked forms of deployed code. At the same time, the concepts of computer 
-security are best taught within a relatable context so that students can 
-immediately apply their knowledge to relevant situations. The unique challenges 
-inherent in building secure web applications made available to billions of 
-potential users and attackers requires understanding how to use and integrate 
-concepts from software engineering, systems programming, and computer security. 
-This course integrates the concepts that underlie designing, deploying, 
-attacking, and defending web applications to provide students with a 
-foundational understanding of how to design and deploy scalable and secure web 
-applications. 
+Web applications are simultaneously one of the most widely used and widely
+attacked forms of deployed code. At the same time, the concepts of computer
+security are best taught within a relatable context so that students can
+immediately apply their knowledge to relevant situations. The unique challenges
+inherent in building secure web applications made available to billions of
+potential users and attackers requires understanding how to use and integrate
+concepts from software engineering, systems programming, and computer security.
+This course integrates the concepts that underlie designing, deploying,
+attacking, and defending web applications to provide students with a
+foundational understanding of how to design and deploy scalable and secure web
+applications.
 
 This class will teach students the concepts and techniques that enable web
 applications to maintain high performance in the face of numerous users and
@@ -28,11 +27,10 @@ unknown attacks. Students will gain familiarity and facility with modern tools
 which enable creating applications that apply the aforementioned design,
 performance, and security concepts. Students will learn and be able to apply
 fundamental security concepts so that they can evaluate the security of future
-application designs in the face of potential future attacks. 
-
-
+application designs in the face of potential future attacks.
 
 ## Prerequisites
+
 While this course doesn’t require mastery of specific content from previous
 courses, it does require the ability to pick up new programming concepts
 quickly. Thus, CS 341 is a prerequisite, as JavaScript incorporates rather
@@ -43,8 +41,8 @@ tasks in the life of a software engineer; learning how to apply your underlying
 ability to decompose and systematize a task using a new language will implicitly
 be part of your learning experience in this class.
 
-
 ## Course Announcements
+
 Whenever possible, course information will be conveyed using this website.
 Course discussion will happen via Piazza. Course assignments and assignment
 grades will be collected and returned through Gradescope. We will use iClicker
@@ -53,22 +51,23 @@ for the reading schedule and ensuring that you complete all assignments, and
 keeping up to date on Piazza for any corrections/clarifications regarding
 assignments or other important information.
 
-### Peer Instruction 
+### Peer Instruction
+
 This course will be taught using [Peer Instruction][pi], a teaching model which
-places stronger emphasis on classroom discussion and student interaction.  
+places stronger emphasis on classroom discussion and student interaction.
 
 [pi]: http://mazur.harvard.edu/research/detailspage.php?rowid=8
 [ckanich]: mailto:ckanich@uic.edu
 
-##  Homework late policy
+## Homework late policy
 
 Every assignment in this course is due at exactly the time stated on Gradescope,
 and while we will grade late assignments, they earn zero credit.
 
-Gradescope deadlines are *precise* - an assignment is late if it was turned in
+Gradescope deadlines are _precise_ - an assignment is late if it was turned in
 one millisecond or one month late.
 
-Gradescope deadlines are *universal* - you must turn in your code, and it
+Gradescope deadlines are _universal_ - you must turn in your code, and it
 doesn't matter whether you didn't turn it in because it wasn't compiling, or
 couldn't upload it to git, or couldn't upload it to gradescope. You can turn in
 homework assignments an unlimited number of times, so we recommend that you turn
@@ -82,12 +81,12 @@ to, so that they're available if unexpected issues come up.
 
 If your lowest homework, quiz, or participation grades are higher than your
 course average, we will include them in the calculation of your final grade.
-This means that your lowest homework and quizzes can't *hurt* your final grade,
-they can only help it, so it will  always be worth it to complete every
+This means that your lowest homework and quizzes can't _hurt_ your final grade,
+they can only help it, so it will always be worth it to complete every
 assignment.
 
-
 ## Evaluation
+
 Grades are curved based on an aggregate course score. There are separate curves
 for graduate and undergraduate students. This means that the course score
 cut-offs for an A, B, C etc. are not defined ahead of time: these will be set
@@ -95,15 +94,16 @@ after the end of the course.
 
 The course grade weighting is:
 
-| Task | % of total grade   |
-| ---- | ----------------   |
-| Beginning of Class Quizzes     | 10   |
-| Class Participation | 10   |
-| Homeworks           | 15  |
-| Final Project (5 pt checkpoint + 10 pt final presentation)      | 15 | 
-| Module exams            | 50  |
+| Task                                                       | % of total grade |
+| ---------------------------------------------------------- | ---------------- |
+| Beginning of Class Quizzes                                 | 10               |
+| Class Participation                                        | 10               |
+| Homeworks                                                  | 15               |
+| Final Project (5 pt checkpoint + 10 pt final presentation) | 15               |
+| Module exams                                               | 50               |
 
 ### Beginning of class quizzes
+
 Quizzes based on a basic understanding of the assigned readings and videos will
 be given at the beginning of each class period using iClickers. Class
 participation credit will be given for answering a certain percentage of all
@@ -112,13 +112,12 @@ quizzes dropped, and class participation will be graded out of 25 total classes
 (which means you can miss 4 classes and still receive 100% of the participation
 grade).
 
-
-###  Class Participation
+### Class Participation
 
 Participation is an incredibly important facet of this course. The baseline
 Class Participation grade will be based off of participating in classroom
-discussion questions and answering questions via iClicker.  (iClicker questions
-are graded for participation, not correctness.)  However, extra credit points
+discussion questions and answering questions via iClicker. (iClicker questions
+are graded for participation, not correctness.) However, extra credit points
 may be added for substantial contributions, entirely at the instructor's
 discretion. Exceptional participation includes early reports of errors in
 assignments, helpful discussion, contribution of helpful code to the
@@ -145,7 +144,6 @@ learning process and make it work for you. You are supported on all sides by the
 professor and your classmates. But no student is exempt from the process and the
 hard work it entails.
 
-
 ## Mental health
 
 We value your mental health and emotional wellness as part of the UIC student
@@ -157,7 +155,7 @@ Center website for more information (https://counseling.uic.edu/). Further, if
 you think emotional concerns may be impacting your academic success, please
 contact your faculty and academic advisers to create a plan to stay on track.
 
-## Student Disabilities
+## Disability Accommodations
 
 If you have a disability that might impact your performance in this course or
 otherwise requires special accommodation, please contact me as soon as possible
@@ -165,6 +163,23 @@ so that appropriate arrangements can be made. Support is available through the
 [Disability Resource Center](https://drc.uic.edu/). You will need to
 contact them to get your disability documented before accommodations can be
 made.
+
+If you wish to use a letter of accommodation, the best time to contact me about
+it is at the beginning of the semester or as soon as you have received it (if
+you just got it during the semester), and we must have a meeting to discuss how
+best to accommodate your success. If you don't want to use your letter at first
+but then change your mind, that's okay too - however, you must contact me within
+24 hours of an assignment being announced/released (or previous assignment being
+completed for things like exams which are announced well in advance) to discuss
+what accommodation you may expect to need.
+
+After we have discussed your LOA, any specific requests for accommodation (e.g.
+extra time on an assignment) must be made no less than 24 hours before the
+deadline/exam. For assignments with occasional extra time, I give `min(24 hours,
+time until public release of solution)` extensions on at most one third of
+assignments. If this will not work for you, please begin a discussion with your
+DRC coordinator and myself to find out if there is an alternative acceptable
+accommodation.
 
 ## Religious observances
 
@@ -179,7 +194,7 @@ the absence, give the student an exam or assignment equivalent to the one
 completed by those students in attendance. If the student feels aggrieved,
 they may request remedy through the campus grievance procedure.
 
-##  Academic Integrity
+## Academic Integrity
 
 Consulting with your classmates on assignments is encouraged, except where
 noted. However, turn-ins are individual, and copying code from your classmates
@@ -194,24 +209,23 @@ To avoid suspicion of plagiarism, you must specify your sources together with
 all turned-in materials. List classmates you discussed your homework with and
 webpages from which you got inspiration. Plagiarism and cheating, as in copying
 the work of others, paying others to do your work, etc, is obviously prohibited,
-and will be reported.  We will be running MOSS, an automated plagiarism
-detection tool, on all handins.
+and will be reported. We will be running MOSS, an automated plagiarism
+detection tool, on all hand-ins.
 
 ### Generative AI and Academic Integrity
 
 Generative AI tools are incredibly powerful. Anyone taking this class is an
-upper-division undergraduate or graduate student; *use of these tools is
-encouraged*. That being said, they won't do your work for you, please do not use
+upper-division undergraduate or graduate student; _use of these tools is
+encouraged_. That being said, they won't do your work for you, please do not use
 their existence as an excuse to procrastinate on getting started with your
 assignments.
-
 
 ### Ramifications
 
 There are consequences to cheating on two levels - the consequences for your
-grade, and the consequences at the university level.  Within class, the first
+grade, and the consequences at the university level. Within class, the first
 time cheating on a programming assignment or problem set will result in a 0 on
-the assignment.  A second time on a programming assignment, or first time on an
+the assignment. A second time on a programming assignment, or first time on an
 exam will result in failing the class. Egregious cheating on a programming
 assignment (including but not limited to purchasing a solution online) is also
 grounds for failing the class.
@@ -226,11 +240,11 @@ the case - this means the student agrees that my description of what happened is
 accurate, and the only repercussions on an institutional level are that it is
 noted that this happened in your internal, UIC files (i.e. the dean of students
 can see that this happened, but no professors or other people can, and it is not
-in your transcript).  If this has happened before, in any of your classes, this
+in your transcript). If this has happened before, in any of your classes, this
 results in a formal hearing and the dean of students decides on the
-institutional consequences.  After multiple instances of academic integrity
-violations, students may be suspended or expelled.  For all cases, the student
+institutional consequences. After multiple instances of academic integrity
+violations, students may be suspended or expelled. For all cases, the student
 has the option to go through a formal hearing if they believe that they did not
-actually violate the academic integrity policy.  If the dean of students agrees
+actually violate the academic integrity policy. If the dean of students agrees
 that they did not, then I revert their grade back to the original grade, and the
 matter is resolved.
