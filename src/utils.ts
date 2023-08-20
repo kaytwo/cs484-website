@@ -5,12 +5,13 @@ dayjs.extend(utc);
 dayjs.extend(tz);
 
 export const localizeTime = (
-  time: string,
+  time: string | Date | undefined,
   location: string = "America/Chicago"
 ) => {
   const timeString = new Intl.DateTimeFormat("en-US", {
     dateStyle: "full",
     timeStyle: "medium",
   }).format(dayjs.tz(time, location).toDate());
-  return `${timeString}, ${location} time`;
+  // just make it blank if the time is undefined
+  return time ? `${timeString}, ${location} time` : "";
 };

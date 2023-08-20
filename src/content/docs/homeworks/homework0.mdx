@@ -3,7 +3,7 @@ title: homework 0 - calibration & assignment turn in
 description: deploy and test your first web app
 due: 2023-08-25T15:00:00
 github_link: https://classroom.github.com/a/s4iccEBE
-release: 2023-08-21
+release: 2023-08-21T08:00:00
 ---
 
 import { localizeTime } from "../../../utils.ts";
@@ -169,7 +169,7 @@ using one of those three as they are the easiest to set up and have features we
 will use later on in class, but you can use Amazon, GitHub pages, or any other
 service as long as the web app can be deployed successfully and stays online (we
 may re-run the autograder at any time). The one thing you may need to configure
-is the build command: we are using the [vite](https://vitejs.dev) bundler, so
+is the build command: we are using the [vite](https://vitejs.dev) build tool, so
 the command to build your code is `npm run build` and the files that should be
 served (the output of the build) are in `dist/`.
 
@@ -180,7 +180,8 @@ you a random string, but you can customize it if you want). Replace
 **http://domain.invalid** in `student.json` with your new web app URL, and
 deploy your app. If you've correctly set up the deployment service, all you need
 to do to deploy your app is `git push` your edits, and the service will receive
-a notification from GitHub that your code changed, then it will pull the code, build the website, and push the built website out to the Internet.
+a notification from GitHub that your code changed, then it will pull the code,
+build the website, and push the built website out to the Internet.
 
 If you've done all of this without introducing any type/format/lint errors, `npm
 run test` should all be passing and you are well on your way to 100% in the

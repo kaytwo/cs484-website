@@ -3,6 +3,65 @@ title: Syllabus
 slug: syllabus
 ---
 
+# CS 484: Secure Web App Development
+
+**(3 CR undergraduate, 4 CR graduate)**
+
+## **I. Instructor & Course Details**
+
+Chris Kanich, <ckanich@uic.edu>  
+Drop-In Office Hours: TBD  
+Drop-In Hours location: TBD
+
+Graduate TA: Saurav Joshi, <sjoshi50@uic.edu>  
+Drop-In Office Hours (in-person or virtual): TBD  
+Drop-In Hours location: TBD
+
+**Course Modality and Schedule**:
+This course is taught in person, in BH 209, 3:00pm - 4:15pm Mondays and
+Wednesdays. Please bring your laptop for in-class activities.
+
+**Blackboard Course Site**: <https://uic.blackboard.com/ultra/courses/_257305_1/cl/outline>
+
+**Piazza**: <https://piazza.com/uic/fall2023/cs484>
+
+**Gradescope**: <https://www.gradescope.com/courses/537130>
+
+### Course Announcements
+
+Whenever possible, course information will be conveyed using this website.
+Course discussion will happen via Piazza. Course assignments and assignment
+grades will be collected and returned through Gradescope. We will use iClicker
+cloud for in-class participation. You are responsible for checking this website
+for the reading schedule and ensuring that you complete all assignments, and
+keeping up to date on Piazza for any corrections/clarifications regarding
+assignments or other important information.
+
+Blackboard will not be used in this course besides to communicate final grades.
+For all technical questions about Blackboard, email the Learning Technology
+Solutions team at [LTS@uic.edu](mailto:LTS@uic.edu).
+
+### Email Expectations
+
+Students are responsible for all information instructors send to your UIC email.
+Faculty messages should be regularly monitored and read in a timely fashion.
+
+Please use Piazza private messages shared with the **instructors** (not just the
+professor or TA by name) if you wish to communicate with us directly. Please
+only use email for something that explicitly should be kept private only to that
+person.
+
+Please email me if you face an unexpected situation that may impede your
+attendance, participation in required class and exam sessions, or timely
+completion of assignments.
+
+## II. Course Information
+
+Web applications integrate concepts from software engineering, systems
+programming, and computer security. THis course teaches security through web
+development, enabling students to design, deploy, scale, attack, and defend
+modern web applications.
+
 Web applications are simultaneously one of the most widely used and widely
 attacked forms of deployed code. At the same time, the concepts of computer
 security are best taught within a relatable context so that students can
@@ -29,37 +88,106 @@ performance, and security concepts. Students will learn and be able to apply
 fundamental security concepts so that they can evaluate the security of future
 application designs in the face of potential future attacks.
 
-## Prerequisites
+### Prerequisites
 
 While this course doesn’t require mastery of specific content from previous
 courses, it does require the ability to pick up new programming concepts
-quickly. Thus, CS 341 is a prerequisite, as JavaScript incorporates rather
-esoteric concepts like closures, functional programming, and quite a bit of
-event driven programming, and having seen these paradigms previously will be of
-great help. Learning new languages and new programming paradigms are common
-tasks in the life of a software engineer; learning how to apply your underlying
-ability to decompose and systematize a task using a new language will implicitly
-be part of your learning experience in this class.
+quickly. Thus, credit or concurrent registration in CS 341 is required, as
+JavaScript incorporates rather esoteric concepts like closures, functional
+programming, and quite a bit of event driven programming, and having seen these
+paradigms previously will be of great help. Learning new languages and new
+programming paradigms are common tasks in the life of a software engineer;
+learning how to apply your underlying ability to decompose and systematize a
+task using a new language will implicitly be part of your learning experience in
+this class.
 
-## Course Announcements
+### _Growth Mindset_
 
-Whenever possible, course information will be conveyed using this website.
-Course discussion will happen via Piazza. Course assignments and assignment
-grades will be collected and returned through Gradescope. We will use iClicker
-cloud for in-class participation. You are responsible for checking this website
-for the reading schedule and ensuring that you complete all assignments, and
-keeping up to date on Piazza for any corrections/clarifications regarding
-assignments or other important information.
+Course materials and assignments can be complex and challenging, but they are
+crucial to your intellectual and personal growth and development. There are
+times you may need extra help. Students who attend class consistently, complete
+all assignments, thoughtfully engage with feedback on work, develop good study
+strategies, visit the tutoring center, and contact faculty when they are
+struggling can develop a thorough understanding of the course material and
+ultimately succeed in the course!
 
-### Peer Instruction
+### Course Goals and Learning Outcomes
 
-This course will be taught using [Peer Instruction][pi], a teaching model which
-places stronger emphasis on classroom discussion and student interaction.
+CS 484 satisfies the technical elective requirement for the Computer Science
+major in the College of Engineering.
 
-[pi]: http://mazur.harvard.edu/research/detailspage.php?rowid=8
-[ckanich]: mailto:ckanich@uic.edu
+**Brief list of topics to be covered:**
+CS 484 covers the details of HTTP protocols and the web ecosystem, the design
+and implementation of server side web software, the design and implementation of
+client side web software, computer security and web security fundamentals, and
+the synthesis of all of these concepts into designing and implementing full
+fledged secure web applications.
 
-## Homework late policy
+**Required and Recommended Course Materials**:
+There is no required book for this course. Readings and videos will be assigned
+that are publicly available on the Internet.
+
+**Required Technology**:
+You are required to have a device capable of running the iClicker cloud software
+(smartphone preferred), and a laptop for developing software as part of the
+course assignments, activities, and projects.
+
+**Respect for Copyright**:
+Please protect the copyright integrity of all course materials and content.
+Please do not upload course materials not created by you onto third-party
+websites or share content with anyone not enrolled in our course.
+
+### Disclaimer
+
+This syllabus is intended to give the student guidance on what may be covered
+during the semester and will be followed as closely as possible. However, as the
+instructor, I reserve the right to modify, supplement, and make changes as
+course needs arise. I will communicate such changes in advance through in-class
+announcements and in writing via this website.
+
+## III. COURSE POLICIES & CLASSROOM EXPECTATIONS
+
+### Generative AI
+
+You will almost certainly be using GenAI (ChatGPT, GitHub Copilot,
+Grammarly, etc) in some way for the rest of your career. You are encouraged to
+use whatever GenAI tools you would like to complete the assignments and final
+project in this class.
+
+While these tools are amazing, please do not use their existence as an excuse to
+procrastinate on getting started with your assignments. They are good, but they
+aren't that good.
+
+While you can use GenAI on your homeworks, using autocomplete and copy-paste
+until the tests pass is not acceptable. You must understand any code that you use.
+We reserve the right to review your submitted code with you, and if you cannot
+explain the code you submitted, it will be considered a violation of the academic
+integrity code equivalent to plagiarism (see below).
+
+Please remember that in-class assessments (quizzes and exams) are a
+comparatively large portion of your grade, and you cannot use GenAI on them.
+
+This policy is subject to change as we all learn more about how GenAI works and
+doesn't work as part of learning college level course content.
+
+### Grading Policy and Point Breakdown
+
+Grades are curved based on an aggregate course score. There are separate curves
+for graduate and undergraduate students. This means that the course score
+cut-offs for an A, B, C etc. are not defined ahead of time: these will be set
+after the end of the course.
+
+The course grade weighting is:
+
+| Task                                                      | % of total grade |
+| --------------------------------------------------------- | ---------------- |
+| Beginning of Class Quizzes                                | 10               |
+| Class Participation                                       | 10               |
+| Homeworks                                                 | 15               |
+| Final Project (5 pt checkpoint + 10 pt final deliverable) | 15               |
+| Module exams                                              | 50               |
+
+#### Homework late policy
 
 Every assignment in this course is due at exactly the time stated on Gradescope,
 and while we will grade late assignments, they earn zero credit.
@@ -79,40 +207,24 @@ the course are more difficult than the earlier ones, and there is no exceptional
 late policy - we recommend that you do not use these unless you genuinely need
 to, so that they're available if unexpected issues come up.
 
-If your lowest homework, quiz, or participation grades are higher than your
-course average, we will include them in the calculation of your final grade.
-This means that your lowest homework and quizzes can't _hurt_ your final grade,
-they can only help it, so it will always be worth it to complete every
-assignment.
+If your lowest module exam, homework, quiz, or participation grades are higher
+than your course average, we will include them in the calculation of your final
+grade. This means that your lowest scores can't _hurt_ your final grade, they
+can only help it, so it will always be worth it to complete every assignment
+unless you literally already have a 100% grade in the class.
 
-## Evaluation
+#### Evaluation
 
-Grades are curved based on an aggregate course score. There are separate curves
-for graduate and undergraduate students. This means that the course score
-cut-offs for an A, B, C etc. are not defined ahead of time: these will be set
-after the end of the course.
-
-The course grade weighting is:
-
-| Task                                                       | % of total grade |
-| ---------------------------------------------------------- | ---------------- |
-| Beginning of Class Quizzes                                 | 10               |
-| Class Participation                                        | 10               |
-| Homeworks                                                  | 15               |
-| Final Project (5 pt checkpoint + 10 pt final presentation) | 15               |
-| Module exams                                               | 50               |
-
-### Beginning of class quizzes
+##### Beginning of class quizzes
 
 Quizzes based on a basic understanding of the assigned readings and videos will
-be given at the beginning of each class period using iClickers. Class
+be given at the beginning of each class period using iClicker Cloud. Class
 participation credit will be given for answering a certain percentage of all
 questions asked each class period. Every student will have their four lowest
 quizzes dropped, and class participation will be graded out of 25 total classes
-(which means you can miss 4 classes and still receive 100% of the participation
-grade).
+(which means you can miss 4 classes and still receive 100% of quiz points).
 
-### Class Participation
+##### Class Participation
 
 Participation is an incredibly important facet of this course. The baseline
 Class Participation grade will be based off of participating in classroom
@@ -124,77 +236,32 @@ assignments, helpful discussion, contribution of helpful code to the
 common good of the class (e.g. test cases and/or testing scripts) and thoughtful
 discussions during lecture.
 
-While class participation is a very effective way to successfully learn the
-material from this class, it is not a hard requirement. If you wish to forego
-attending class on a regular basis, your in class quiz and participation score
-will be computed as the higher of your exam score and your achieved in-class
-score.
+##### Homeworks
 
-### Overcoming challenges enables growth
+There are six homeworks planned for the semester. They are meant to be exercises
+that introduce you to the practical implementation of the concepts covered in
+class. Homeworks are more for your own benefit than for earning large portions
+of your grade in the class (that's why they're a low portion of your overall
+grade). Each exam will very likely include questions that will rely on your full
+understanding of the previous homework assignments and their solutions.
 
-This is not a lecture-oriented class or one in which mimicking prefabricated
-examples will lead you to success. You will be expected to work actively to
-construct your own understanding of the topics at hand, with the readily
-available help of the instructor and your classmates. Many of the concepts you
-learn and problems you work will be new to you and ask you to stretch your
-thinking. You will experience frustration and failure before you experience
-understanding. This is part of the normal learning process. Your viability as a
-professional in the modern workforce depends on your ability to embrace this
-learning process and make it work for you. You are supported on all sides by the
-professor and your classmates. But no student is exempt from the process and the
-hard work it entails.
+Your lowest homework score is dropped from your final grade.
 
-## Mental health
+##### Module exams
 
-We value your mental health and emotional wellness as part of the UIC student
-experience. The UIC Counseling Center offers an array of services to provide
-additional support throughout your time at UIC, including workshops, peer
-support groups, counseling, self-help tools, and initial consultations to speak
-to a mental health counselor about your concerns. Please visit the Counseling
-Center website for more information (https://counseling.uic.edu/). Further, if
-you think emotional concerns may be impacting your academic success, please
-contact your faculty and academic advisers to create a plan to stay on track.
+This class uses a **module exam** structure instead of traditional midterms and
+finals. Rather than a small number of high-stakes exams, there are five
+different 50-minute exams evenly spaced through the course. They will focus on
+each of the five different themes presented in the course, and while they will
+not ask questions directly about previous modules, each module builds off of the
+last, and understanding the content from previous modules may be needed to
+answer questions on a subsequent exam.
 
-## Disability Accommodations
+We also drop your lowest module exam. The final module exam happens during the
+final exam slot for the course, so if you're already happy with your grade at
+the end of week 15, taking the final can only improve your grade, not lower it.
 
-If you have a disability that might impact your performance in this course or
-otherwise requires special accommodation, please contact me as soon as possible
-so that appropriate arrangements can be made. Support is available through the
-[Disability Resource Center](https://drc.uic.edu/). You will need to
-contact them to get your disability documented before accommodations can be
-made.
-
-If you wish to use a letter of accommodation, the best time to contact me about
-it is at the beginning of the semester or as soon as you have received it (if
-you just got it during the semester), and we must have a meeting to discuss how
-best to accommodate your success. If you don't want to use your letter at first
-but then change your mind, that's okay too - however, you must contact me within
-24 hours of an assignment being announced/released (or previous assignment being
-completed for things like exams which are announced well in advance) to discuss
-what accommodation you may expect to need.
-
-After we have discussed your LOA, any specific requests for accommodation (e.g.
-extra time on an assignment) must be made no less than 24 hours before the
-deadline/exam. For assignments with occasional extra time, I give `min(24 hours,
-time until public release of solution)` extensions on at most one third of
-assignments. If this will not work for you, please begin a discussion with your
-DRC coordinator and myself to find out if there is an alternative acceptable
-accommodation.
-
-## Religious observances
-
-Students who wish to observe their religious holidays shall notify the faculty
-member by the tenth day of the semester of the date when they will be absent
-unless the religious holiday is observed on or before the tenth day of the
-semester. In such cases, the students shall notify the faculty member at least
-five days in advance of the date when they will be absent. The faculty member
-shall make every reasonable effort to honor the request, not penalize the
-student for missing the class, and if an examination or project is due during
-the absence, give the student an exam or assignment equivalent to the one
-completed by those students in attendance. If the student feels aggrieved,
-they may request remedy through the campus grievance procedure.
-
-## Academic Integrity
+### Academic Integrity
 
 Consulting with your classmates on assignments is encouraged, except where
 noted. However, turn-ins are individual, and copying code from your classmates
@@ -205,46 +272,110 @@ my code, look for yourself". **You should never look at someone else's code, or
 show someone else your code.** Either of these actions are considered academic
 dishonesty (cheating) and will be prosecuted as such.
 
-To avoid suspicion of plagiarism, you must specify your sources together with
-all turned-in materials. List classmates you discussed your homework with and
-webpages from which you got inspiration. Plagiarism and cheating, as in copying
-the work of others, paying others to do your work, etc, is obviously prohibited,
-and will be reported. We will be running MOSS, an automated plagiarism
-detection tool, on all hand-ins.
+To avoid suspicion of plagiarism, you must specify your sources (including GenAI
+tools) together with all turned-in materials. List classmates and GenAI tools
+you discussed your homework with and webpages from which you got inspiration.
+Plagiarism and cheating, as in copying the work of others, paying others to do
+your work, etc, is obviously prohibited, and will be reported. We will be
+running MOSS, an automated plagiarism detection tool, on all hand-ins. We will
+be adding the solutions provided by ChatGPT and similar tools to the MOSS
+assignment set, and anyone turning in code they do not fully understand will
+be considered a violation of the academic integrity policy.
 
-### Generative AI and Academic Integrity
+I report all suspected academic integrity violations to the dean of students. If
+it is your first time, the dean of students may provide the option to informally
+resolve the case - this means the student agrees that my description of what
+happened is accurate, and the only repercussions on an institutional level are
+that it is noted that this happened in your internal, UIC files (i.e. the dean
+of students can see that this happened, but no professors or other people can,
+and it is not in your transcript). If this is not your first academic integrity
+violation in any of your classes, a formal hearing is held and the dean of
+students decides on the institutional consequences. After multiple instances of
+academic integrity violations, students may be suspended or expelled. For all
+cases, the student has the option to go through a formal hearing if they believe
+that they did not actually violate the academic integrity policy. If the dean of
+students agrees that they did not, then I revert their grade back to the
+original grade, and the matter is resolved.
 
-Generative AI tools are incredibly powerful. Anyone taking this class is an
-upper-division undergraduate or graduate student; _use of these tools is
-encouraged_. That being said, they won't do your work for you, please do not use
-their existence as an excuse to procrastinate on getting started with your
-assignments.
+If you are found responsible for violating the academic integrity policy, the
+penalty can range from receiving a zero on the assignment in question, receiving
+a grade deduction, or receiving an F in the class, depending on the severity of
+the violation.
 
-### Ramifications
+As a student and member of the UIC community, you are expected to adhere to the
+[Community Standards](https://dos.uic.edu/community-standards/) of [academic
+integrity](https://dos.uic.edu/community-standards/academic-integrity/),
+accountability, and respect. Please review the [UIC Student Disciplinary
+Policy](https://dos.uic.edu/wp-content/uploads/sites/262/2021/09/Student-Disciplinary-Policy-2021.pdf)
+for additional information.
 
-There are consequences to cheating on two levels - the consequences for your
-grade, and the consequences at the university level. Within class, the first
-time cheating on a programming assignment or problem set will result in a 0 on
-the assignment. A second time on a programming assignment, or first time on an
-exam will result in failing the class. Egregious cheating on a programming
-assignment (including but not limited to purchasing a solution online) is also
-grounds for failing the class.
+## IV. COURSE SCHEDULE
 
-Cheating on quizzes or exams are also grounds for failing the class. Please
-don't do it. Quizzes are worth a tiny fraction of your full course grade - do
-not put your hard work in jeopardy for a few tenths of a percent.
+Please see the [Course Schedule](/schedule/) for a weekly schedule of topics and
+activities.
 
-I report all suspected academic integrity violations to the dean of students.
-If it is your first time, the dean of students allows you to informally resolve
-the case - this means the student agrees that my description of what happened is
-accurate, and the only repercussions on an institutional level are that it is
-noted that this happened in your internal, UIC files (i.e. the dean of students
-can see that this happened, but no professors or other people can, and it is not
-in your transcript). If this has happened before, in any of your classes, this
-results in a formal hearing and the dean of students decides on the
-institutional consequences. After multiple instances of academic integrity
-violations, students may be suspended or expelled. For all cases, the student
-has the option to go through a formal hearing if they believe that they did not
-actually violate the academic integrity policy. If the dean of students agrees
-that they did not, then I revert their grade back to the original grade, and the
-matter is resolved.
+## V. ACCOMMODATIONS
+
+### Disability Accommodation Procedures
+
+UIC is committed to full inclusion and participation of people with disabilities in all aspects of university life. If you face or anticipate disability-related barriers while at UIC, please connect with the Disability Resource Center (DRC) at [drc.uic.edu](https://drc.uic.edu/), via email at [drc@uic.edu](mailto:drc@uic.edu), or call (312) 413-2183 to create a plan for reasonable accommodations. To receive accommodations, you will need to disclose the disability to the DRC, complete an interactive registration process with the DRC, and provide me with a Letter of Accommodation (LOA). Upon receipt of an LOA, I will gladly work with you and the DRC to implement approved accommodations.
+
+### Religious Accommodations
+
+Following [campus policy](https://oae.uic.edu/religious/), if you wish to observe religious holidays, you must notify me by the tenth day of the semester. If the religious holiday is observed on or before the tenth day of the semester, you must notify me at least five days before you will be absent. Please submit [this form](https://oae.uic.edu/wp-content/uploads/sites/32/2019/07/StudentReligiousAccomodationRequestForm.pdf) by email with the subject heading: **"YOUR NAME: Requesting Religious Accommodation."**
+
+## VI. CLASSROOM ENVIRONMENT
+
+### Inclusive Community
+
+UIC values diversity and inclusion. Regardless of age, disability, ethnicity, race, gender, gender identity, sexual orientation, socioeconomic status, geographic background, religion, political ideology, language, or culture, we expect all members of this class to contribute to a respectful, welcoming, and inclusive environment for every other member of our class. If aspects of this course result in barriers to your inclusion, engagement, accurate assessment, or achievement, please notify me as soon as possible.
+
+### Name and Pronoun Use
+
+If your name does not match the name on my class roster, please let me know as soon as possible. My pronouns are _[she/her; he/him; they/them]_. I welcome your pronouns if you would like to share them with me. For more information about pronouns, see this page: [https://www.mypronouns.org/what-and-why](https://www.mypronouns.org/what-and-why).
+
+### Community Agreement/Classroom Conduct Policy
+
+- Be present by turning off cell phones and removing yourself from other distractions.
+- Be respectful of the learning space and community. For example, no side conversations or unnecessary disruptions.
+- Use preferred names and gender pronouns.
+- Assume goodwill in all interactions, even in disagreement.
+- Facilitate dialogue and value the free and safe exchange of ideas.
+- Try not to make assumptions, have an open mind, seek to understand, and not judge.
+- Approach discussion, challenges, and different perspectives as an opportunity to "think out loud," learn something new, and understand the concepts or experiences that guide other people's thinking.
+- Debate the concepts, not the person.
+- Be gracious and open to change when your ideas, arguments, or positions do not work or are proven wrong.
+- Be willing to work together and share helpful study strategies.
+- Be mindful of one another's privacy, and do not invite outsiders into our classroom.
+
+### Engaging with Course Content
+
+Our classroom provides an open space for a critical and civil exchange of ideas, inclusive of a variety of perspectives and positions. Some readings and other content may expose you to ideas, subjects, or views that may challenge you, cause you discomfort, or recall past negative experiences or traumas. I intend to discuss all subjects with dignity and humanity, as well as with rigor and respect for scholarly inquiry. If you would like me to be aware of a specific topic of concern, please email or visit my Student Drop-In Hours.
+
+## VII. RESOURCES: Academic Success, Wellness, and Safety
+
+We all need the help and the support of our UIC community. Please visit my **drop-in hours** for course consultation and other academic or research topics. For additional assistance, please contact your assigned college advisor and visit the support services available to all UIC students.
+
+### Academic Success
+
+- UIC [Tutoring Resources](https://tutoring.uic.edu/)
+- College of Engineering [tutoring program](/Users/miirikotche/Library/Application%20Support/Box/Box%20Edit/Documents/1262649564537/%E2%97%8F%09https:/engineeringequity.uic.edu/services/resources)
+- [Equity and Inclusion in Engineering Program](https://engineeringequity.uic.edu/)
+- [UIC Library](http://library.uic.edu/) and [UIC Library Research Guides](http://researchguides.uic.edu/).
+- [Offices](https://ossb.uic.edu/offices/) supporting the UIC Undergraduate Experience and Academic Programs.
+- [Student Guide for Information Technology](https://uofi.app.box.com/s/0nyho51r24yo0pivafibb1nvqogjm401)
+- [First-at-LAS](https://first-at-las.uic.edu/) Academic Success Program, focusing on LAS first-generation students.
+
+### Wellness
+
+- **Counseling Services** : You may seek free and confidential services from the Counseling Center at [https://counseling.uic.edu/](https://counseling.uic.edu/).
+
+- Access [U&I Care Program](https://dos.uic.edu/student-assistance/uicare/) for assistance with personal hardships.
+- **Campus Advocacy Network** : Under Title IX, you have the right to an education that is free from any form of gender-based violence or discrimination. To make a report, email [TitleIX@uic.edu](mailto:TitleIX@uic.edu). For more information or confidential victim services and advocacy, visit UIC's Campus Advocacy Network at [http://can.uic.edu/](http://can.uic.edu/).
+
+### Safety
+
+- [UIC Safe App](https://ready.uic.edu/toolkit/uic-safe-app/)—PLEASE DOWNLOAD FOR YOUR SAFETY!
+- [UIC Safety Tips and Resources](https://ready.uic.edu/toolkit/be-safe-and-prepared/other-safety-resources/)
+- [Night Ride](https://transportation.uic.edu/night-ride/)
+- [Emergency Communications](https://emergency.uic.edu/): By dialing 5-5555 from a campus phone, you can summon the Police or Fire for any on-campus emergency. You may also set up the complete number, (312) 355-5555, on speed dial on your cell phone.
