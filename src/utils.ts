@@ -4,6 +4,9 @@ import tz from "dayjs/plugin/timezone";
 dayjs.extend(utc);
 dayjs.extend(tz);
 
+// use the best time zone by default
+dayjs.tz.setDefault("America/Chicago");
+
 export const formatTime = (
   time: Date,
   location: string = "America/Chicago",
