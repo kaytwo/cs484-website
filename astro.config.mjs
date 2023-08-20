@@ -13,7 +13,7 @@ export default defineConfig({
       },
       title: "CS 484: Secure Web Application Development",
       social: {
-        github: "https://github.com/kaytwo/cs484-starlight",
+        github: "https://github.com/kaytwo/cs484-website",
       },
       sidebar: [
         {
