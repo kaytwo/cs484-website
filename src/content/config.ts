@@ -3,12 +3,12 @@ import { docsSchema } from "@astrojs/starlight/schema";
 
 const exams = z.object({
   title: z.string(),
-  date: z.date(),
+  date: z.string(),
   content: z.string(),
 });
 
 const lectures = z.object({
-  date: z.date(),
+  date: z.string(),
   readings: z.array(
     z.object({
       link: z.string().url(),
@@ -21,9 +21,9 @@ const lectures = z.object({
 });
 
 const homeworks = z.object({
-  due: z.date(),
+  due: z.string(),
   github_link: z.string().url().optional(),
-  release: z.date(),
+  release: z.string(),
 });
 
 const wrapper = (input: any) => {

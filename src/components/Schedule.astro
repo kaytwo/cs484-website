@@ -2,12 +2,13 @@
 import { getCollection, getEntry } from "astro:content";
 import { marked } from "marked";
 marked.use({ mangle: false, headerIds: false });
+import { localizeTime, formatTime } from "../utils";
 
 const exams = (await getCollection("exams")).map((entry) => {
   return {
     type: "exam",
     title: entry.data.title,
-    date: entry.data.date,
+    date: localizeTime(entry.data.date),
     content: entry.data.content,
   };
 });
@@ -19,13 +20,13 @@ const homeworks = (
       slug: entry.slug,
       type: "homework release",
       title: entry.data.title,
-      date: entry.data.release,
+      date: localizeTime(entry.data.release),
     },
     {
       slug: entry.slug,
       type: "homework due",
       title: entry.data.title,
-      date: entry.data.due,
+      date: localizeTime(entry.data.due),
     },
   ];
 });
@@ -36,7 +37,7 @@ const lectures = (
     slug: entry.slug,
     type: "lecture",
     title: entry.data.title,
-    date: entry.data.date,
+    date: localizeTime(entry.data.date),
     readings: entry.data.readings,
     notes: entry.data.notes,
   };
@@ -62,14 +63,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
       events.map((event) => (
         <tr>
           <td>{event.type}</td>
-          <td>
-            {event.date?.toLocaleDateString("en-US", {
-              weekday: "short",
-              month: "short",
-              day: "numeric",
-              year: "numeric",
-            })}
-          </td>
+          <td>{formatTime(event.date)}</td>
           <td>
             {event.type === "homework release" ||
             event.type === "homework due" ? (

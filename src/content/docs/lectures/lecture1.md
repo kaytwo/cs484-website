@@ -1,5 +1,5 @@
 ---
-date: 2023-08-21T13:00:00
+date: "2023-08-21T15:00:00"
 title: Syllabus, motivation, introduction
 readings:
   - link: https://github.com/readme/guides/formatters-linters-compilers

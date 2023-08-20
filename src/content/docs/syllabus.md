@@ -187,6 +187,28 @@ The course grade weighting is:
 | Final Project (5 pt checkpoint + 10 pt final deliverable) | 15               |
 | Module exams                                              | 50               |
 
+#### Final grade assignment
+
+I am committed to making sure the assessment of your learning in this course is
+comprehensive, fair, and equitable. Your grade in this class will be based on
+the number of points you earn out of the total number of points possible and is
+not based on your rank relative to other students. Furthermore, grades are
+assigned without strict limits on the proportion of each letter grade given in
+the course. If the class mean is 75% or higher, letter grades will be based on a
+straight scale using the following thresholds for grade cut-offs: A range from
+90-100%, B range from 80-89.9%, C range from 70-79.9%, D range from 60-69.9%,
+and F given to 59.9% or lower. If the class mean is lower than 75%, the scale
+will be adjusted to compensate (e.g. 89% may become an A).
+
+Under no circumstances will grades be adjusted down. You can use this straight
+grading scale as an indicator of your minimum grade in the course at any time
+during the course. You should keep track of your own points so that at any time
+during the semester you may calculate your minimum grade based on the total
+number of points possible at that particular time. If and when, for any reason,
+you have concerns about your grade in the course, please email me to schedule a
+time for you to speak with me or your TA so that we can discuss study techniques
+or alternative strategies to help you.
+
 #### Homework late policy
 
 Every assignment in this course is due at exactly the time stated on Gradescope,
@@ -336,21 +358,53 @@ If your name does not match the name on my class roster, please let me know as s
 
 ### Community Agreement/Classroom Conduct Policy
 
-- Be present by turning off cell phones and removing yourself from other distractions.
-- Be respectful of the learning space and community. For example, no side conversations or unnecessary disruptions.
+- Be present by removing yourself from distractions, whether they be phone
+  notifications, entire devices, conversations, or anything else.
+- Be respectful of the learning space and community. For example, no side
+  conversations or unnecessary disruptions.
 - Use preferred names and gender pronouns.
 - Assume goodwill in all interactions, even in disagreement.
 - Facilitate dialogue and value the free and safe exchange of ideas.
-- Try not to make assumptions, have an open mind, seek to understand, and not judge.
-- Approach discussion, challenges, and different perspectives as an opportunity to "think out loud," learn something new, and understand the concepts or experiences that guide other people's thinking.
+- Try not to make assumptions, have an open mind, seek to understand, and not
+  judge.
+- Approach discussion, challenges, and different perspectives as an opportunity
+  to "think out loud," learn something new, and understand the concepts or
+  experiences that guide other people's thinking.
 - Debate the concepts, not the person.
-- Be gracious and open to change when your ideas, arguments, or positions do not work or are proven wrong.
+- Be gracious and open to change when your ideas, arguments, or positions do not
+  work or are proven wrong.
 - Be willing to work together and share helpful study strategies.
-- Be mindful of one another's privacy, and do not invite outsiders into our classroom.
+- Be mindful of one another's privacy, and do not invite outsiders into our
+  classroom.
+
+Furthermore, our class (in person and online) will follow the [CS Code of
+Conduct](https://www.cs.uic.edu/~grad/CS_Code_of_Conduct.pdf). If you are not
+adhering to our course norms, a case of behavior misconduct will be submitted to
+the Dean of Students and to the Director of Undergraduate Studies in the
+department of Computer Science. If you are not adhering to our course norms, you
+will not get full credit for your work in this class. For extreme cases of
+violating the course norms, credit for the course will not be given.
 
 ### Engaging with Course Content
 
 Our classroom provides an open space for a critical and civil exchange of ideas, inclusive of a variety of perspectives and positions. Some readings and other content may expose you to ideas, subjects, or views that may challenge you, cause you discomfort, or recall past negative experiences or traumas. I intend to discuss all subjects with dignity and humanity, as well as with rigor and respect for scholarly inquiry. If you would like me to be aware of a specific topic of concern, please email or visit my Student Drop-In Hours.
+
+### Student Parents
+
+I know well how exhausting balancing school, childcare, and work can be. I would
+like to help support you and accommodate your family's needs, so please don’t
+keep me in the dark. I hope you will feel safe disclosing your student-parent
+status to me so that I can help you anticipate and solve problems in a way that
+makes you feel supported. Unforeseen disruptions in childcare often put parents
+in the position of having to choose between missing classes to stay home with a
+child or leaving them with a less desirable backup arrangement. While this is
+not meant to be a long-term childcare solution, occasionally bringing a child to
+class in order to cover gaps in care is perfectly acceptable If your baby or
+young child comes to class with you, please plan to sit close to the door so
+that you can step outside without disrupting learning for other students if your
+child needs special attention. Non-parents in the class, please reserve seats
+near the door for your parenting classmates or others who may need to step out
+briefly.
 
 ## VII. RESOURCES: Academic Success, Wellness, and Safety
 
