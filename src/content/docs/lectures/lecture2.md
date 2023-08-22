@@ -1,8 +1,8 @@
 ---
 type: lecture
 date: "2023-08-23T15:00:00"
-title: Security and HTTP Basics
-contents:
+title: HTTP Fundamentals
+readings:
   - name: Web Architecture Intro
     link: https://youtu.be/PUCa7CK_VkE
   - link: https://hpbn.co/brief-history-of-http/
