@@ -6,13 +6,14 @@ github_link: https://classroom.github.com/a/s4iccEBE
 release: "2023-08-21T08:00:00"
 ---
 
-import { localizeTime } from "../../../utils.ts";
+import { formatTime } from "../../../utils.ts";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
 
 ## {frontmatter.description}
 
 **Quickstart**: <a href={frontmatter.github_link}>accept the assignment</a>  
-**Due**: {localizeTime(frontmatter.due)}
+**Alternate Quickstart**: Click "use this template" on the [skeleton code](https://github.com/swad-cs-uic/homework0/) to create a new **private** repository in your account. [See below](#alternate-quickstart) for more details.  
+**Due**: {formatTime(frontmatter.due)}
 
 By the end of this assignment you will have your own web app deployed on the web
 for all to see. The coding part is dead simple - you just have to change the
@@ -207,7 +208,7 @@ This is almost certainly the easiest assignment, so I recommend you aim for full
 points. Getting this done should take less than a half an hour, even if you've
 never used JavaScript before.
 
-## UPDATE: Setting up Private Repostitory for Hosting
+## Alternate quickstart
 
 As Netlify's policies don't allow for an Organization's Private Repository to be hosted, here is a way around getting your first assignment deployed.
 
