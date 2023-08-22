@@ -1,6 +1,6 @@
 ---
 type: lecture
-date: 2022-08-24T14:00:00-5:00
+date: "2023-08-23T15:00:00"
 title: Security and HTTP Basics
 contents:
   - name: Web Architecture Intro
