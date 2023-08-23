@@ -10,8 +10,8 @@ slug: syllabus
 ## **I. Instructor & Course Details**
 
 Chris Kanich, <ckanich@uic.edu>  
-Drop-In Office Hours: TBD  
-Drop-In Hours location: TBD
+Drop-In Office Hours: 3-4pm Thursdays & Fridays  
+Drop-In Hours location: SEO 908 on Friday, [Zoom](https://uic.zoom.us/my/ckanich) on Thursday
 
 Graduate TA: Saurav Joshi, <sjoshi50@uic.edu>  
 Drop-In Office Hours (in-person or virtual): TBD  

@@ -23,6 +23,14 @@ export default defineConfig({
             { label: "Welcome", link: "/" },
             { label: "Schedule", link: "/schedule" },
             { label: "Syllabus", link: "/syllabus" },
+            {
+              label: "Discussion",
+              link: "https://piazza.com/uic/fall2023/cs484",
+            },
+            {
+              label: "Gradescope",
+              link: "https://www.gradescope.com/courses/537130",
+            },
           ],
         },
         {

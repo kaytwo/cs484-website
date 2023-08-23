@@ -12,4 +12,8 @@ readings:
     optional: true
   - link: https://forms.gle/BginkDWwRAE3CafC9
     name: Complete this survey before class (required)
+notes: |
+  In class activity: explaining & setting up a dev environment, PR review if we have time
 ---
+
+CONTENT
