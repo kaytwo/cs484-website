@@ -3,8 +3,8 @@ type: lecture
 date: "2023-08-28T15:00:00"
 title: JavaScript for Computer Scientists
 readings:
-  - link: https://domain.invalid/
-    name: Today's video (TBD)
+  - link: https://youtu.be/_4PokD3HDkM
+    name: JavaScript for CS Majors
   - link: https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
     name: TypeScript in Five Minutes
   - link: https://javascript.info/
