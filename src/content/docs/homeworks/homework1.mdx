@@ -1,20 +1,25 @@
 ---
 title: homework 1 - crud apps
 description: Express + SQLite
-due: "2023-09-10T15:00:00"
-github_link: https://classroom.github.com/a/8Hso8Pyq
-release: "2023-08-28T08:00:00"
+due: "2023-09-08T15:00:00"
+github_link: https://classroom.github.com/a/d1FDyx0T
+release: "2023-08-28T22:00:00"
 ---
 
-{/* THE RELEASE, DUE AND GITHUB LINK NEEDS TO BE UPDATED -- */}
-
-import { localizeTime } from "../../../utils.ts";
+import { localizeTime, formatTime } from "../../../utils.ts";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
 
 ## {frontmatter.description}
 
-**Quickstart**: <a href={frontmatter.github_link}>accept the assignment</a>  
-**Due**: {localizeTime(frontmatter.due)}
+**Due**: {formatTime(localizeTime(frontmatter.due))}
+
+**Quickstart**: To use free Codespaces to do your assignment, please <a
+href={frontmatter.github_link}>accept it via this GitHub Classroom link</a>. To
+just create a new repository under your own GitHub account, you can create a new
+**private** repository from [this
+template](https://github.com/swad-cs-uic/homework1). Sharing your code,
+intentionally or unintentionally, is a violation of the academic integrity
+policy in this course.
 
 # Homework1 - Crud App
 
@@ -40,10 +45,6 @@ Checkout 'Exploring the webapplication' section on details about the functionali
 ## Pre-requisite
 
 Please have `Node.js` installed for starting this project. For installing `Node.js` checkout this webpage https://nodejs.org/en/ and download the LTS version of Node.js for your laptop.
-
-## Cloning your homework assignment
-
-[This GitHub Classroom link](https://classroom.github.com/a/8Hso8Pyq) will allow you to accept the assignment.
 
 ## Installing required packages
 
