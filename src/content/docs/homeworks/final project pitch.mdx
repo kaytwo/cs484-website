@@ -1,0 +1,35 @@
+---
+title: Final Project Pitch
+description: How to submit your final project pitch
+due: "2023-09-06T15:00:00"
+release: "2023-08-23T11:00:00"
+github_url: "https://github.com/swad-cs-uic/final-project-template"
+---
+
+import { localizeTime, formatTime } from "../../../utils.ts";
+import { Content as Deadlines } from "../../../components/Deadlines.md";
+
+## {frontmatter.description}
+
+**Due**: {formatTime(localizeTime(frontmatter.due))}
+
+As mentioned on Piazza, your final project pitch is due at the start of class on
+Wednesday of next week. Please submit your pitch on Gradescope using the shell
+available in <a href={frontmatter.github_url}>this repository</a>.
+
+Important things to remember:
+
+- You don't actually get any points for submitting this, but it's a deadline to
+  help you stay on track with coming up with a project idea and project team.
+- Submit your Gradescope assignment with your team for the final project. The
+  system should allow you to choose your own teammates for the group submission.
+- Make sure you include the repository URL in the README.md. The way that
+  Gradescope works, we don't actually see what repository you are uploading
+  from.
+- Please make `sauravjoshi` and `kaytwo` collaborators on your repository if
+  it's private and you want our help. Also remember to push your code if you ask
+  a question about how to get something to work.
+- Making your repository public is totally fine, asking others in class for help
+  is totally fine. You won't be penalized either way. All code must be your own.
+  GenAI assistance is OK, but let us know which one(s) you used and how you used
+  them.
