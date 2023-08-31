@@ -1,0 +1,40 @@
+---
+title: Final Project
+description: Final project, in production
+due: "2023-12-01T15:00:00"
+release: "2023-10-26T11:00:00"
+github_url: "https://github.com/swad-cs-uic/final-project-template"
+---
+
+import { localizeTime, formatTime } from "../../../utils.ts";
+import { Content as Deadlines } from "../../../components/Deadlines.md";
+
+## {frontmatter.description}
+
+**Due**: {formatTime(localizeTime(frontmatter.due))}
+
+## This document is a PLACEHOLDER. The deliverable details and deadline will be finalized by the previous checkpoint deadline.
+
+The final project will be graded similarly to the first checkpoint. I will be grading the final projects based on one the below things:
+
+1. The "what does your application do" functionality described in Checkpoint 0.
+2. Any changes to the above that we have agreed upon since then.
+
+As with the MVP checkpoint, after the deadline I will use your app to determine
+whether it has the functionality you've described. I will start grading it ASAP,
+so please don't take time away from your other classes to continue working on it -
+in fact, unless you have very good CI/CD set up, it would be very risky to
+continue deploying new versions that you haven't tested, because you don't know
+when I will decide to grade it.
+
+Like the MVP, you can submit a screencast with your assignment to show me how to
+use your app if I need to know how to do so. I won't grade that (I will only
+grade the app as it runs for me), but I will refer to it if I need to.
+
+Importantly, I will only attempt to grade your assignment once, and you'll get
+the grade you get. The only reason I would re-grade it is if there was some
+outage beyond your control (which I can verify using any of the various status
+pages for the services you're using, like the [netlify status
+page](https://www.netlifystatus.com/) [vercel status
+page](https://www.vercel-status.com/) [supabase status
+page](https://status.supabase.com/) etc.

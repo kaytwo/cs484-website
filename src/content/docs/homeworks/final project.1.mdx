@@ -1,0 +1,31 @@
+---
+title: Final Project checkpoint 1
+description: System architecture, tech stack, and MVP functionality description
+due: "2023-09-25T15:00:00"
+release: "2023-09-07T11:00:00"
+github_url: "https://github.com/swad-cs-uic/final-project-template"
+---
+
+import { localizeTime, formatTime } from "../../../utils.ts";
+import { Content as Deadlines } from "../../../components/Deadlines.md";
+
+## {frontmatter.description}
+
+**Due**: {formatTime(localizeTime(frontmatter.due))}
+
+## This document is a PLACEHOLDER. The deliverable details and deadline will be finalized by the previous checkpoint deadline.
+
+By the due date your team must:
+
+- Set up CI to host the built version of your team GH repository
+  - Include a link to your deployed app in `README.md` so that I can take a look
+- Include a diagram (in text or drawn or however you please) of your tech stack:
+  - What services you will use to host (front end, back end, database)
+  - What technologies you will use on the front end and back end
+  - What APIs you will call out to
+- Include a short textual description of what MVP (minimum viable product) you will be aiming to complete by the end of week 13.
+
+This checkpoint is meant for keeping you moving forward on your project, and is
+not graded for points toward your final grade. However, if you don't submit this
+on time, I will be grading everything based on your pitch, regardless of whether
+you ended up adding that to your plan or not.
