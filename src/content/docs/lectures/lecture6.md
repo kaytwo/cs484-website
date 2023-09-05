@@ -3,12 +3,13 @@ type: lecture
 date: "2023-09-06T15:00:00"
 title: Networking Concepts for Web Development
 readings:
-  - link: https://domain.invalid/
-    name: Video (TBD)
   - link: https://jvns.ca/networking-zine.pdf
     name: Networking Zine
   - link: https://www.ssl.com/faqs/what-is-a-certificate-authority/
     name: What Is a Certificate Authority (CA)?
+  - link: https://www.youtube.com/watch?v=Fzdx222mBng
+    name: Video on network layering
+    optional: true
   - link: https://www.keyfactor.com/blog/what-is-tls-handshake-how-does-it-work/
     name: "Demystifying the TLS Handshake: What it is and how it works"
     optional: true
