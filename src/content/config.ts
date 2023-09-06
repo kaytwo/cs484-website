@@ -5,6 +5,7 @@ const exams = z.object({
   title: z.string(),
   date: z.string(),
   content: z.string(),
+  notes: z.string().optional(),
 });
 
 const lectures = z.object({

@@ -10,6 +10,7 @@ const exams = (await getCollection("exams")).map((entry) => {
     title: entry.data.title,
     date: localizeTime(entry.data.date),
     content: entry.data.content,
+    notes: entry.data.notes,
   };
 });
 const homeworks = (
