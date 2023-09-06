@@ -12,5 +12,5 @@ readings:
   - link: https://blog.cloudflare.com/http3-the-past-present-and-future/
     name: HTTP/3
     optional: true
-notes: REMINDER! This is the last lecture that will be covered on exam 1.
+notes: REMINDER! This lecture content **will not** will be covered on exam 1.
 ---
