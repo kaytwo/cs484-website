@@ -68,10 +68,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
           <td>
             {event.type === "homework release" ||
             event.type === "homework due" ? (
-              // @ts-expect-error
-              <a href={`/${event.slug}/`} target="_blank">
-                {event.title}
-              </a>
+              <a href={`/${event.slug}/`}>{event.title}</a>
             ) : (
               event.title
             )}
