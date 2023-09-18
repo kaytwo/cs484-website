@@ -69,7 +69,9 @@ const events = [...exams, ...homeworks, ...lectures].sort(
             {event.type === "homework release" ||
             event.type === "homework due" ? (
               // @ts-expect-error
-              <a href={`/${event.slug}/`}>{event.title}</a>
+              <a href={`/${event.slug}/`} target="_blank">
+                {event.title}
+              </a>
             ) : (
               event.title
             )}
@@ -80,7 +82,9 @@ const events = [...exams, ...homeworks, ...lectures].sort(
               <ul>
                 {event.readings.map((reading) => (
                   <li>
-                    <a href={reading.link}>{reading.name}</a>
+                    <a href={reading.link} target="_blank">
+                      {reading.name}
+                    </a>
                     {reading.grad_only && <span title="grad only">🧑‍🎓</span>}
                     {reading.optional && <span title="not on quiz">📵</span>}
                   </li>
