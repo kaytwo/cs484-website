@@ -16,7 +16,7 @@ readings:
     name: Functional Components Demo
     optional: true
 notes: |
-  * Additional optional reading by my robot friend: [Comparison of reactivity models](/lectures/lecture10.html).
+  * Additional optional reading by my robot friend: [Comparison of reactivity models](/lectures/lecture10/).
   * Highly recommend [the React Tutorial](https://reactjs.org/tutorial/tutorial.html) as well, but quiz will be on the required readings.
   * The rest of the "Learn ReactJS" playlist looks ok but I haven't fully vetted it.
 ---
