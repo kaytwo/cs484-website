@@ -80,7 +80,9 @@ const events = [...exams, ...homeworks, ...lectures].sort(
               <ul>
                 {event.readings.map((reading) => (
                   <li>
-                    <a href={reading.link}>{reading.name}</a>
+                    <a href={reading.link} target="_blank">
+                      {reading.name}
+                    </a>
                     {reading.grad_only && <span title="grad only">🧑‍🎓</span>}
                     {reading.optional && <span title="not on quiz">📵</span>}
                   </li>
