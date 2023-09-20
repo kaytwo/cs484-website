@@ -12,7 +12,7 @@ const lectures = z.object({
   date: z.string(),
   readings: z.array(
     z.object({
-      link: z.string().url(),
+      link: z.string(),
       name: z.string(),
       optional: z.boolean().default(false),
       grad_only: z.boolean().default(false),
