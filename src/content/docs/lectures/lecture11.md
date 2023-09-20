@@ -1,6 +1,6 @@
 ---
 type: lecture
-date: "2023-09-20T13:00:00"
+date: "2023-09-25T15:00:00"
 title: Measuring App Performance
 readings:
   - link: https://blogs.windows.com/windowsdeveloper/2014/03/20/instrumenting-your-app-for-telemetry-and-analytics/

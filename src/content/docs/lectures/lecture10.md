@@ -1,6 +1,6 @@
 ---
 type: lecture
-date: "2023-09-20T13:00:00"
+date: "2023-09-20T15:00:00"
 title: Basics of React
 readings:
   - link: https://www.freecodecamp.org/news/react-under-the-hood/
