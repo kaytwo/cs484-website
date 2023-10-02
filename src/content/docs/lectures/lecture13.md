@@ -8,6 +8,9 @@ readings:
   - name: Vite in 100 seconds
     link: https://www.youtube.com/watch?v=KCrXgy8qtjM
     optional: true
+  - name: Astro in 100 seconds
+    link: https://www.youtube.com/watch?v=dsTXcSeAZq8
+    optional: true
   - link: https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1
     name: CJS vs. ES modules
 ---
