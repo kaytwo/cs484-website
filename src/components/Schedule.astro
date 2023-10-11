@@ -45,9 +45,11 @@ const lectures = (
 });
 // merge the three above arrays and sort them by date
 const events = [...exams, ...homeworks, ...lectures].sort(
-  (a, b) => +a.date! - +b.date!
+  (a, b) => +a.date! - +b.date!,
 );
 ---
+
+<button id="jumpToDateButton"> Jump to Nearest Date</button>
 
 <table>
   <thead>
@@ -62,7 +64,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
   <tbody>
     {
       events.map((event) => (
-        <tr>
+        <tr data-date={event.date}>
           <td>{event.type}</td>
           <td>{formatTime(event.date)}</td>
           <td>
@@ -102,3 +104,26 @@ const events = [...exams, ...homeworks, ...lectures].sort(
     padding-left: 0.5rem;
   }
 </style>
+
+<script is:inline>
+// is:inline to prevent Astro from processing
+const today = new Date();
+
+const jumpToDate = () => {
+  const rows = document.querySelectorAll("tr[data-date]");
+  const nearestRow = Array.from(rows).sort((a, b) => {
+    return (
+      Math.abs(today - new Date(a.getAttribute("data-date"))) -
+      Math.abs(today - new Date(b.getAttribute("data-date"))) // Sort by diff between today's date and event's date
+    );
+  })[0]; // Return first item (nearest date)
+
+  nearestRow.scrollIntoView(); // Scroll window to the row
+  nearestRow.style.backgroundColor = "#ffff0040"; // Highlight the row
+};
+
+// Add event listener
+document.querySelector("#jumpToDateButton").addEventListener("click", () => {
+  jumpToDate();
+});
+</script>
