@@ -1,6 +1,6 @@
 ---
 type: lecture
-date: "2023-10-18T15:00:00"
+date: "2023-10-16T15:00:00"
 title: Databases
 readings:
   - name: 7 Database Paradigms
