@@ -1,6 +1,6 @@
 ---
 type: lecture
-date: "2023-11-13T15:00:00"
+date: "2023-11-15T15:00:00"
 title: "Passwords and passkeys"
 readings:
   - name: "Passkeys: what the heck and why"
