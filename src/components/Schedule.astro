@@ -49,7 +49,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
 );
 ---
 
-<button id="jumpToDateButton"> Jump to Nearest Date</button>
+<span class="action primary" id="jumpToDateButton">Jump to Nearest Date</span>
 
 <table>
   <thead>
@@ -100,6 +100,24 @@ const events = [...exams, ...homeworks, ...lectures].sort(
 </table>
 
 <style>
+  .action {
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    gap: 0.5em;
+    align-items: center;
+    border-radius: 999rem;
+    padding: 0.5rem 1.125rem;
+    color: var(--sl-color-white);
+    line-height: 1.1875;
+    text-decoration: none;
+    font-size: var(--sl-text-sm);
+  }
+  .action.primary {
+    background: var(--sl-color-text-accent);
+    color: var(--sl-color-black);
+  }
   ul {
     padding-left: 0.5rem;
   }
