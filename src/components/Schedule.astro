@@ -49,6 +49,8 @@ const events = [...exams, ...homeworks, ...lectures].sort(
 );
 ---
 
+<button id="jumpToDateButton"> Jump to Nearest Date</button>
+
 <table>
   <thead>
     <tr>
@@ -62,7 +64,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
   <tbody>
     {
       events.map((event) => (
-        <tr>
+        <tr data-date={event.date}>
           <td>{event.type}</td>
           <td>{formatTime(event.date)}</td>
           <td>
@@ -101,4 +103,46 @@ const events = [...exams, ...homeworks, ...lectures].sort(
   ul {
     padding-left: 0.5rem;
   }
+  @keyframes fadeHighlight {
+    from {
+      background-color: #ffff00a9;
+    }
+    to {
+      background-color: inherit;
+    }
+  }
+
+  .highlight {
+    animation: fadeHighlight 2s ease-out forwards;
+  }
 </style>
+
+<script is:inline>
+  // is:inline to prevent Astro from processing
+  const today = new Date();
+
+  const jumpToDate = () => {
+    const rows = document.querySelectorAll("tr[data-date]");
+    const nearestRow = Array.from(rows).sort((a, b) => {
+      return (
+        Math.abs(today - new Date(a.getAttribute("data-date"))) -
+        Math.abs(today - new Date(b.getAttribute("data-date"))) // Sort by diff between today's date and event's date
+      );
+    })[0]; // Return first item (nearest date)
+    const originalColor = window.getComputedStyle(nearestRow).backgroundColor;
+    nearestRow.style.backgroundColor = originalColor; // Set original color inline
+    nearestRow.classList.add("highlight");
+
+    setTimeout(() => {
+      nearestRow.classList.remove("highlight");
+      nearestRow.style.backgroundColor = ""; // Revert to stylesheet color
+    }, 2000); // 2000 ms for 2 seconds
+
+    nearestRow.scrollIntoView(); // Scroll window to the row
+  };
+
+  // Add event listener
+  document.querySelector("#jumpToDateButton").addEventListener("click", () => {
+    jumpToDate();
+  });
+</script>
