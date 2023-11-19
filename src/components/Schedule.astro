@@ -45,7 +45,7 @@ const lectures = (
 });
 // merge the three above arrays and sort them by date
 const events = [...exams, ...homeworks, ...lectures].sort(
-  (a, b) => +a.date! - +b.date!,
+  (a, b) => +a.date! - +b.date!
 );
 ---
 
@@ -103,27 +103,45 @@ const events = [...exams, ...homeworks, ...lectures].sort(
   ul {
     padding-left: 0.5rem;
   }
+  @keyframes fadeHighlight {
+    from {
+      background-color: #ffff00a9;
+    }
+    to {
+      background-color: inherit;
+    }
+  }
+
+  .highlight {
+    animation: fadeHighlight 2s ease-out forwards;
+  }
 </style>
 
 <script is:inline>
-// is:inline to prevent Astro from processing
-const today = new Date();
+  // is:inline to prevent Astro from processing
+  const today = new Date();
 
-const jumpToDate = () => {
-  const rows = document.querySelectorAll("tr[data-date]");
-  const nearestRow = Array.from(rows).sort((a, b) => {
-    return (
-      Math.abs(today - new Date(a.getAttribute("data-date"))) -
-      Math.abs(today - new Date(b.getAttribute("data-date"))) // Sort by diff between today's date and event's date
-    );
-  })[0]; // Return first item (nearest date)
+  const jumpToDate = () => {
+    const rows = document.querySelectorAll("tr[data-date]");
+    const nearestRow = Array.from(rows).sort((a, b) => {
+      return (
+        Math.abs(today - new Date(a.getAttribute("data-date"))) -
+        Math.abs(today - new Date(b.getAttribute("data-date"))) // Sort by diff between today's date and event's date
+      );
+    })[0]; // Return first item (nearest date)
+    const originalColor = window.getComputedStyle(nearestRow).backgroundColor;
+    nearestRow.style.backgroundColor = originalColor; // Set original color inline
+    nearestRow.classList.add("highlight");
 
-  nearestRow.scrollIntoView(); // Scroll window to the row
-  nearestRow.style.backgroundColor = "#ffff0040"; // Highlight the row
-};
+    setTimeout(() => {
+      nearestRow.classList.remove("highlight");
+      nearestRow.style.backgroundColor = ""; // Revert to stylesheet color
+    }, 2000);
 
-// Add event listener
-document.querySelector("#jumpToDateButton").addEventListener("click", () => {
-  jumpToDate();
-});
+    nearestRow.scrollIntoView();
+  };
+
+  document.querySelector("#jumpToDateButton").addEventListener("click", () => {
+    jumpToDate();
+  });
 </script>
