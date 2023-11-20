@@ -1,7 +1,7 @@
 ---
 import { getCollection, getEntry } from "astro:content";
 import { marked } from "marked";
-marked.use({ mangle: false, headerIds: false });
+// marked.use({ mangle: false, headerIds: false });
 import { localizeTime, formatTime } from "../utils";
 
 const exams = (await getCollection("exams")).map((entry) => {
