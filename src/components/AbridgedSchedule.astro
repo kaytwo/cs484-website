@@ -1,0 +1,124 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import { marked } from "marked";
+marked.use({ mangle: false, headerIds: false });
+import { localizeTime, formatTime } from "../utils";
+
+const exams = (await getCollection("exams"))
+  .map((entry) => {
+    return {
+      type: "exam",
+      title: entry.data.title,
+      date: localizeTime(entry.data.date),
+      readings: null,
+      content: entry.data.content,
+      notes: entry.data.notes,
+    };
+  })
+  .sort((a, b) => +a.date! - +b.date!);
+
+const homeworks = (
+  await getCollection("docs", (entry) => entry.id.startsWith("homework"))
+)
+  .flatMap((entry) => {
+    return [
+      {
+        slug: entry.slug,
+        type: "homework due",
+        title: entry.data.title,
+        date: localizeTime(entry.data.due),
+        readings: null,
+        content: null,
+        notes: null,
+      },
+    ];
+  })
+  .sort((a, b) => +a.date! - +b.date!);
+
+const lectures = (
+  await getCollection("docs", (entry) => entry.id.startsWith("lecture"))
+)
+  .map((entry) => {
+    return {
+      slug: entry.slug,
+      type: "lecture",
+      title: entry.data.title,
+      date: localizeTime(entry.data.date),
+      readings: entry.data.readings,
+      content: null,
+      notes: entry.data.notes,
+    };
+  })
+  .sort((a, b) => +a.date! - +b.date!);
+
+const now = new Date().getTime();
+
+// Filtering the sorted lists by what has a date later than today
+// and subsequently only taking the first in the list
+
+const nextHomework = homeworks.filter(function (x) {
+  return x.date.getTime() - now > 0;
+})[0];
+
+const nextLecture = lectures.filter(function (x) {
+  return x.date.getTime() - now > 0;
+})[0];
+
+const nextExam = exams.filter(function (x) {
+  return x.date.getTime() - now > 0;
+})[0];
+
+// Merging the three into one array
+const events = [nextHomework, nextLecture, nextExam];
+---
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Date</th>
+      <th>Topic</th>
+      <th>Content</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    {
+      events.map((event) => (
+        <tr>
+          <td>{event.type}</td>
+          <td>{formatTime(event.date)}</td>
+          <td>
+            {event.type === "homework due" ? (
+              // @ts-expect-error
+              <a href={`/${event.slug}/`}>{event.title}</a>
+            ) : (
+              event.title
+            )}
+          </td>
+          <td>
+            {event.type === "exam" && event.content}
+            {event.readings && (
+              <ul>
+                {event.readings.map((reading) => (
+                  <li>
+                    <a href={reading.link}>{reading.name}</a>
+                    {reading.grad_only && <span title="grad only">🧑‍🎓</span>}
+                    {reading.optional && <span title="not on quiz">📵</span>}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </td>
+          <td>{event.notes && <Fragment set:html={marked(event.notes)} />}</td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
+
+<style>
+  ul {
+    padding-left: 0.5rem;
+  }
+</style>
