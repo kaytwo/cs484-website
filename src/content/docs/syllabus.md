@@ -413,7 +413,7 @@ We all need the help and the support of our UIC community. Please visit my **dro
 ### Academic Success
 
 - UIC [Tutoring Resources](https://tutoring.uic.edu/)
-- College of Engineering [tutoring program](/Users/miirikotche/Library/Application%20Support/Box/Box%20Edit/Documents/1262649564537/%E2%97%8F%09https:/engineeringequity.uic.edu/services/resources)
+- College of Engineering [tutoring program](https:/engineeringequity.uic.edu/services/resources)
 - [Equity and Inclusion in Engineering Program](https://engineeringequity.uic.edu/)
 - [UIC Library](http://library.uic.edu/) and [UIC Library Research Guides](http://researchguides.uic.edu/).
 - [Offices](https://ossb.uic.edu/offices/) supporting the UIC Undergraduate Experience and Academic Programs.
