@@ -102,16 +102,12 @@ const events = [...exams, ...homeworks, ...lectures].sort(
   </table>
 
   <style>
-    table {
-      border-collapse: separate;
-    }
     .td-class {
-      empty-cells: hide;
-      @apply border-0 px-4 py-3 text-gray-900 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:first:rounded-bl-lg sm:first:rounded-tl-lg sm:last:rounded-b-none sm:last:rounded-br-lg sm:last:rounded-tr-lg;
+      @apply border-0 px-4 py-3 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:first:rounded-bl-lg sm:first:rounded-tl-lg sm:last:rounded-b-none sm:last:rounded-br-lg sm:last:rounded-tr-lg;
     }
 
     .tr-class {
-      @apply mb-4 flex flex-col odd:bg-gray-200 even:bg-gray-100 sm:table-row;
+      @apply mb-4 flex flex-col odd:bg-[var(--sl-color-gray-6)] even:bg-[var(--sl-color-gray-7)] sm:table-row;
     }
     .action {
       display: inline-block;
@@ -136,10 +132,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
     }
     @keyframes fadeHighlight {
       from {
-        background-color: #ffff00a9;
-      }
-      to {
-        background-color: inherit;
+        background-color: var(--sl-color-accent);
       }
     }
 
@@ -148,8 +141,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
     }
   </style>
 
-  <script is:inline>
-    // is:inline to prevent Astro from processing
+  <script>
     const today = new Date();
 
     const jumpToDate = () => {

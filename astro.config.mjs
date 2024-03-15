@@ -34,6 +34,10 @@ export default defineConfig({
               link: "/syllabus",
             },
             {
+              label: "Resources",
+              link: "/resources",
+            },
+            {
               label: "Discussion",
               link: "https://piazza.com/uic/fall2023/cs484",
             },
