@@ -1,11 +1,12 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-import react from "@astrojs/react";
+
+import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-    react(),
+    tailwind({ applyBaseStyles: false }),
     starlight({
       lastUpdated: false,
       logo: {
@@ -20,9 +21,18 @@ export default defineConfig({
           label: "Basics",
           items: [
             // Each item here is one entry in the navigation menu.
-            { label: "Welcome", link: "/" },
-            { label: "Schedule", link: "/schedule" },
-            { label: "Syllabus", link: "/syllabus" },
+            {
+              label: "Welcome",
+              link: "/",
+            },
+            {
+              label: "Schedule",
+              link: "/schedule",
+            },
+            {
+              label: "Syllabus",
+              link: "/syllabus",
+            },
             {
               label: "Discussion",
               link: "https://piazza.com/uic/fall2023/cs484",
@@ -34,8 +44,16 @@ export default defineConfig({
           ],
         },
         {
+          label: "Readings",
+          autogenerate: {
+            directory: "readings",
+          },
+        },
+        {
           label: "Homeworks",
-          autogenerate: { directory: "homeworks" },
+          autogenerate: {
+            directory: "homeworks",
+          },
         },
       ],
       customCss: ["/src/overrides.css"],

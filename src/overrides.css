@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root,
 ::backdrop {
   --sl-title-min-width: 39rem;
