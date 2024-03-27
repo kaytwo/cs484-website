@@ -5,6 +5,10 @@
 :root,
 ::backdrop {
   --sl-title-min-width: 39rem;
+  --sl-text-h1: var(--sl-text-4xl);
+  --sl-text-h2: var(--sl-text-3xl);
+  --sl-text-h3: var(--sl-text-2xl);
+  --sl-text-h4: var(--sl-text-xl);
 }
 
 @media (min-width: 50rem) {

@@ -16,6 +16,7 @@ export default defineConfig({
       social: {
         github: "https://github.com/kaytwo/cs484-website",
       },
+      tableOfContents: { minHeadingLevel: 1, maxHeadingLevel: 3 },
       sidebar: [
         {
           label: "Basics",

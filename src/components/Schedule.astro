@@ -152,6 +152,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
           Math.abs(today - new Date(b.getAttribute("data-date"))) // Sort by diff between today's date and event's date
         );
       })[0]; // Return first item (nearest date)
+      if (!nearestRow) return;
       const originalColor = window.getComputedStyle(nearestRow).backgroundColor;
       nearestRow.style.backgroundColor = originalColor; // Set original color inline
       nearestRow.classList.add("highlight");
