@@ -45,7 +45,7 @@ const lectures = (
 });
 // merge the three above arrays and sort them by date
 const events = [...exams, ...homeworks, ...lectures].sort(
-  (a, b) => +a.date! - +b.date!,
+  (a, b) => +a.date! - +b.date!
 );
 ---
 
@@ -142,16 +142,16 @@ const events = [...exams, ...homeworks, ...lectures].sort(
   </style>
 
   <script>
-    const today = new Date();
+    const today = +new Date();
 
     const jumpToDate = () => {
       const rows = document.querySelectorAll("tr[data-date]");
       const nearestRow = Array.from(rows).sort((a, b) => {
         return (
-          Math.abs(today - new Date(a.getAttribute("data-date"))) -
-          Math.abs(today - new Date(b.getAttribute("data-date"))) // Sort by diff between today's date and event's date
+          Math.abs(today - +new Date(a.getAttribute("data-date") ?? today)) -
+          Math.abs(today - +new Date(b.getAttribute("data-date") ?? today)) // Sort by diff between today's date and event's date
         );
-      })[0]; // Return first item (nearest date)
+      })[0] as HTMLElement; // Return first item (nearest date)
       if (!nearestRow) return;
       const originalColor = window.getComputedStyle(nearestRow).backgroundColor;
       nearestRow.style.backgroundColor = originalColor; // Set original color inline
@@ -167,7 +167,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
 
     document
       .querySelector("#jumpToDateButton")
-      .addEventListener("click", () => {
+      ?.addEventListener("click", () => {
         jumpToDate();
       });
   </script>
