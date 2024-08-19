@@ -20,6 +20,6 @@
     "marked": "^10.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-super-responsive-table": "^5.2.2"
+    "react-super-responsive-table": "^6.0.0"
   }
 }
