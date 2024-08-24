@@ -27,12 +27,31 @@ const homeworks = z.object({
   release: z.string(),
 });
 
-const wrapper = (input: any) => {
-  const result = docsSchema()(input);
-  return result.merge(homeworks.partial()).merge(lectures.partial());
-};
+const readings = z.object({
+  bibliography: z
+    .array(
+      z.object({
+        link: z.string(),
+        name: z.string(),
+        optional: z.boolean().default(false),
+        grad_only: z.boolean().default(false),
+      })
+    )
+    .optional()
+    .default([]),
+  module: z.string().optional(),
+  title: z.string().optional(),
+  order: z.number().optional(),
+});
+
+const schema = docsSchema({
+  extend: homeworks
+    .partial()
+    .merge(lectures.partial())
+    .merge(readings.partial()),
+});
 
 export const collections = {
-  docs: defineCollection({ schema: wrapper }),
+  docs: defineCollection({ schema: schema }),
   exams: defineCollection({ schema: exams, type: "data" }),
 };

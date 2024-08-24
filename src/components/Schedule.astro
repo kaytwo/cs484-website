@@ -50,116 +50,125 @@ const events = [...exams, ...homeworks, ...lectures].sort(
 ---
 
 <span class="action primary" id="jumpToDateButton">Jump to Nearest Date</span>
+<div class="not-content ml-4 flex items-center sm:ml-0 sm:justify-center">
+  <table class="border-separate border-spacing-y-2 text-sm">
+    <thead class="sr-only">
+      <tr>
+        <th>Type</th>
+        <th>Date</th>
+        <th>Topic</th>
+        <th>Content</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        events.map((event) => (
+          <tr class="tr-class" data-date={event.date}>
+            <td class="td-class">{event.type}</td>
+            <td class="td-class">{formatTime(event.date)}</td>
+            <td class="td-class">
+              {event.type === "homework release" ||
+              event.type === "homework due" ? (
+                // @ts-expect-error
+                <a href={`/${event.slug}/`}>{event.title}</a>
+              ) : (
+                event.title
+              )}
+            </td>
+            <td class="td-class">
+              {event.type === "exam" && event.content}
+              {event.readings && (
+                <ul>
+                  {event.readings.map((reading) => (
+                    <li>
+                      <a href={reading.link} target="_blank">
+                        {reading.name}
+                      </a>
+                      {reading.grad_only && <span title="grad only">🧑‍🎓</span>}
+                      {reading.optional && <span title="not on quiz">📵</span>}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </td>
+            <td class="td-class">
+              {event.notes && <Fragment set:html={marked(event.notes)} />}
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
 
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Date</th>
-      <th>Topic</th>
-      <th>Content</th>
-      <th>Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    {
-      events.map((event) => (
-        <tr data-date={event.date}>
-          <td>{event.type}</td>
-          <td>{formatTime(event.date)}</td>
-          <td>
-            {event.type === "homework release" ||
-            event.type === "homework due" ? (
-              // @ts-expect-error
-              <a href={`/${event.slug}/`}>{event.title}</a>
-            ) : (
-              event.title
-            )}
-          </td>
-          <td>
-            {event.type === "exam" && event.content}
-            {event.readings && (
-              <ul>
-                {event.readings.map((reading) => (
-                  <li>
-                    <a href={reading.link} target="_blank">
-                      {reading.name}
-                    </a>
-                    {reading.grad_only && <span title="grad only">🧑‍🎓</span>}
-                    {reading.optional && <span title="not on quiz">📵</span>}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </td>
-          <td>{event.notes && <Fragment set:html={marked(event.notes)} />}</td>
-        </tr>
-      ))
+  <style>
+    .td-class {
+      @apply border-0 px-4 py-3 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:first:rounded-bl-lg sm:first:rounded-tl-lg sm:last:rounded-b-none sm:last:rounded-br-lg sm:last:rounded-tr-lg;
     }
-  </tbody>
-</table>
 
-<style>
-  .action {
-    display: inline-block;
-    cursor: pointer;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    gap: 0.5em;
-    align-items: center;
-    border-radius: 999rem;
-    padding: 0.5rem 1.125rem;
-    color: var(--sl-color-white);
-    line-height: 1.1875;
-    text-decoration: none;
-    font-size: var(--sl-text-sm);
-  }
-  .action.primary {
-    background: var(--sl-color-text-accent);
-    color: var(--sl-color-black);
-  }
-  ul {
-    padding-left: 0.5rem;
-  }
-  @keyframes fadeHighlight {
-    from {
-      background-color: #ffff00a9;
+    .tr-class {
+      @apply mb-4 flex flex-col odd:bg-[var(--sl-color-gray-6)] even:bg-[var(--sl-color-gray-7)] sm:table-row;
     }
-    to {
-      background-color: inherit;
+    .action {
+      display: inline-block;
+      cursor: pointer;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      gap: 0.5em;
+      align-items: center;
+      border-radius: 999rem;
+      padding: 0.5rem 1.125rem;
+      color: var(--sl-color-white);
+      line-height: 1.1875;
+      text-decoration: none;
+      font-size: var(--sl-text-sm);
     }
-  }
+    .action.primary {
+      background: var(--sl-color-text-accent);
+      color: var(--sl-color-black);
+    }
+    ul {
+      padding-left: 0.5rem;
+    }
+    @keyframes fadeHighlight {
+      from {
+        background-color: var(--sl-color-accent);
+      }
+    }
 
-  .highlight {
-    animation: fadeHighlight 2s ease-out forwards;
-  }
-</style>
+    .highlight {
+      animation: fadeHighlight 2s ease-out forwards;
+    }
+  </style>
 
-<script is:inline>
-  // is:inline to prevent Astro from processing
-  const today = new Date();
+  <script>
+    const today = +new Date();
 
-  const jumpToDate = () => {
-    const rows = document.querySelectorAll("tr[data-date]");
-    const nearestRow = Array.from(rows).sort((a, b) => {
-      return (
-        Math.abs(today - new Date(a.getAttribute("data-date"))) -
-        Math.abs(today - new Date(b.getAttribute("data-date"))) // Sort by diff between today's date and event's date
-      );
-    })[0]; // Return first item (nearest date)
-    const originalColor = window.getComputedStyle(nearestRow).backgroundColor;
-    nearestRow.style.backgroundColor = originalColor; // Set original color inline
-    nearestRow.classList.add("highlight");
+    const jumpToDate = () => {
+      const rows = document.querySelectorAll("tr[data-date]");
+      const nearestRow = Array.from(rows).sort((a, b) => {
+        return (
+          Math.abs(today - +new Date(a.getAttribute("data-date") ?? today)) -
+          Math.abs(today - +new Date(b.getAttribute("data-date") ?? today)) // Sort by diff between today's date and event's date
+        );
+      })[0] as HTMLElement; // Return first item (nearest date)
+      if (!nearestRow) return;
+      const originalColor = window.getComputedStyle(nearestRow).backgroundColor;
+      nearestRow.style.backgroundColor = originalColor; // Set original color inline
+      nearestRow.classList.add("highlight");
 
-    setTimeout(() => {
-      nearestRow.classList.remove("highlight");
-      nearestRow.style.backgroundColor = ""; // Revert to stylesheet color
-    }, 2000);
+      setTimeout(() => {
+        nearestRow.classList.remove("highlight");
+        nearestRow.style.backgroundColor = ""; // Revert to stylesheet color
+      }, 2000);
 
-    nearestRow.scrollIntoView();
-  };
+      nearestRow.scrollIntoView();
+    };
 
-  document.querySelector("#jumpToDateButton").addEventListener("click", () => {
-    jumpToDate();
-  });
-</script>
+    document
+      .querySelector("#jumpToDateButton")
+      ?.addEventListener("click", () => {
+        jumpToDate();
+      });
+  </script>
+</div>
