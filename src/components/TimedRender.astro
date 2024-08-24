@@ -1,0 +1,21 @@
+---
+interface Props {
+  before?: string;
+  after?: string;
+}
+
+const { before, after } = Astro.props;
+
+const shouldRender = () => {
+  const now = new Date();
+  const beforeDate = before ? new Date(before) : null;
+  const afterDate = after ? new Date(after) : null;
+
+  return (
+    (beforeDate === null || now < beforeDate) &&
+    (afterDate === null || now > afterDate)
+  );
+};
+---
+
+{shouldRender() && <slot />}
