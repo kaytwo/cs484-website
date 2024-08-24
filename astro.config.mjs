@@ -57,9 +57,4 @@ export default defineConfig({
     }],
     customCss: ["/src/overrides.css"]
   })],
-  output: "hybrid",
-  adapter: cloudflare(),
-  experimental: {
-    serverIslands: true,
-  },
 });

@@ -22,18 +22,18 @@ import ClassCardGrid from "../../components/ClassCardGrid.astro";
 import TimedRender from "../../components/TimedRender.astro";
 import { Aside } from "@astrojs/starlight/components"
 
-<TimedRender server:defer before="2024-08-30T17:00:00-05:00">
+
+{ new Date() < new Date("2024-08-30T17:00:00-05:00") && 
 <Aside type="tip" title="Interested in registering for CS 484 in Fall 2024?">
 If you're interested in registering for this class, please attend all lectures and turn in all assignments. Students can't register after week 1 without instructor permission.
 </Aside>
-</TimedRender>
+}
 
-<TimedRender server:defer after="2024-12-31T17:00:00-05:00">
+{ new Date() > new Date("2024-12-31T17:00:00-05:00") &&
 <Aside type="danger" title="This course has concluded.">
 This is the course website for Fall 2024 CS 484. If you're seeing this note, the course has concluded.
 </Aside>
-</TimedRender>
-
+}
 
 ## Class coordinates
 
