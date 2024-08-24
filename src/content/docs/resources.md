@@ -34,7 +34,7 @@ focused, and some are just interesting. I recommend that you take a look if you'
 
 ## YouTubers
 
-- [The Primeagen](https://www.youtube.com/@ThePrimeagen/videos) - Rust/Neovim afficionado with great SWE advice and technical content
+- [The Primeagen](https://www.youtube.com/@ThePrimeagen/videos) (and his [Reaction video channel](https://www.youtube.com/@ThePrimeTimeagen/videos)) - Rust/Neovim afficionado with great SWE advice and technical content
 - [Computerphile](https://www.youtube.com/@Computerphile/videos) - Computer science and security topics
 - [Theo Browne](https://www.youtube.com/@t3dotgg/videos) - Lots of technical blog post / startup world news react content, and great advice for devs
 - [Web Dev Simplified](https://www.youtube.com/@WebDevSimplified/videos) - Web development tutorials and advice, great for starting from the basics about specific topics

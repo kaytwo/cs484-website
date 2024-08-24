@@ -1,5 +1,7 @@
 ---
 title: What is the web, anyway?
+sidebar:
+  order: 110
 ---
 
 Many people use the web, or the technologies enabled by it, every single day. In this chapter we'll build an understanding of the basics of the web _as a service delivery platform_, so that we can start to understand what makes web programming difficult, risky, but ultimately rewarding for those who master it.

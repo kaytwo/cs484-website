@@ -1,5 +1,7 @@
 ---
 title: Browser basics
+sidebar:
+  order: 130
 ---
 
 In the last section, we learned about the HTTP protocol, which can be used to request and receive resources from a web server. In this section, we'll learn about the web browser, which is the most common type of device that uses HTTP to request and receive resources from a web server.

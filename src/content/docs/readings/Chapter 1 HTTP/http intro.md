@@ -1,5 +1,7 @@
 ---
 title: HTTP basics
+sidebar:
+  order: 120
 ---
 
 If you're gonna learn about web development, you've got to understand the [Hypertext Transfer Protocol, HTTP](https://www.rfc-editor.org/rfc/rfc9112.html).

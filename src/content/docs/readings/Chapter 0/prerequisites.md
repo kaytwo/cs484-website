@@ -1,5 +1,7 @@
 ---
 title: Prerequisites
+sidebar:
+  order: 10
 ---
 
 # What you should know coming into this course

@@ -1,8 +1,10 @@
 ---
 title: Structure
+sidebar:
+  order: 20
 ---
 
-This course and this book are split into five different modules exemplified by the name of the course: _security_, _web_, _application_, _development_ (client and server). We don't present them in this order, but it's still a useful way to think about learning web dev.
+This course is split into five different modules exemplified by the name of the course: _security_, _web_, _application_, _development_ (client and server). We don't present them in this order, but it's still a useful way to think about learning web dev.
 
 # _Web_
 

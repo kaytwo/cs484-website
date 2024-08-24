@@ -10,22 +10,23 @@ slug: syllabus
 ## **I. Instructor & Course Details**
 
 Chris Kanich, <ckanich@uic.edu>  
-Drop-In Office Hours: 3-4pm Thursdays & Fridays  
-Drop-In Hours location: SEO 908 on Friday, [Zoom](https://uic.zoom.us/my/ckanich) on Thursday
+Drop-In Office Hours: 3:30-4:30pm Tuesdays & Wednesdays  
+Drop-In Hours location: SEO 908
 
-Graduate TA: Saurav Joshi, <sjoshi50@uic.edu>  
+Graduate TA: Khanh Le, <nle33@uic.edu>  
 Drop-In Office Hours (in-person or virtual): TBD  
 Drop-In Hours location: TBD
 
-**Course Modality and Schedule**:
-This course is taught in person, in BH 209, 3:00pm - 4:15pm Mondays and
-Wednesdays. Please bring your laptop for in-class activities.
+**Course Modality and Schedule**: This course is taught in person, in LC C6,
+2:00pm - 3:15pm Tuesdays and Thursdays. Please bring your laptop for in-class
+activities.
 
-**Blackboard Course Site**: <https://uic.blackboard.com/ultra/courses/_257305_1/cl/outline>
+**Blackboard Course Site**:
+<https://uic.blackboard.com/ultra/courses/_277927_1/cl/outline>
 
-**Piazza**: <https://piazza.com/uic/fall2023/cs484>
+**Piazza**: <https://piazza.com/uic/fall2024/cs484>
 
-**Gradescope**: <https://www.gradescope.com/courses/537130>
+**Gradescope**: <https://www.gradescope.com/courses/833367>
 
 ### Course Announcements
 
@@ -116,26 +117,25 @@ ultimately succeed in the course!
 CS 484 satisfies the technical elective requirement for the Computer Science
 major in the College of Engineering.
 
-**Brief list of topics to be covered:**
-CS 484 covers the details of HTTP protocols and the web ecosystem, the design
-and implementation of server side web software, the design and implementation of
-client side web software, computer security and web security fundamentals, and
-the synthesis of all of these concepts into designing and implementing full
-fledged secure web applications.
+**Brief list of topics to be covered:** CS 484 covers the details of HTTP
+protocols and the web ecosystem, the design and implementation of server side
+web software, the design and implementation of client side web software,
+computer security and web security fundamentals, and the synthesis of all of
+these concepts into designing and implementing full fledged secure web
+applications.
 
-**Required and Recommended Course Materials**:
-There is no required book for this course. Readings and videos will be assigned
-that are publicly available on the Internet.
+**Required and Recommended Course Materials**: There is no required book for
+this course. Readings and videos will be assigned that are publicly available on
+the Internet.
 
-**Required Technology**:
-You are required to have a device capable of running the iClicker cloud software
-(smartphone preferred), and a laptop for developing software as part of the
-course assignments, activities, and projects.
+**Required Technology**: You are required to have a device capable of running
+the iClicker cloud software (smartphone preferred), and a laptop for developing
+software as part of the course assignments, activities, and projects.
 
-**Respect for Copyright**:
-Please protect the copyright integrity of all course materials and content.
-Please do not upload course materials not created by you onto third-party
-websites or share content with anyone not enrolled in our course.
+**Respect for Copyright**: Please protect the copyright integrity of all course
+materials and content. Please do not upload course materials not created by you
+onto third-party websites or share content with anyone not enrolled in our
+course.
 
 ### Disclaimer
 
@@ -149,20 +149,20 @@ announcements and in writing via this website.
 
 ### Generative AI
 
-You will almost certainly be using GenAI (ChatGPT, GitHub Copilot,
-Grammarly, etc) in some way for the rest of your career. You are encouraged to
-use whatever GenAI tools you would like to complete the assignments and final
-project in this class.
+You will almost certainly be using GenAI (ChatGPT, GitHub Copilot, Grammarly,
+etc) in some way for the rest of your career. You are encouraged to use whatever
+GenAI tools you would like to complete the assignments and final project in this
+class.
 
 While these tools are amazing, please do not use their existence as an excuse to
 procrastinate on getting started with your assignments. They are good, but they
 aren't that good.
 
 While you can use GenAI on your homeworks, using autocomplete and copy-paste
-until the tests pass is not acceptable. You must understand any code that you use.
-We reserve the right to review your submitted code with you, and if you cannot
-explain the code you submitted, it will be considered a violation of the academic
-integrity code equivalent to plagiarism (see below).
+until the tests pass is not acceptable. You must understand any code that you
+use. We reserve the right to review your submitted code with you, and if you
+cannot explain the code you submitted, it will be considered a violation of the
+academic integrity code equivalent to plagiarism (see below).
 
 Please remember that in-class assessments (quizzes and exams) are a
 comparatively large portion of your grade, and you cannot use GenAI on them.
@@ -209,6 +209,11 @@ you have concerns about your grade in the course, please email me to schedule a
 time for you to speak with me or your TA so that we can discuss study techniques
 or alternative strategies to help you.
 
+**New this year** - after setting the letter grade cutoffs and dropping the
+lowest exam (see below for more information), all students must have an exam
+average that is greater than or equal to the overall grade cutoff for a passing
+(D or better) grade in the course.
+
 #### Homework late policy
 
 Every assignment in this course is due at exactly the time stated on Gradescope,
@@ -251,12 +256,12 @@ quizzes dropped, and class participation will be graded out of 25 total classes
 Participation is an incredibly important facet of this course. The baseline
 Class Participation grade will be based off of participating in classroom
 discussion questions and answering questions via iClicker. (iClicker questions
-are graded for participation, not correctness.) However, extra credit points
-may be added for substantial contributions, entirely at the instructor's
-discretion. Exceptional participation includes early reports of errors in
-assignments, helpful discussion, contribution of helpful code to the
-common good of the class (e.g. test cases and/or testing scripts) and thoughtful
-discussions during lecture.
+are graded for participation, not correctness.) However, extra credit points may
+be added for substantial contributions, entirely at the instructor's discretion.
+Exceptional participation includes early reports of errors in assignments,
+helpful discussion, contribution of helpful code to the common good of the class
+(e.g. test cases and/or testing scripts) and thoughtful discussions during
+lecture.
 
 ##### Homeworks
 
@@ -301,8 +306,8 @@ Plagiarism and cheating, as in copying the work of others, paying others to do
 your work, etc, is obviously prohibited, and will be reported. We will be
 running MOSS, an automated plagiarism detection tool, on all hand-ins. We will
 be adding the solutions provided by ChatGPT and similar tools to the MOSS
-assignment set, and anyone turning in code they do not fully understand will
-be considered a violation of the academic integrity policy.
+assignment set, and anyone turning in code they do not fully understand will be
+considered a violation of the academic integrity policy.
 
 I report all suspected academic integrity violations to the dean of students. If
 it is your first time, the dean of students may provide the option to informally
@@ -340,21 +345,47 @@ activities.
 
 ### Disability Accommodation Procedures
 
-UIC is committed to full inclusion and participation of people with disabilities in all aspects of university life. If you face or anticipate disability-related barriers while at UIC, please connect with the Disability Resource Center (DRC) at [drc.uic.edu](https://drc.uic.edu/), via email at [drc@uic.edu](mailto:drc@uic.edu), or call (312) 413-2183 to create a plan for reasonable accommodations. To receive accommodations, you will need to disclose the disability to the DRC, complete an interactive registration process with the DRC, and provide me with a Letter of Accommodation (LOA). Upon receipt of an LOA, I will gladly work with you and the DRC to implement approved accommodations.
+UIC is committed to full inclusion and participation of people with disabilities
+in all aspects of university life. If you face or anticipate disability-related
+barriers while at UIC, please connect with the Disability Resource Center (DRC)
+at [drc.uic.edu](https://drc.uic.edu/), via email at
+[drc@uic.edu](mailto:drc@uic.edu), or call (312) 413-2183 to create a plan for
+reasonable accommodations. To receive accommodations, you will need to disclose
+the disability to the DRC, complete an interactive registration process with the
+DRC, and provide me with a Letter of Accommodation (LOA). Upon receipt of an
+LOA, I will gladly work with you and the DRC to implement approved
+accommodations.
 
 ### Religious Accommodations
 
-Following [campus policy](https://oae.uic.edu/religious/), if you wish to observe religious holidays, you must notify me by the tenth day of the semester. If the religious holiday is observed on or before the tenth day of the semester, you must notify me at least five days before you will be absent. Please submit [this form](https://oae.uic.edu/wp-content/uploads/sites/32/2019/07/StudentReligiousAccomodationRequestForm.pdf) by email with the subject heading: **"YOUR NAME: Requesting Religious Accommodation."**
+Following [campus policy](https://oae.uic.edu/religious/), if you wish to
+observe religious holidays, you must notify me by the tenth day of the semester.
+If the religious holiday is observed on or before the tenth day of the semester,
+you must notify me at least five days before you will be absent. Please submit
+[this
+form](https://oae.uic.edu/wp-content/uploads/sites/32/2019/07/StudentReligiousAccomodationRequestForm.pdf)
+by email with the subject heading: **"YOUR NAME: Requesting Religious
+Accommodation."**
 
 ## VI. CLASSROOM ENVIRONMENT
 
 ### Inclusive Community
 
-UIC values diversity and inclusion. Regardless of age, disability, ethnicity, race, gender, gender identity, sexual orientation, socioeconomic status, geographic background, religion, political ideology, language, or culture, we expect all members of this class to contribute to a respectful, welcoming, and inclusive environment for every other member of our class. If aspects of this course result in barriers to your inclusion, engagement, accurate assessment, or achievement, please notify me as soon as possible.
+UIC values diversity and inclusion. Regardless of age, disability, ethnicity,
+race, gender, gender identity, sexual orientation, socioeconomic status,
+geographic background, religion, political ideology, language, or culture, we
+expect all members of this class to contribute to a respectful, welcoming, and
+inclusive environment for every other member of our class. If aspects of this
+course result in barriers to your inclusion, engagement, accurate assessment, or
+achievement, please notify me as soon as possible.
 
 ### Name and Pronoun Use
 
-If your name does not match the name on my class roster, please let me know as soon as possible. My pronouns are _[she/her; he/him; they/them]_. I welcome your pronouns if you would like to share them with me. For more information about pronouns, see this page: [https://www.mypronouns.org/what-and-why](https://www.mypronouns.org/what-and-why).
+If your name does not match the name on my class roster, please let me know as
+soon as possible. My pronouns are _[she/her; he/him; they/them]_. I welcome your
+pronouns if you would like to share them with me. For more information about
+pronouns, see this page:
+[https://www.mypronouns.org/what-and-why](https://www.mypronouns.org/what-and-why).
 
 ### Community Agreement/Classroom Conduct Policy
 
@@ -387,7 +418,13 @@ violating the course norms, credit for the course will not be given.
 
 ### Engaging with Course Content
 
-Our classroom provides an open space for a critical and civil exchange of ideas, inclusive of a variety of perspectives and positions. Some readings and other content may expose you to ideas, subjects, or views that may challenge you, cause you discomfort, or recall past negative experiences or traumas. I intend to discuss all subjects with dignity and humanity, as well as with rigor and respect for scholarly inquiry. If you would like me to be aware of a specific topic of concern, please email or visit my Student Drop-In Hours.
+Our classroom provides an open space for a critical and civil exchange of ideas,
+inclusive of a variety of perspectives and positions. Some readings and other
+content may expose you to ideas, subjects, or views that may challenge you,
+cause you discomfort, or recall past negative experiences or traumas. I intend
+to discuss all subjects with dignity and humanity, as well as with rigor and
+respect for scholarly inquiry. If you would like me to be aware of a specific
+topic of concern, please email or visit my Student Drop-In Hours.
 
 ### Student Parents
 
@@ -408,28 +445,50 @@ briefly.
 
 ## VII. RESOURCES: Academic Success, Wellness, and Safety
 
-We all need the help and the support of our UIC community. Please visit my **drop-in hours** for course consultation and other academic or research topics. For additional assistance, please contact your assigned college advisor and visit the support services available to all UIC students.
+We all need the help and the support of our UIC community. Please visit my
+**drop-in hours** for course consultation and other academic or research topics.
+For additional assistance, please contact your assigned college advisor and
+visit the support services available to all UIC students.
 
 ### Academic Success
 
 - UIC [Tutoring Resources](https://tutoring.uic.edu/)
-- College of Engineering [tutoring program](https:/engineeringequity.uic.edu/services/resources)
-- [Equity and Inclusion in Engineering Program](https://engineeringequity.uic.edu/)
-- [UIC Library](http://library.uic.edu/) and [UIC Library Research Guides](http://researchguides.uic.edu/).
-- [Offices](https://ossb.uic.edu/offices/) supporting the UIC Undergraduate Experience and Academic Programs.
-- [Student Guide for Information Technology](https://uofi.app.box.com/s/0nyho51r24yo0pivafibb1nvqogjm401)
-- [First-at-LAS](https://first-at-las.uic.edu/) Academic Success Program, focusing on LAS first-generation students.
+- College of Engineering [tutoring
+  program](https:/engineeringequity.uic.edu/services/resources)
+- [Equity and Inclusion in Engineering
+  Program](https://engineeringequity.uic.edu/)
+- [UIC Library](http://library.uic.edu/) and [UIC Library Research
+  Guides](http://researchguides.uic.edu/).
+- [Offices](https://ossb.uic.edu/offices/) supporting the UIC Undergraduate
+  Experience and Academic Programs.
+- [Student Guide for Information
+  Technology](https://uofi.app.box.com/s/0nyho51r24yo0pivafibb1nvqogjm401)
+- [First-at-LAS](https://first-at-las.uic.edu/) Academic Success Program,
+  focusing on LAS first-generation students.
 
 ### Wellness
 
-- **Counseling Services** : You may seek free and confidential services from the Counseling Center at [https://counseling.uic.edu/](https://counseling.uic.edu/).
+- **Counseling Services** : You may seek free and confidential services from the
+  Counseling Center at
+  [https://counseling.uic.edu/](https://counseling.uic.edu/).
 
-- Access [U&I Care Program](https://dos.uic.edu/student-assistance/uicare/) for assistance with personal hardships.
-- **Campus Advocacy Network** : Under Title IX, you have the right to an education that is free from any form of gender-based violence or discrimination. To make a report, email [TitleIX@uic.edu](mailto:TitleIX@uic.edu). For more information or confidential victim services and advocacy, visit UIC's Campus Advocacy Network at [http://can.uic.edu/](http://can.uic.edu/).
+- Access [U&I Care Program](https://dos.uic.edu/student-assistance/uicare/) for
+  assistance with personal hardships.
+- **Campus Advocacy Network** : Under Title IX, you have the right to an
+  education that is free from any form of gender-based violence or
+  discrimination. To make a report, email
+  [TitleIX@uic.edu](mailto:TitleIX@uic.edu). For more information or
+  confidential victim services and advocacy, visit UIC's Campus Advocacy Network
+  at [http://can.uic.edu/](http://can.uic.edu/).
 
 ### Safety
 
-- [UIC Safe App](https://ready.uic.edu/toolkit/uic-safe-app/)—PLEASE DOWNLOAD FOR YOUR SAFETY!
-- [UIC Safety Tips and Resources](https://ready.uic.edu/toolkit/be-safe-and-prepared/other-safety-resources/)
+- [UIC Safe App](https://ready.uic.edu/toolkit/uic-safe-app/)—PLEASE DOWNLOAD
+  FOR YOUR SAFETY!
+- [UIC Safety Tips and
+  Resources](https://ready.uic.edu/toolkit/be-safe-and-prepared/other-safety-resources/)
 - [Night Ride](https://transportation.uic.edu/night-ride/)
-- [Emergency Communications](https://emergency.uic.edu/): By dialing 5-5555 from a campus phone, you can summon the Police or Fire for any on-campus emergency. You may also set up the complete number, (312) 355-5555, on speed dial on your cell phone.
+- [Emergency Communications](https://emergency.uic.edu/): By dialing 5-5555 from
+  a campus phone, you can summon the Police or Fire for any on-campus emergency.
+  You may also set up the complete number, (312) 355-5555, on speed dial on your
+  cell phone.
