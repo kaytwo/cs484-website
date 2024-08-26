@@ -1,6 +1,6 @@
 ---
 title: homework 0 - calibration & assignment turn in
-description: deploy and test your first web app
+description: Deploy and test your first web app
 due: "2024-09-05T14:00:00"
 release: "2024-08-27T08:00:00"
 ---
@@ -8,7 +8,7 @@ release: "2024-08-27T08:00:00"
 import { formatTime } from "../../../utils.ts";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
 
-# This is the tentative assignment description - it will be updated for fall 2024 soon (and this text will go away)
+{/* # This is the tentative assignment description - it will be updated for fall 2024 soon (and this text will go away) */}
 
 ## {frontmatter.description}
 
@@ -39,6 +39,11 @@ for your laptop. This will allow you to use the `node` command to run JavaScript
 programs from the command line, and use the node package manager `npm` to
 download dependencies for your project, install additional packages, run package
 scripts, and more.
+
+#### Installing Docker
+
+We will be using Docker to containerized environment for testing the web application.
+Install Docker from [Docker's official website](https://docker.com).
 
 #### Running the template
 
@@ -146,6 +151,12 @@ all in `src/main.test.ts` and are worth taking a look at to understand.
 
 Before getting to the Continuous Deployment section, you should be able to get
 the two "on the dev server" tests running for 10 points.
+
+For Docker testing, you can run the tests by running `docker compose up --build`.
+This will builds the docker image for testing environment, installs needed
+dependencies to run, then looks through your repository for test files, and run
+them in the testing environment. To clean up the docker container, you can run
+`docker compose down --volumes --rmi all`.
 
 ### Remote testing
 
