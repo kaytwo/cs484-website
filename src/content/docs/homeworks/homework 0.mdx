@@ -2,19 +2,19 @@
 title: homework 0 - calibration & assignment turn in
 description: Deploy and test your first web app
 due: "2024-09-05T14:00:00"
-release: "2024-08-27T08:00:00"
+release: "2024-08-26T08:00:00"
 ---
 
 import { formatTime } from "../../../utils.ts";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
 
-{/* # This is the tentative assignment description - it will be updated for fall 2024 soon (and this text will go away) */}
-
 ## {frontmatter.description}
 
-**Quickstart**: Click "use this template" on the [skeleton
-code](https://github.com/swad-cs-uic/homework0/) to create a new **private**
-repository in your account. [See below](#alternate-quickstart) for more details.  
+**Quickstart**: Accept the assignment via [GitHub
+Classroom](https://classroom.github.com/a/kGFywJmQ) to create a new **private**
+repository in your account. This repository is automatically shared with the
+instructors so that we can see your code and help when needed. Make the changes
+described below, and then submit via Gradescope.  
 **Due**: {formatTime(frontmatter.due)}
 
 By the end of this assignment you will have your own web app deployed on the web
@@ -22,13 +22,43 @@ for all to see. The coding part is dead simple - you just have to change the
 text in a few files. The more important part is getting your tools set up for
 _Continuous Integration_ and _Continuous Deployment_.
 
+### New this year: Unix-based development environment required
+
+One of the awesome things about web development is that on the server side and
+the client side, it's pretty cross-platform. However, once you get into more
+advanced topics, you'll find that the vast majority of web servers are running
+Linux, and many developers are using Macs or Linux machines for local development.
+
+If you're on a Mac or Linux, you're all set for the first couple assignments,
+local development will work as expected. If you're on Windows, you have a few
+options:
+* You can use the [Windows Subsystem for
+  Linux](https://code.visualstudio.com/docs/remote/wsl) to create a Linux
+  environment on your Windows machine. VSCode has some great tools for working
+  with WSL, but they aren't required.
+* You can use a virtual machine to run a full Linux distribution. This is a bit
+  more heavyweight than WSL, but it's a good option if you want to get used to
+  using Linux. If you're on a new ARM Windows laptop, this might not work as
+  expected, and I can't provide support as I don't have one to test with.
+* When developing in your repository in the `ckanich-classrooms` GitHub
+  orgnaization, you have access to GitHub Codespaces, which provisions a web
+  based IDE. This is especially helpful if you aren't running Linux natively and
+  have restricted RAM on your laptop - while it's possible to use WSL and/or
+  Docker with 8GB of RAM, it can get pretty tight.  I've enabled Codespaces for
+  this assignment, but haven't tested it extensively. If you have issues, please
+  let me know.
+
+One tricky part is that _most_ things will work on Windows, but many things will
+start breaking in unexpected ways. So unless you're really intent on developing
+in Windows, I'd suggest using one of the options above for working on your
+assignments in this class.
+
 ### Local development
 
 After accepting the assignment using the link above, you will be given access to
-a repository containing the skeleton code. You can clone your repository from
-`git@github.com:ckanich-classrooms/homework0-YOUR_GITHUB_USERNAME.git` and open
-that directory in your favorite IDE. I would recommend VS Code, as I will be
-using that for my demonstrations.
+a repository containing the skeleton code. You can clone this repository in your
+development environment and open that directory in your favorite IDE. I
+recommend VS Code, as I will be using that for my demonstrations.
 
 #### Installing Node.js
 
@@ -39,11 +69,6 @@ for your laptop. This will allow you to use the `node` command to run JavaScript
 programs from the command line, and use the node package manager `npm` to
 download dependencies for your project, install additional packages, run package
 scripts, and more.
-
-#### Installing Docker
-
-We will be using Docker to containerized environment for testing the web application.
-Install Docker from [Docker's official website](https://docker.com).
 
 #### Running the template
 
@@ -152,12 +177,6 @@ all in `src/main.test.ts` and are worth taking a look at to understand.
 Before getting to the Continuous Deployment section, you should be able to get
 the two "on the dev server" tests running for 10 points.
 
-For Docker testing, you can run the tests by running `docker compose up --build`.
-This will builds the docker image for testing environment, installs needed
-dependencies to run, then looks through your repository for test files, and run
-them in the testing environment. To clean up the docker container, you can run
-`docker compose down --volumes --rmi all`.
-
 ### Remote testing
 
 **AKA Continuous Integration**
@@ -177,19 +196,20 @@ runs in the Actions tab for your repository.
 So far, we've built and run our code locally, and on GitHub's servers. Now for
 the fun part - deploying our web app. You must deploy your web app to the
 Internet for full credit on this assignment. There are many free places to do
-so, including [Cloudflare Pages](https://pages.cloudflare.com/),
-[Netlify](https://netlify.com), and [Vercel](https://vercel.com). I recommend
-using one of those three as they are the easiest to set up and have features we
-will use later on in class, but you can use Amazon, GitHub pages, or any other
-service as long as the web app can be deployed successfully and stays online (we
-may re-run the autograder at any time). The one thing you may need to configure
-is the build command: we are using the [vite](https://vitejs.dev) build tool, so
-the command to build your code is `npm run build` and the files that should be
-served (the output of the build) are in `dist/`.
+so, including [Cloudflare
+Pages](https://developers.cloudflare.com/pages/framework-guides/deploy-anything/)
+or [Render](https://docs.render.com/static-sites). I recommend using one of
+those as they are the easiest to set up and have features we will use later on
+in class, but you can use Amazon, GitHub pages, or any other service as long as
+the web app can be deployed successfully and stays online (**we may re-run the
+autograder at any time!**). The one thing you may need to configure is the build
+command: we are using the [vite](https://vitejs.dev) build tool, so the command
+to build your code is `npm run build` and the files that should be served (the
+output of the build) are in `dist/`.
 
 To get the next 10 points, you need to follow the instructions at any of those
 services and deploy your web page. They will give you a url that ends in
-`pages.dev`, `netlify.app`, or `vercel.app` respectively (sometimes they give
+`pages.dev`, `onrender.sh` respectively (sometimes they give
 you a random string, but you can customize it if you want). Replace
 **http://domain.invalid** in `student.json` with your new web app URL, and
 deploy your app. If you've correctly set up the deployment service, all you need
@@ -213,26 +233,10 @@ contact us via the class discussion board ASAP.
 
 ## Points
 
-Each test is worth five points, each check is worth three points, for a total of
-23 points. Note that this implicitly tests your ability to download Node,
-install packages, edit files, upload to github, etc.
+Each test is worth five points, each source check is worth three points, for a
+total of 23 points. Note that this implicitly tests your ability to download
+Node, install packages, edit files, upload to github, etc.
 
 This is almost certainly the easiest assignment, so I recommend you aim for full
 points. Getting this done should take less than a half an hour, even if you've
 never used JavaScript before.
-
-## Alternate quickstart
-
-As Netlify's policies don't allow for an Organization's Private Repository to be hosted, here is a way around getting your first assignment deployed.
-
-1.  Goto: [https://github.com/swad-cs-uic/homework0/](https://github.com/swad-cs-uic/homework0/)
-2.  Click Use this template to create your own **PRIVATE** repository. (You must create a Private Repository for academic integrity)
-3.  Clone this / Set up your created Repository, on your local.
-4.  Make changes to the code base as per the homework requirements.
-5.  Commit and push your changes to your repo.
-6.  Open Netlify and connect your GitHub repository and you're all set.
-
-Submitting your assignment to Gradescope:
-
-1.  While selecting the repository under Submission Method, choose the repository \[It's the one _that you just created, pushed changes to, and then connected with Netlify._\]
-2.  You should see the autograder firing up and see the result.
