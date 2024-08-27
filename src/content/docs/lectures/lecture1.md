@@ -15,4 +15,5 @@ readings:
   - link: https://jvns.ca/wizard-zine.pdf
     name: so you want to be a wizard
     optional: true
+notes: In class activity - homework 0 and environment setup
 ---
