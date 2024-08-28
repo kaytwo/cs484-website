@@ -7,8 +7,8 @@ readings:
     link: https://youtu.be/PUCa7CK_VkE
   - link: /readings/chapter-1-http/http-intro/
     name: HTTP, the web protocol
-  - name: /readings/chapter-1-http/browser-intro/
-    link: Browser basics
+  - link: /readings/chapter-1-http/browser-intro/
+    name: Browser basics
   - link: https://forms.gle/zy3urcjk6J29HRgy8
     name: Complete this survey before class (required)
 notes: |
