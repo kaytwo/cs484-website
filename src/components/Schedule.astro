@@ -146,12 +146,16 @@ const events = [...exams, ...homeworks, ...lectures].sort(
 
     const jumpToDate = () => {
       const rows = document.querySelectorAll("tr[data-date]");
-      const nearestRow = Array.from(rows).sort((a, b) => {
-        return (
-          Math.abs(today - +new Date(a.getAttribute("data-date") ?? today)) -
-          Math.abs(today - +new Date(b.getAttribute("data-date") ?? today)) // Sort by diff between today's date and event's date
-        );
-      })[0] as HTMLElement; // Return first item (nearest date)
+      const nearestRow = Array.from(rows)
+        .filter(
+          (row) => +new Date(row.getAttribute("data-date") ?? today) > today
+        ) // Filter out past events
+        .sort((a, b) => {
+          return (
+            Math.abs(today - +new Date(a.getAttribute("data-date") ?? today)) -
+            Math.abs(today - +new Date(b.getAttribute("data-date") ?? today)) // Sort by diff between today's date and event's date
+          );
+        })[0] as HTMLElement; // Return first item (nearest date)
       if (!nearestRow) return;
       const originalColor = window.getComputedStyle(nearestRow).backgroundColor;
       nearestRow.style.backgroundColor = originalColor; // Set original color inline
