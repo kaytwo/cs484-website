@@ -64,6 +64,38 @@ JavaScript:
    console.log(sayHello("World")); // Output: "Hello, World"
    ```
 
+### Definition Hoisting
+   JavaScript hoists variable and function declarations to the top of their
+   scope during compilation. This means you can _refer_ to a variable or
+   function before it's declared in the code, although it's best practice to
+   declare variables at the top of the scope to avoid confusion.
+
+   **Example:**
+   ```javascript
+   console.log(x); // Output: undefined
+   var x = 5;
+   ```
+
+### Variable scoping
+
+JavaScript's `let` and `const` have block level scope as you're probably used to
+from other languages. It also allows declaration as a `var` which has
+function-level scoping. Additionally, if declared at the top level, `var` will
+be global, while `let` and `const` will not be.
+
+**Example:**
+```javascript
+function myFunction() {
+   console.log(`before declaring, localVar is undefined, ${localVar}.
+      if you tried this with a let or const, you'd get a ReferenceError`);
+    if (true) {
+        var localVar = "I'm function local";
+    }
+    console.log(`even though it was declared within an internal scope, 
+                 ${localVar} is still accessible here`);
+}
+```
+
 ### Closures
    A closure occurs when a function retains access to its lexical scope, even
    when the function is executed outside that scope. Closures are common in
@@ -117,6 +149,22 @@ JavaScript:
    promise.then((message) => {
        console.log(message); // Output after 1 second: "Done!"
    });
+   // You can also use await to wait for a promise to resolve
+   async function asyncFunction() {
+       let message = await promise;
+       console.log(message); // Output after 1 second: "Done!"
+   }
+   ```
+
+### The Document Object Model (DOM), `window`, and `document`
+   The DOM is an interface that allows JavaScript to manipulate HTML and CSS in
+   a web page. `window` and `document` are global objects that represent the
+   browser window and the web page, respectively. They each have extensive APIs
+   that enable interaction with the browser environment and its capabilities.
+
+   **Example:**
+   ```javascript
+   document.getElementById("myElement").textContent = "New content!";
    ```
 
 ### Event-Driven Programming
@@ -129,16 +177,9 @@ JavaScript:
    document.getElementById("myButton").addEventListener("click", function() {
        alert("Button was clicked!");
    });
-   ```
-
-### The Document Object Model (DOM)
-   The DOM is an interface that allows JavaScript to manipulate HTML and CSS in
-   a web page. Understanding the DOM is essential for any web development tasks,
-   as it enables dynamic content updates and user interaction handling.
-
-   **Example:**
-   ```javascript
-   document.getElementById("myElement").textContent = "New content!";
+   window.addEventListener("load", function() {
+       console.log("Page loaded!");
+   });
    ```
 
 ### JSON (JavaScript Object Notation)
@@ -248,3 +289,5 @@ run in production as fast as possible.
 [The Modern JavaScript Tutorial - good primer on JS the language](https://javascript.info/)
 
 [MDN - the reference for all things web](https://developer.mozilla.org/en-US/) (this also includes some good primers on JS if you are very new to JavaScript and want to learn more)
+
+[The WHY behind the WAT](https://medium.com/dailyjs/the-why-behind-the-wat-an-explanation-of-javascripts-weird-type-system-83b92879a8db) - explaining one of the most infamous JavaScript talks, [wat](https://www.destroyallsoftware.com/talks/wat).
