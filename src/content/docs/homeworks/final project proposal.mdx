@@ -1,0 +1,136 @@
+---
+title: Final Project checkpoint 0
+description: Form a group and come up with an idea
+due: "2024-09-12T14:00:00"
+release: "2024-09-03T08:00:00"
+form_url: "https://forms.gle/8GUcdZcUf9jrcX6W9"
+sidebar:
+  order: 20
+---
+
+import { localizeTime, formatTime } from "../../../utils.ts";
+import { Content as Deadlines } from "../../../components/Deadlines.md";
+
+## {frontmatter.description}
+
+**Due**: {formatTime(localizeTime(frontmatter.due))}
+
+This is the first checkpoint for your final project. The most important things you must do before turning it in are:
+
+* Find a group to work with
+* Come up with a basic project idea
+* Create a GitHub repository for your project and share it with your team and the course staff
+
+## Project requirements
+
+The requirements for the project idea are:
+
+### It must not be a CRUD app
+
+CRUD stands for create, retrieve, update, delete (common database operations). A
+CRUD app is typically an application that builds a user interface around those
+database operations (and not much else). As I mentioned in class - CRUD apps
+make the world go round, there are literally millions of them.
+
+### It must not be a carbon copy of something that already exists
+
+A large part of our goal for this course is to (a) motivate you to create
+something unique that you can show off during job interviews, and (b) give you
+the chance to design the architecture and implementation for the app from the
+ground up. Thus, while it can be very useful to re-implement an app idea that
+already exists, in this case you need to come up with something new. It doesn't
+have to be the most unique thing ever, but it has to be non-trivially different
+than other things that alrady exists.
+
+This requirement, like many others, is a great reason to get started early on
+your project idea. I am super excited to help students brainstorm project ideas,
+whether it's at office hours, on Piazza, or quickly after class. The more time
+you spend on this now, the higher likelihood that you come up with something
+fun, and the higher likelihood that you actually are motivated to work on
+finishing the project later on in the semester when things are getting busy.
+
+### The difficulty of implementation must be proportional to the number of people in your group
+
+This is also a very vague but important requirement - the amount of complexity
+should be roughly proportional to the number of people in your group, with the
+excpetion that if you're a group of one, I'll expect you to do the work of a
+group of two. There might also be extra credit later on that is only available
+for groups of two or more students.
+
+The best way to determine whether your idea is "substantial" enough is to ask
+me, via Piazza or via office hours. I will provide feedback on your project idea
+after this deadline is over to let you know where you're at on the "substantial"
+scale, and recommend changes to your project plan if what you've come up with is
+either too big or too small.
+
+## Project inspiration
+
+If you're having trouble coming up with a project idea, here are some things
+that have worked in the past / that I would expect to be good project ideas
+that aren't TOO hard but will end up being impressive if you do them correctly:
+
+* Something to do with UIC **specifically** - helping students choose classes,
+  get around campus, or things like that. Note that this is UIC _specifically_ -
+  if the implementation is generic and would be just as relevant at another
+  school, not as interesting.
+* Something that uses Large Language Models - there are a lot of very cheap APIs
+  you can use online to summarize text, provide natural language suggestions, or
+  many other options. There's no requirement that you use paid APIs in your
+  project, but there's no requirement that you don't either.
+* Something that uses in-person interactions - there are a lot of cool things you
+  can do with QR codes, NFC, or other in-person interaction methods that can be
+  really fun to implement and use. I have a handful of writable NFC tags that I
+  would be happy to give you a few of if you get started on a project that could
+  make use of them.
+* Something that uses a lot of data - if you're interested in data science or AI
+  or just want to learn more about how to work with data, there are a lot of
+  public datasets available that you can use to build a cool project. You can
+  also scrape them (like the Costco discount tracker project example), but be
+  aware that sometimes that can take longer than you would expect to get right.
+
+
+
+## Deployment
+
+For this checkpoint, you don't need to deploy anything, or even really think
+hard about it. But you will EVENTUALLY need to deploy your app such that it is
+available 24/7 when I am going to look at it to grade it (both the MVP that's
+due earlier and the final project due at the end of the semester). It will need
+to be available via HTTPS, and I will need to be able to use all of the app's
+functionality.
+
+My strong recommendation is to set up a deployment pipeline that deploys to
+Cloudflare Pages, Netlify, or other similar services that build your app from
+GitHub and deploy it automatically. This will be the best way to get experience
+with modern app deployment techniques, as well as just keep the app up and
+running.
+
+It is also acceptable to deploy your app on a VPS or other server that you
+control, as long as incoming valid https connections can be made (you need to
+configure this yourself). I would expect this to be helpful if you already have
+a severver (perhaps with a nice GPU) that you would use for a self-hosted LLM
+idea that could cost lots of money if you used an external service. **I
+recommend not doing this unless you have a good reason to do so and are familiar
+with self-hosting web services.** Please ask on Piazza if you have an
+architecture or project idea and want to know the best way to try to deploy it
+without spending much / any money on hosting/services.
+
+
+### Deliverables
+
+The two deliverables are your repository (it can be empty, but you can also get
+started on it if you want), and submitting [This form]({frontmatter.form_url}).
+Remember that this assignment is not worth any points, but if you don't get
+started finding a good project idea, I will be grading your later checkpoints
+based on my personal opinion rather than the expectations that we set together.
+
+### What happens if you don't turn in the checkpoint?
+
+Nothing besides the MVP (due in week 12) and the final project (due at the end
+of week 15) are graded for points. The things that you propose in each
+checkpoint set expectations for what your group will do and how you'll do it. If
+you don't set those expectations, I'll just grade everything based on what I
+think a good project is expected to do - you could receive full points because
+what you did was actually fine, or you could receive zero points because you're
+implementing a CRUD app or what you chose isn't substantial enough or what you
+chose is a carbon copy of something else that exists out in the world.
