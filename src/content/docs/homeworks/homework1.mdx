@@ -15,7 +15,7 @@ import { Content as Deadlines } from "../../../components/Deadlines.md";
 **Due**: {formatTime(localizeTime(frontmatter.due))}
 
 **Quickstart** Create a new **private** repository under your own GitHub account
-from [this template](https://github.com/swad-cs-uic/homework1). Sharing your
+from [this template](https://github.com/swad-cs-uic/homework1-f24). Sharing your
 code for the assignment, intentionally or unintentionally, is a violation of the
 academic integrity policy in this course.
 
@@ -82,7 +82,23 @@ main page after the route's functionality has been completed.
 
 ### Running testcases locally
 
-`npm run test` will run the test suite locally.
+`npm run test` will run the test suite locally. Remember, as with any other
+assignments in class, you should double check that your tests are passing in the
+gradescope environment in addition to your local environment. "It works on my
+machine" does not count as a valid excuse for failing tests in the autograder.
+
+### Non-adversarial tests
+
+The tests in this assignment were written in a very straightforward way. They
+are meant to look like the type of test you might write for your own code to
+ensure that it works correctly, NOT a very high confidence test that you have
+actually coded everything up such that it works properly. For instance, it would
+be very easy to write code that passes the tests but does not provide a
+functional CRUD app showing the products from the database.
+
+We reserve the right to investigate any submission to ensure that it is actually
+showing the products from teh database rather than simply passing the tests by
+injecting nonsense markup that passes the tests.
 
 ## Deploying your Application.
 
@@ -108,7 +124,7 @@ submissions.**
 
 | Task                                                                 | Points |
 | -------------------------------------------------------------------- | ------ |
-|"(5pts) should display products on home page" | 5    |
+|"display products on home page" | 5    |
 | navigate through pages and display products                     | 5    |
 | add a new product and confirm it appears on the page                                   | 5     |
 | delete a product and confirm it is not visible      |5     |
