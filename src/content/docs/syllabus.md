@@ -42,6 +42,18 @@ Blackboard will not be used in this course besides to communicate final grades.
 For all technical questions about Blackboard, email the Learning Technology
 Solutions team at [LTS@uic.edu](mailto:LTS@uic.edu).
 
+### Eligibility to complete the course for a satisfactory grade
+
+This course covers a very large amount of content from the very first meeting
+all the way through to the last day of class. To ensure that students that take
+the course are all on the same page, the first assignment is exceptional in that
+**submitting** the assignment by the beginning of the second day of class is
+required to receive a passing grade. This submission does not need to be
+correct, and if it is the student's lowest homework grade, it will be dropped
+(see below for more details). However, for students who do not turn in the first
+assignment on time, they will receive an F in the course if they do not drop the
+course by the end of the add/drop period.
+
 ### Email Expectations
 
 Students are responsible for all information instructors send to your UIC email.

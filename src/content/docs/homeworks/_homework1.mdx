@@ -19,11 +19,70 @@ from [this template](https://github.com/swad-cs-uic/homework1). Sharing your
 code for the assignment, intentionally or unintentionally, is a violation of the
 academic integrity policy in this course.
 
-# Homework1 - Crud App
+# Homework1 - CRUD App
+
+This assignment gives you experience building a basic router-based server-side
+web application. There is no JavaScript functionality on the front end. You
+simply need to implement the absolute basics of listing, adding and removing
+items from a product database.
+
+## Project structure
+
+### `src/db.js` and `src/schema.js`
+
+These files define the database schema and the database connection. We're using
+drizzle to interact with the database. This allows us to switch out the
+underlying database technology without changing the code much / at all. The
+important things you'll need to be able to do are run the relevant queries
+against the database: you can do this however you like, but I'd recommend using
+either the [Drizzle style](https://orm.drizzle.team/docs/overview#why-sql-like)
+sql-like queries or Drizzle's  [`sql` template string
+creator](https://orm.drizzle.team/docs/sql#sql-template), which is especially useful
+if you already know SQL and just want to run queries against the database.
+
+### `src/seed.js` and `src/products.sql`
+
+The seed script uses `products.sql` to populate the database with the known good
+list of products. You can run this via `node src/seed.js` whenever you like and
+it will reset the database to the known good state.
+
+### `public/`
+
+The public directory holds all of the static files that your web application
+needs to serve without any processing. For our app, this includes images and CSS
+files.
+
+### `src/app.js` and `src/template.js`
+
+These files are the main ones you need to understand, and for `app.js`, the one
+that you will be editing to complete this assignment. `template.js` exports a
+single function, `generateHTML`, which takes in various substrings and returns a
+well-formatted page populated with all of the relevant information for every
+_view_ that our application has. The views you need to create are:
+
+* the main page: it should just list all of the products, 10 at a time, with a
+  list of pages along the bottom.
+* the search result page: it should list all of the products that match the
+  given search. This can be implemented very similarly to the home page.
+
+#### Additional routes
+
+In addition to search results and the home page, the two other functionalities
+that must be added are add and delete items. You should take a look at the
+functionality in the forms on the main page to determine how those will be
+invoked - you can even just load the empty main page and look at what requests
+are being sent using the network tab in your browser's developer tools.
+
+You are free to implement these routes either directly by passing the result to
+the browser as a response to the request, or by redirecting the user back to the
+main page after the route's functionality has been completed.
+
 
 ## Checking your work
 
 ### Running testcases locally
+
+`npm run test` will run the test suite locally.
 
 ## Deploying your Application.
 
@@ -49,12 +108,14 @@ submissions.**
 
 | Task                                                                 | Points |
 | -------------------------------------------------------------------- | ------ |
-| Setting up routes for server (adding middlewares, completing routes) | 19     |
-| Server Functionality working over hosted website                     | 19     |
-| Completing server helper functions                                   | 3      |
-| Completing front-end JS functions and validating front-end flow      | 13     |
-| Front-end functionality working over hosted website                  | 13     |
+|"(5pts) should display products on home page" | 5    |
+| navigate through pages and display products                     | 5    |
+| add a new product and confirm it appears on the page                                   | 5     |
+| delete a product and confirm it is not visible      |5     |
+| search for a product and display the results                  | 5     |
 
 ## Due Date
 
-This assignment is due at 03:00 PM on Friday, September 08th. Extra credit in the course is available for anyone who writes meaningful test cases and submits them to the TA by Sunday, September 3rd.
+This assignment is due at{formatTime(localizeTime(frontmatter.due))}. Extra
+credit in the course is available for anyone who writes meaningful test cases
+and submits them to the TA by Sunday, September 3rd.

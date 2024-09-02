@@ -197,7 +197,8 @@ function myFunction() {
 ### Strict Mode
    JavaScript's "use strict" directive enforces stricter parsing and error
    handling in your code. Enabling strict mode can help catch common coding
-   errors and unsafe actions, leading to more reliable and secure code.
+   errors and unsafe actions, leading to more reliable and secure code. Strict
+   mode is enabled by default in ES6 modules.
 
    **Example:**
    ```javascript
