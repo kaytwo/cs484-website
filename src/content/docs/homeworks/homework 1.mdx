@@ -5,12 +5,15 @@ due: "2024-09-13T14:00:00"
 release: "2024-09-03T08:00:00"
 sidebar:
   order: 30
+notes: Watch [the kickoff video](https://youtu.be/5xExn6wqHnA) for help getting started.
 ---
 
 import { localizeTime, formatTime } from "../../../utils.ts";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
 
-## {frontmatter.description}
+import { Aside } from "@astrojs/starlight/components"
+import {marked} from "marked"
+
 
 **Due**: {formatTime(localizeTime(frontmatter.due))}
 
@@ -19,7 +22,12 @@ from [this template](https://github.com/swad-cs-uic/homework1-f24). Sharing your
 code for the assignment, intentionally or unintentionally, is a violation of the
 academic integrity policy in this course.
 
-# Homework1 - CRUD App
+<Aside >
+<Fragment set:html={marked(frontmatter.notes)} />
+</Aside>
+
+## {frontmatter.description}
+
 
 This assignment gives you experience building a basic router-based server-side
 web application. There is no JavaScript functionality on the front end. You

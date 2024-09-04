@@ -16,7 +16,7 @@ const lectures = z.object({
       name: z.string(),
       optional: z.boolean().default(false),
       grad_only: z.boolean().default(false),
-    })
+    }),
   ),
   notes: z.string().optional(),
 });
@@ -25,6 +25,7 @@ const homeworks = z.object({
   due: z.string(),
   github_link: z.string().url().optional(),
   release: z.string(),
+  notes: z.string().optional(),
 });
 
 const readings = z.object({
@@ -35,7 +36,7 @@ const readings = z.object({
         name: z.string(),
         optional: z.boolean().default(false),
         grad_only: z.boolean().default(false),
-      })
+      }),
     )
     .optional()
     .default([]),

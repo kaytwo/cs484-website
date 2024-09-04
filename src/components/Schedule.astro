@@ -22,12 +22,14 @@ const homeworks = (
       type: "homework release",
       title: entry.data.title,
       date: localizeTime(entry.data.release),
+      notes: entry.data.notes,
     },
     {
       slug: entry.slug,
       type: "homework due",
       title: entry.data.title,
       date: localizeTime(entry.data.due),
+      notes: entry.data.notes,
     },
   ];
 });
