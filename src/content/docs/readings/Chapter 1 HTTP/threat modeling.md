@@ -93,6 +93,7 @@ Your site might include:
 
 - **Spoofing**: An attacker could use stolen credentials to place fraudulent orders.
 - **Tampering**: An attacker might modify product prices during a purchase.
+- **Repudiation**: An attacker could deny making a purchase.
 - **Information Disclosure**: Sensitive user data could be exposed through a poorly configured API.
 - **Denial of Service**: The site could be taken offline through a DDoS attack.
 - **Elevation of Privilege**: An attacker could exploit a vulnerability to gain admin access and manipulate orders.
