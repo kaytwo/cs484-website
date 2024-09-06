@@ -1,0 +1,117 @@
+---
+title: "HTTPS"
+description: "Securing the web for trustworthy communication and commerce"
+sidebar:
+  order: 180
+---
+
+import { Aside } from "@astrojs/starlight/components"
+
+HTTPS fundamentally provides the glue between the HTTP protocol and the TLS
+protocol.
+
+Key concepts:
+
+* TLS (Transport Layer Security) is a cryptographic protocol that provides
+  confidentiality and integrity in communication between two parties.
+* TLS is a wrapper around HTTP - HTTPS is just HTTP communication wrapped in
+  TLS, with verification of the server's identity (the `Host:` header and the
+  domain name seen in the URL bar).
+* The web uses the Certificate Authority model to establish a foundation of
+  trust for HTTPS.
+
+## Cryptography basics
+
+TLS makes use of both symmetric and asymmetric cryptography. Here's a brief
+overview of these concepts:
+
+* **Symmetric Cryptography**: In symmetric cryptography, the same key is used
+  for both encryption and decryption. This key must be kept secret between the
+  parties involved in the communication.
+
+* **Asymmetric Cryptography**: In asymmetric cryptography, two keys are used: a
+  public key and a private key. The public key is used for encryption and
+  digital signature verification, while the private key is used for decryption
+  and digital signature creation. The public key can be shared with anyone,
+  while the private key must be kept secret.
+  1. To send an encrypted message, the sender encrypts the message with the
+     recipient's public key. This message can only be decrypted by the
+      recipient's private key, and thus if they keep their private key secret,
+      they're the only person who can read the message.
+  2. To sign a message, the sender encrypts a hash of the message with their
+     private key. The recipient can then decrypt the hash with the sender's
+     public key, and if the hash matches the message, they can be sure that the
+     message was sent by the person who owns the private key.
+
+* **Diffie-Hellman Key Exchange**: Diffie-Hellman is a key exchange algorithm
+  that allows two parties to securely exchange a shared secret key over an
+  insecure channel. This shared secret key can then be used for symmetric
+  encryption. This algorithm is secure even if an attacker can eavesdrop on the
+  communication between the two parties!
+
+## TLS Overview
+
+For the purposes of this class, we need to understand the basics of how TLS
+works. Here's a high-level overview:
+
+- **Handshake**: The client and server negotiate a secure connection by
+   exchanging messages to agree on cryptographic parameters and establish a
+   shared secret key.
+
+  1. The client sends a `ClientHello` message to the server, indicating the
+     cryptographic algorithms it supports.
+  2. The server responds with a `ServerHello` message, selecting the
+      cryptographic algorithm it will use and sending its certificate. This
+      certificate contains the information needed for the client to verify,
+      using their trusted root store, that the server is who they say they are.
+  3. Using the server’s public key, the client securely generates and sends a
+     shared session key (used for symmetric encryption) through a secure key
+     exchange algorithm (typically via Diffie-Hellman or Elliptic Curve
+     Diffie-Hellman).
+
+
+<Aside>
+TLS is not a "my way or the highway" protocol - it was engineered to allow
+  whoever uses it to choose which cryptographic algorithms to use. While this is
+  _good_ from a security standpoint: if a cryptographic algortihm is discovered
+  to have a weakness, you can switch to a different one. However, this is also a
+  weakness in and of itself: "degredation" attacks can be used to force a
+  connection to use a weaker cryptographic algorithm. This is but one of many
+  engineering tradeoffs that must be made when designing a secure system.
+</Aside>
+
+After a successful TLS handshake, the client can be sure that:
+* The server is using a public key that has been signed by a trusted Certificate
+  Authority.
+* All messages they send and receive will be encrypted and secure from
+  eavesdroppers.
+* An attacker cannot impersonate the communication between the client and
+  server.
+
+After a successful handshake, the server can be sure that:
+* All messages they send and receive will be encrypted and secure from
+  eavesdroppers.
+* An attacker cannot impersonate the communication between the client and
+  server.
+
+Note that TLS as used on the web does not verify the client's identity. That's
+why we still need to use passwords and other authentication mechanisms. The
+protocol does allow for client authentication, but it's not commonly used on the
+web.
+
+Once a TLS session has been established, the client and server can send and
+receive a full duplex reliable in order bytestream. You may recall that this
+is exactly what normal HTTP is built on top of. This is why HTTPS is just HTTP
+wrapped in TLS - the TLS layer provides the security guarantees, and the HTTP
+layer provides the semantics for the communication.
+
+There is one important interaction between the HTTP layer and the TLS layer: the
+`Host:` header. The value in this header must match the domain name (or one of
+the domain names, because certificates can include multiple or even wildcard
+domain names) in the certificate that the server sends. This is how the client
+can be sure that they're talking to the server they think they are.
+
+We'll see a lot more details of how HTTPS interacts with other parts of the web
+ecosystem - it has implications for which cookies are sent, which protocols can
+be used, and even how fast your website loads. But for now, this should provide
+you with a mental model for understanding what HTTPS is and how it works.
