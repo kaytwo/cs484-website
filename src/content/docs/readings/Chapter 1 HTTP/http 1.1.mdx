@@ -1,0 +1,156 @@
+---
+title: "HTTP 1.1"
+description: "The web is all of a sudden popular - how do we make it work better"
+sidebar:
+  order: 190
+---
+
+import { Aside } from "@astrojs/starlight/components"
+
+HTTP 1.1 is the protocol that was in use when the web  was becoming the most
+popular way to access information on the Internet, and the Internet was becoming
+the most popular way to access information in general. Today we're going to go
+over some of those engineering decisions, why they were made, and how we use
+them as web developers today.
+
+## Preliminary Concepts
+
+One of our most important considerations when designing HTTP is performance - we
+want requests to be fast. How "fast" a network communication is depends on
+_latency_, the amount of delay in a communication, and the _bandwidth_, the
+amount of data that can be sent in a given amount of time. Generally when you
+start a new communication, no matter how much data you're going to send, you'll
+incur additional _latency_ costs. Often this is referred to as a "round trip
+time" or RTT. If a client needs to send even one bit to the server, and then
+wait for the server to respond, no matter how fast the server is or the
+bandwidth of the connection, the entire system will need to wait that entire
+round trip (latency from client to server + latency from server to client)
+before moving forward.
+
+### The layers below HTTP
+
+There's far more information about this in Computer Networks courses, but for
+our purposes, we need to understand that:
+
+When a computer wants to make a connection to a given _host_ that is identified
+by a _hostname_, it needs to look up the IP address of that host. This is done
+by sending a DNS query to a DNS server. This means that every time a client
+needs to talk to a new / different host, it will need to wait for a DNS lookup
+(a full RTT) before it can even start the HTTP connection.
+
+In addition to this delay, the client will also need to establish a TCP
+connection to the server. This requires a "three way handshake" between the
+client and the server, which itself requires a full RTT, then an ACK being sent
+by the client, and only then can the client start sending data. This means that
+in garden variety HTTP, the client will need to wait for two full RTTs before it
+can start sending data. In HTTPS, this is even more complicated, because the
+client and server need to negotiate a secure connection, which requires even
+more round trips.
+
+Takeaway: new connections, especially to new servers, adds a lot of delay to
+using HTTP. These messages are typically very small, so this delay is far more
+sensitive to the latency between the client and server than the bandwidth
+between the client and the server.
+
+## HTTP/1.1 Overview
+
+### Connection: keepalive/closed
+
+One way that we can reduce the latency of HTTP requests is by reusing the same
+connection for multiple requests. This is called a "keepalive" connection. The
+basic idea is that if the server can indicate where the end of their response is,
+the client can send another request without needing to wait to establish a new
+connection. This is done by setting the `Connection: keepalive` header in the
+response. This is the default behavior in HTTP/1.1, but it can be overridden by
+the server by setting `Connection: close`.
+
+The end of the response is indicated by the server setting the `Content-Length`
+header, which tells the client how many bytes to expect in the response.
+When the client is sending a non-empty request (i.e. a POST with a body), it
+will also set the `Content-Length` header to indicate how many bytes the server
+should expect in the request body.
+
+### Chunked encoding
+
+But what if you don't know where the end of the response is? If the server
+caches the entire response before sending it, that can slow the entire process
+down and cause unnecessary memory usage on the server. Therefore, the server can
+also use "chunked encoding" to send the response in pieces. This is done by
+setting the `Transfer-Encoding: chunked` header in the response, and then
+sending the response in chunks, each of which is preceded by the length of the
+chunk. The end of the response is indicated by a chunk with a length of 0.
+
+This is useful for streaming data (twitch streams, YT videos, etc), or for
+responses that are generated on the fly and don't have a known length when the
+response starts.
+
+
+### Request pipelining
+
+Now that we have this primitive of "keepalive" connections, we can start to
+think about how to use them more efficiently. One way to do this is by using
+"request pipelining". This is the idea that the client can send multiple
+requests to the server without waiting for the response to the first one. There
+is nothing stopping the client from sending multiple requests in a row without
+waiting for the response to the first one, and the server can respond to them in
+any order. This can be a big performance win, especially if the client knows
+that it will need to make multiple requests to the server in a row.
+
+Unfortunately, this was a bad idea in practice. The key issue is a problem
+called "head of line blocking". If the server is slow to respond to one request,
+it will block all the other responses that are in the pipeline behind it. This
+means that the client can't take advantage of the parallelism that it could have
+if it had waited for the response to the first request before sending the second
+one, or if it had sent the request in parallel over a different TCP connection.
+
+### Simultaneous connection limits and domain sharding
+
+In practice, most browsers limit the number of simultaneous connections to six
+per domain. This is because the browser doesn't want to overwhelm the server
+with too many requests at once, and because the browser doesn't want to
+overwhelm the client with too many open connections. When a browser wants to
+send and receive as many requests as possible as fast as possible, it will open
+new connections to the same server up to a limit of six to send and receive
+those messages in parallel.
+
+If that still isn't enough, the browser can also use a technique called "domain
+sharding". Just because there is a limit of six connections per domain doesn't
+mean that an individual website isn't limited to serving all of its assets from
+a single domain. Domain sharding takes advantage of the fact that the browser
+can open six connections to each domain, and serves assets from multiple
+subdomains of the same domain. This adds additional DNS lookups, TCP
+connections, and especially additional website complexity (which assets get
+served from which server? which assets get their links added to the body of the
+document at which server? etc), but it can be a performance win in some
+situations.
+
+Thankfully, modern web applications have solved these issues more elegantly in
+HTTP/2 and beyond, and we don't need to use these hacks anymore.
+
+### Caching
+
+### Statefulness and cookies
+
+### Content-encoding (compression)
+
+### CDNs
+
+Web application developers can't do much about the latency or bandwidth of a
+user's connection to the Internet, but we can improve our applications'
+performance by manipulating the latency between our application and our users.
+This is most commonly done using a content distribution network, which does two things:
+
+* It duplicates part of our application in multiple locations around the world,
+  so that users can connect to the closest one.
+* It routes users to the closest location using DNS and multihomed IP addresses.
+
+As we saw earlier, clients make DNS requests to determine which IP address to
+connect to. DNS servers typically have some idea of where the request is coming
+from (either using the source IP address or a technology called
+edns-client-subnet), and can return different IP addresses based on that
+information. Alternatively, the server can use a technique called "anycast" to
+route the user to the closest server. THis leverages the Internet's "find the
+shortest path to a given IP address" routing algorithm, and multiple entries for
+the same IP in different places.
+
+More reading: [High Performance Browser Networking](https://hpbn.co/)
