@@ -3,7 +3,7 @@ type: lecture
 date: "2024-09-12T14:00:00"
 title: HTTP 1.1
 readings:
-  - link: /readings/chapter-1-http/http11/
+  - link: /readings/chapter-1-http/http-11/
     name: HTTP 1.1
   - link: https://hpbn.co/http1x/
     name: High Performance Browser Networking's chapter on HTTP/1.x

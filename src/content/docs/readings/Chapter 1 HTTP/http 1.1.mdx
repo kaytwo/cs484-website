@@ -129,9 +129,44 @@ HTTP/2 and beyond, and we don't need to use these hacks anymore.
 
 ### Caching
 
-### Statefulness and cookies
+HTTP Headers can be used to indicate to the client that the response can be
+cached. This is done using the `Cache-Control` header, which can have a number of
+different values. The most common are:
+
+* `Cache-Control: no-cache` - the client can cache the response, but it must
+  revalidate it with the server before using it.
+* `Cache-Control: no-store` - the client must not cache the response.
+* `Cache-Control: max-age=3600` - the client can cache the response for 3600
+  seconds (1 hour) before revalidating it with the server.
+
+This header is typically set by the server, indicating to the client how / how
+long it should cache the response within their _private cache_, also known as
+the browser cache. The client can also set this header in a request to indicate
+to intermediate caches (aka _public caches_) how they should cache the response,
+or whether they should send a cached response to the client vs. request a new
+version from the origin.
 
 ### Content-encoding (compression)
+
+Another important header for performance is the `Content-Encoding` header. This
+header tells the client how the response is encoded, and the client can then
+decode it. This is typically used for compression, where the server compresses
+the response before sending it to the client, and the client decompresses it
+before using it. This can be a big performance win, especially for text-based
+responses like HTML, CSS, and JavaScript.
+
+The most common encoding is `Content-Encoding: gzip`, which is a lossless
+compression algorithm that is widely supported by browsers and servers. This
+compression is done on the fly by the server, and the client can decompress it
+using a library like zlib.
+
+### Range requests
+
+Another important header for performance is the `Range` header. This header
+allows the client to request only part of a response, which can be useful for
+large responses like videos. The server can then respond with only the requested
+part of the response, which can save bandwidth and latency.
+
 
 ### CDNs
 
