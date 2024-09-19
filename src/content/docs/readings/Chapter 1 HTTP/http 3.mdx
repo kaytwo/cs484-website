@@ -1,0 +1,66 @@
+---
+title: "HTTP 3"
+description: "As fast as possible: HTTP/3"
+sidebar:
+  order: 195
+---
+
+import { Aside } from "@astrojs/starlight/components"
+
+## Benefits of HTTP/3
+
+HTTP/3, the latest version of the Hypertext Transfer Protocol, makes very deep
+changes to how HTTP connections are made in an effort to reduce latency, especially
+at the beginning of a connection.
+
+### Reliability and Encryption
+
+The fundamental improvement of HTTP/3 is that, instead of using TCP for reliable
+transport and TLS (within TCP) for encryption, it uses QUIC, which combines both
+reliable transport and encryption in a single protocol. This reduces the number
+of round trips needed to establish a connection, which is especially important
+for mobile devices. Once the encryption/reliability layer is established, the
+HTTP/3 layer functions roughly the same as HTTP/2, with a few features that
+weren't particularly useful left out.
+
+### Remaining (and new) challenges
+
+Beyond the standard challenges of rolling out a new protocol worldwide (getting
+it into browsers, getting it into servers), there are some specific challenges
+to HTTP/3:
+
+**Connection Negotiation**: H/3 is intended to be gradually rolled out,
+rather than the impossible challenge of someone flipping a switch and suddenly
+everyone using H/3 exclusively instead of H/1.1 or H/2. Thus, when a browser
+connects to a server, it will always try to use the most widely supported
+protocol first, which is H/1.1. If the server supports H/3, it can send an
+`Alt-Svc` header indicating that H/3 is available, and the browser can try again
+with H/3.
+
+This is incredibly sub optimal though! The whole point of H/3 is to reduce
+latency, and this negotiation process adds even more latency to H/3 than even an
+HTTP/1.1 connection. This is why there are efforts to incorporate H/3
+negotiation into the DNS response itself for a given domain, so that the browser
+can know how to connect to the server as part of looking up the IP address from
+the domain name.
+
+**Middleboxes** are also a problem. Many networks have devices that inspect and
+modify traffic (firewalls, proxies, etc.). Much like with H/2, these devices may
+not understand QUIC, which could lead to connection failures or degraded
+performance. The problem is worse for HTTP/3 though, as many of these
+middleboxes are not equipped to handle UDP traffic, which QUIC uses.
+
+
+### The main benefit of UDP
+
+Because QUIC and the HTTP/3 protocol are being used in tandem to deliver
+messages from different request and response streams, the "single in order byte
+stream" guarantee from TCP does not apply, and the HTTP/3 layer can continue
+processing incoming packets for other streams while waiting for lost messages to
+be resent. In this situation, only the specific stream that lost packets has to
+wait for the retransmission, and the others can still be processed.
+
+
+Additional reading:
+
+[H/3 in practice](https://www.andy-pearce.com/blog/posts/2023/Apr/http3-in-practice-http3/)

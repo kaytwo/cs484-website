@@ -1,0 +1,95 @@
+---
+title: Final Project checkpoint 1
+description: Precisely enumerate what you want your app to do
+due: "2024-10-03T14:00:00"
+release: "2024-09-20T08:00:00"
+sidebar:
+  order: 21
+---
+
+import { localizeTime, formatTime } from "../../../utils.ts";
+import { Content as Deadlines } from "../../../components/Deadlines.md";
+
+## {frontmatter.description}
+
+**Due**: {formatTime(localizeTime(frontmatter.due))}
+
+TLDR: submit [this form](https://forms.gle/FySzRBae1QJhUCs97) before the deadline.
+
+
+This is the second checkpoint for your final project. For this deliverable you
+must list, as precisely as possible, the specific functionalities that your app
+will be capable of doing. You do *not* need to say how you will implement these
+features, but you need to explain them in enough detail that (after you come up
+with an implementation plan) you will immediately be able to start working on
+them, and you will be able to confidently know when you've done so successfully.
+
+If you plan to use any APIs or other external services to provide your
+functionality, you must also verify that the functionality that you plan to need
+to make your app work is available. Preferably this should be using a "free
+tier" of a service, but I won't prevent you from using a paid service if you
+would like to. Using a paid service will not benefit your grade - this project
+is not "pay to win."
+
+## Example from the costco scraper idea
+
+Recall the costco discount database idea I talked about in class. A reasonable deliverable for that would be:
+
+### In the Github Issue
+
+- [ ] Build a scraper that takes as input the body of a Costco discount web page
+  and outputs a machine-readable list of all the discounts on that page, including name, discount, and image URL.
+- [ ] Build a database that keeps track of all historical discounts.
+- [ ] Build a script which runs on a schedule and checks for new lists of discounts, and runs the scraper script if they're new.
+- [ ] Build a website that allows listing and searching through all products and discounts.
+- [ ] Build a historical discount visualization similar to steamdb.info that shows when a given product has been on sale, and also predicts the next time it will go on sale.
+
+### In the form
+
+APIs/data needed: we needed a Costco discount API, however one does not exist, so we
+will be using archive.org to extract historical discount pages, and the
+`puppeteer` library \[CK note: in general you don't need to enumerate what
+specific libraries you'll be using for your implementation, but this is a bit of
+an exception because this is data that's necessary to actually be able to
+implement the project at all\] to extract the relevant information from each
+HTML page.
+
+## How do I turn in this checkpoint?
+
+The main deliverable is again a form, including each group member's netID in a
+comma-delimited list.
+
+[The form is here](https://forms.gle/FySzRBae1QJhUCs97).
+
+You will also need to provide a link to a GitHub issue. This issue must include
+each deliverable as a separate checklist item. This allows you to use this as a
+"tracking issue" for completing your entire project. The TAs and I should again
+be able to read that repository.
+
+In each checklist item (or below the checklist, your choice), provide the full
+precise description of what functionality you plan to deliver.
+
+Additionally, in the form you will be required to provide a list of each API you
+plan to use, and provide a description of what functionality you need from it,
+and why you are confident you'll be able to get the data/functionality you need
+from it. Note that you don't need to know HOW you'll use it, just that it's
+there and you are confident enough that it will work for your needs.
+
+Remember that this deliverable is worth zero points. If you don't turn it in, I
+will just move forward assuming that your app has whatever reasonable
+functionality I think it should have.
+
+If your plan is questionable in any way, I'll start a conversation in the issue
+about what to do about it.
+
+
+### What happens if you don't turn in the checkpoint?
+
+Nothing besides the MVP (due in week 12) and the final project (due at the end
+of week 15) are graded for points. The things that you propose in each
+checkpoint set expectations for what your group will do and how you'll do it. If
+you don't set those expectations, I'll just grade everything based on what I
+think a good project is expected to do - you could receive full points because
+what you did was actually fine, or you could receive zero points because you're
+not implementing what I expected you'd implement. It's highly recommended you do
+the work to prepare and submit this checkpoint.

@@ -1,0 +1,65 @@
+---
+title: "HTTP/2"
+description: "Fixing the most popular protocol in the world: HTTP/2"
+sidebar:
+  order: 190
+---
+
+import { Aside } from "@astrojs/starlight/components"
+
+By the late 1990's, it was clear that the web was the most widespread end user
+protocol for client-server applications. However, lots of decisions made when
+the web was being used by mere thousands of people were discovered to not be
+that great when exposed to hundreds of millions. Enter HTTP/2.
+
+## The problems with HTTP/1.1
+
+* Head of line blocking
+* Incentive to bundle resources and use multiple connections
+* Inefficient use of space in headers, which is especially bad at the beginning of a TCP connection
+
+## The solutions in HTTP/2
+
+### Multiplexing: Solving Head-of-Line Blocking
+One of the key innovations of HTTP/2 is **multiplexing**. This allows multiple
+HTTP requests and responses to be sent over a single TCP connection at the same
+time. Unlike HTTP/1.x, which had to wait for each request to finish before
+starting a new one (or open multiple connections to work around this), HTTP/2
+allows streams of data to flow in parallel without interference. This allows
+both multiple requests and responses to be interleaved, as well as individual
+pieces of those individual requests and responses to be sent whenever they're
+ready. This allows HTTP/2 to do everything it can to **keep the pipe full** - in
+other words, if there is data avaialble to send, it will be sent. 
+
+Multiplexing also reduces the incentive to open multiple connections to the same server
+
+
+or bundle individual resources together, as HTTP/2 can handle multiple requests
+efficiently over a single connection.
+
+### Header Compression: Reducing Overhead
+Another issue in HTTP/1.x was the overhead caused by large HTTP headers, which
+could be sent repeatedly with each request. HTTP/2 introduced **HPACK**, a
+header compression mechanism that minimizes the amount of redundant information
+transmitted. This is especially important for requests to the same server, where
+headers often remain largely unchanged between requests.
+
+By compressing and reusing headers, HTTP/2 reduces bandwidth usage and speeds up
+transmission, especially on resource-heavy pages with many repeated requests.
+
+
+Both multiplexing and header compression disincentivize "hacks" like domain
+sharding and image sprites, which were mainly used to engineer around the
+limitations of HTTP/1.1. H/2 removes the performance penalty of sending lots of
+very small HTTP requests and responses (with repeated headers), or of making
+multiple connections that all have to use the TCP slow start algorithm to get up
+to speed.
+
+### Security: HTTP/2 and TLS
+While HTTP/2 can theoretically run without encryption, in practice, all popular
+browsers require that always be used with **Transport Layer Security (TLS)**, in
+other words, as part of an HTTPS connection.
+
+This focus on "secure by default" is one of many advances in the design of many
+modern protocols, which make known-insecure ways of communicating either
+impossible or very difficult, and definitely not the out-of-the-box default.
