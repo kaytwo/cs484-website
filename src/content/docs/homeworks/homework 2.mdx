@@ -1,0 +1,86 @@
+---
+title: Homework 2 - Frontend
+description: React
+release: "2024-09-24T08:00:00"
+due: "2024-10-04T14:00:00"
+---
+
+import { localizeTime, formatTime } from "../../../utils.ts";
+import { Content as Deadlines } from "../../../components/Deadlines.md";
+
+import { Aside } from "@astrojs/starlight/components";
+import { marked } from "marked";
+
+## {frontmatter.description}
+
+**Release**: {formatTime(localizeTime(frontmatter.release))}
+
+{/* **Due**: {formatTime(localizeTime(frontmatter.due))} */}
+
+## Quickstart
+
+Create a new **private** repository under your own GitHub account
+from [this template](https://github.com/swad-cs-uic/homework2-f24). Sharing your
+code for the assignment, intentionally or unintentionally, is a violation of the
+academic integrity policy in this course.
+
+## Installing required packages
+
+Open the terminal window and type in `npm install`. This will install all the dependencies listed in the `package.json` file and will create a folder `node_modules` where all these dependencies will be installed. `npm run dev` will run a local development server and open a web browser window for you that's pointed at your application.
+
+## Skeleton code
+
+The skeleton code of the application is designed to give you a better understanding on React and its features. The given project is 70% done, requiring some functionalities to be implemented. You just need to add the logic as described in the TODOs. There may be a few TODOs missing, but they're easily detectable when debugging.
+Don't worry about anything inside the backend folder, nothing is missing there.
+
+## Starting the project and navigating
+
+Before running the project please make sure that you have installed all the dependencies mentioned in the step `Installing required packages`. Start the project by typing `npm run dev` in the terminal and open the URL in a browser.
+
+If you just cloned the skeleton, the app won't work because some crucial code is missing.
+
+To start navigating through the project, start with the `index.html` page and then follow the path to check how components are used. The main component used in this app is `App` (you can find the code for this in `App.tsx`). From here check the other components used, and how they're supposed to interact with the rest of the application. All other components are in `/components` folder.
+
+Note: You should only need to change files in `/frontend` folder, specifically the `App.tsx` and the files in `/frontend/components` folder. It can be useful to take a look at `backend/api.ts` to understand what parameters the API is expecting, but nothing is missing there.
+
+## Deliverables
+
+Your code must function identically to the fully functional application.
+
+1. The homepage shows a page with a list of products from Costco. Each product has an image, a name and the ID.
+2. You should be able to search products through the input box displayed.
+3. Selecting the icon to the left (add), a form titled "Add New Product" should appear. Clicking "Add product" after entering **at least** the product name should add the new product to the list and the view should go back to the homepage.
+4. Selecting the icon to the right (bin), a form titled "Delete Product" should appear. Clicking "Delete product" after entering the product ID should delete the product from the list and the view should go back to the homepage.
+5. In the homepage, it should be possible to navigate through the pages using numbers displayed under the grid of elements. Note that the current page should have the class **active**.
+
+## Testing your code
+
+`npm run test` will run the test suite locally. Remember, as with any other
+assignments in class, you should double check that your tests are passing in the
+gradescope environment in addition to your local environment. "It works on my
+machine" does not count as a valid excuse for failing tests in the autograder. **Furthermore, for this homework the testsuite on Gradescope will be slightly different.**
+
+## Points
+
+| Task                                                                         | Points |
+| ---------------------------------------------------------------------------- | ------ |
+| **Displays products on the home page**                                       | 10     |
+| **Navigates through pages and displays correct products**                    | 10     |
+| **Returns correct number of products for pagination**                        | 10     |
+| **Adds a new product and confirms it appears on the page**                   | 10     |
+| **Searches for a product and displays the results**                          | 10     |
+| **Deletes a product and confirms it is not visible**                         | 10     |
+| **Displays error message when it's impossible to connect to the server**     | 10     |
+| **Calls setQuery and setCurrentPage with correct arguments on input change** | 5      |
+| **Submits correct data in add mode**                                         | 5      |
+| **Handles API error gracefully in add mode**                                 | 5      |
+| **Resets form fields after successful submission in add mode**               | 5      |
+| **Submits correct data in delete mode**                                      | 5      |
+| **Handles API error gracefully in delete mode**                              | 5      |
+| **Displays products on page**                                                | 5      |
+| **Navigates through pages**                                                  | 5      |
+| **Bonus: CI Tests (Lint, Format, Typecheck)**                                | 9      |
+
+## Due date
+
+This assignment is due at {formatTime(localizeTime(frontmatter.due))}.
