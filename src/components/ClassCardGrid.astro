@@ -1,17 +1,109 @@
 ---
+// ClassCardGrid.astro
 import { Card, CardGrid } from "@astrojs/starlight/components";
+import { localizeTime, formatTime } from "../utils";
+import { getCollection } from "astro:content";
+
+// Fetching lectures
+const lectures = (await getCollection("docs", (entry) => entry.id.startsWith("lecture"))).map(entry => ({
+  slug: entry.slug,
+  type: "lecture",
+  title: entry.data.title,
+  date: localizeTime(entry.data.date),
+  readings: entry.data.readings,
+  notes: entry.data.notes,
+}));
+
+// Fetching exams
+const exams = (await getCollection("exams")).map(entry => ({
+  type: "exam",
+  title: entry.data.title,
+  date: localizeTime(entry.data.date),
+  content: entry.data.content,
+  notes: entry.data.notes,
+}));
+
+// Fetching assignments
+const assignments = (await getCollection("docs", (entry) => entry.id.startsWith("homework"))).flatMap(entry => [
+  {
+    slug: entry.slug,
+    type: "homework release",
+    title: entry.data.title,
+    description: entry.data.description,
+    release: localizeTime(entry.data.release),
+    due: localizeTime(entry.data.due),
+    notes: entry.data.notes,
+  },
+]);
+
+// Getting the upcoming events
+const upcomingLectures = lectures
+  .filter(lecture => +new Date(lecture.date) > +new Date())
+  .sort((a, b) => +new Date(a.date) - +new Date(b.date));
+  // Getting the assignments based on when they are due
+const upcomingAssignments = assignments
+  .filter(assignment => +new Date(assignment.due) > +new Date())
+  .sort((a, b) => +new Date(a.due) - +new Date(b.due));
+const upcomingExams = exams
+  .filter(exam => +new Date(exam.date) > +new Date())
+  .sort((a, b) => +new Date(a.date) - +new Date(b.date));
 ---
 
 <CardGrid>
   <Card title="Upcoming Lecture" icon="pencil">
-    TODO: Show relevant information about the next lecture.
+    {upcomingLectures.length > 0 ? (
+      <>
+        The next lecture will cover: {upcomingLectures[0].title}. 
+        <div>
+          Date: {formatTime(upcomingLectures[0].date)}
+        </div>
+        <div>
+          <strong>Readings:</strong>
+          <ul>
+            {upcomingLectures[0].readings.map(reading => (
+              <li>
+                <a href={reading.link} target="_blank" rel="noopener noreferrer">
+                  {reading.name}
+                </a>
+                {reading.optional && " (Optional)"}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </>
+    ) : (
+      "There are no upcoming lectures."
+    )}
   </Card>
+
   <Card title="Upcoming Assignment" icon="laptop">
-    Show relevant information about the next assignment.
+    {upcomingAssignments.length > 0 ? (
+      <>
+        <strong>Title:</strong> {upcomingAssignments[0].title}
+        <br />
+        <strong>Description:</strong> {upcomingAssignments[0].description}
+        <br />
+        <strong>Release Date:</strong> {formatTime(upcomingAssignments[0].release)}
+        <br />
+        <strong>Due Date:</strong> {formatTime(upcomingAssignments[0].due)}
+        <br />
+        Ensure that you submit via Gradescope before the deadline.
+      </>
+    ) : (
+      "No assignments are due soon."
+    )}
   </Card>
+
   <Card title="Upcoming Exam" icon="open-book">
-    Show relevant information about the next exam.
+    {upcomingExams.length > 0 ? (
+      <>
+        The next exam is on: {formatTime(upcomingExams[0].date)}. Topics will include: {upcomingExams[0].content}.
+      </>
+    ) : (
+      "No upcoming exams scheduled."
+    )}
   </Card>
+
   <Card title="Explore Lecture Content" icon="document">
     Take a look at the lecture notes, slides, and course videos.
   </Card>
