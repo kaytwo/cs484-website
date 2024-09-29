@@ -4,7 +4,7 @@ import { Card, CardGrid } from "@astrojs/starlight/components";
 import { localizeTime, formatTime } from "../utils";
 import { getCollection } from "astro:content";
 
-// Fetching lectures
+// Fetching lectures, exams, and assignments (same as before)
 const lectures = (await getCollection("docs", (entry) => entry.id.startsWith("lecture"))).map(entry => ({
   slug: entry.slug,
   type: "lecture",
@@ -14,7 +14,6 @@ const lectures = (await getCollection("docs", (entry) => entry.id.startsWith("le
   notes: entry.data.notes,
 }));
 
-// Fetching exams
 const exams = (await getCollection("exams")).map(entry => ({
   type: "exam",
   title: entry.data.title,
@@ -23,7 +22,6 @@ const exams = (await getCollection("exams")).map(entry => ({
   notes: entry.data.notes,
 }));
 
-// Fetching assignments
 const assignments = (await getCollection("docs", (entry) => entry.id.startsWith("homework"))).flatMap(entry => [
   {
     slug: entry.slug,
@@ -36,75 +34,109 @@ const assignments = (await getCollection("docs", (entry) => entry.id.startsWith(
   },
 ]);
 
-// Getting the upcoming events
-const upcomingLectures = lectures
-  .filter(lecture => +new Date(lecture.date) > +new Date())
-  .sort((a, b) => +new Date(a.date) - +new Date(b.date));
-  // Getting the assignments based on when they are due
-const upcomingAssignments = assignments
-  .filter(assignment => +new Date(assignment.due) > +new Date())
-  .sort((a, b) => +new Date(a.due) - +new Date(b.due));
-const upcomingExams = exams
-  .filter(exam => +new Date(exam.date) > +new Date())
-  .sort((a, b) => +new Date(a.date) - +new Date(b.date));
+// Static sorting of upcoming events
+const upcomingLectures = lectures.filter(lecture => +new Date(lecture.date) > +new Date()).sort((a, b) => +new Date(a.date) - +new Date(b.date));
+const upcomingAssignments = assignments.filter(assignment => +new Date(assignment.due) > +new Date()).sort((a, b) => +new Date(a.due) - +new Date(b.due));
+const upcomingExams = exams.filter(exam => +new Date(exam.date) > +new Date()).sort((a, b) => +new Date(a.date) - +new Date(b.date));
 ---
 
 <CardGrid>
+  <!-- Lecture card -->
   <Card title="Upcoming Lecture" icon="pencil">
-    {upcomingLectures.length > 0 ? (
-      <>
-        The next lecture will cover: {upcomingLectures[0].title}. 
-        <div>
-          Date: {formatTime(upcomingLectures[0].date)}
-        </div>
-        <div>
-          <strong>Readings:</strong>
-          <ul>
-            {upcomingLectures[0].readings.map(reading => (
-              <li>
-                <a href={reading.link} target="_blank" rel="noopener noreferrer">
-                  {reading.name}
-                </a>
-                {reading.optional && " (Optional)"}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </>
-    ) : (
-      "There are no upcoming lectures."
-    )}
+    <div class="lecture-item" data-date={upcomingLectures[0]?.date}>
+      {upcomingLectures.length > 0 ? (
+        <>
+          The next lecture will cover: {upcomingLectures[0].title}. 
+          <div>Date: {formatTime(upcomingLectures[0].date)}</div>
+          <div>
+            <strong>Readings:</strong>
+            <ul>
+              {upcomingLectures[0].readings.map(reading => (
+                <li>
+                  <a href={reading.link} target="_blank" rel="noopener noreferrer">
+                    {reading.name}
+                  </a>
+                  {reading.optional && " (Optional)"}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>
+      ) : (
+        "There are no upcoming lectures."
+      )}
+    </div>
   </Card>
 
+  <!-- Assignment card -->
   <Card title="Upcoming Assignment" icon="laptop">
-    {upcomingAssignments.length > 0 ? (
-      <>
-        <strong>Title:</strong> {upcomingAssignments[0].title}
-        <br />
-        <strong>Description:</strong> {upcomingAssignments[0].description}
-        <br />
-        <strong>Release Date:</strong> {formatTime(upcomingAssignments[0].release)}
-        <br />
-        <strong>Due Date:</strong> {formatTime(upcomingAssignments[0].due)}
-        <br />
-        Ensure that you submit via Gradescope before the deadline.
-      </>
-    ) : (
-      "No assignments are due soon."
-    )}
+    <div class="assignment-item" data-date={upcomingAssignments[0]?.due}>
+      {upcomingAssignments.length > 0 ? (
+        <>
+          <strong>Title:</strong> {upcomingAssignments[0].title}
+          <br />
+          <strong>Description:</strong> {upcomingAssignments[0].description}
+          <br />
+          <strong>Release Date:</strong> {formatTime(upcomingAssignments[0].release)}
+          <br />
+          <strong>Due Date:</strong> {formatTime(upcomingAssignments[0].due)}
+          <br />
+          Ensure that you submit via Gradescope before the deadline.
+        </>
+      ) : (
+        "No assignments are due soon."
+      )}
+    </div>
   </Card>
 
+  <!-- Exam card -->
   <Card title="Upcoming Exam" icon="open-book">
-    {upcomingExams.length > 0 ? (
-      <>
-        The next exam is on: {formatTime(upcomingExams[0].date)}. Topics will include: {upcomingExams[0].content}.
-      </>
-    ) : (
-      "No upcoming exams scheduled."
-    )}
+    <div class="exam-item" data-date={upcomingExams[0]?.date}>
+      {upcomingExams.length > 0 ? (
+        <>
+          The next exam is on: {formatTime(upcomingExams[0].date)}. Topics will include: {upcomingExams[0].content}.
+        </>
+      ) : (
+        "No upcoming exams scheduled."
+      )}
+    </div>
   </Card>
 
   <Card title="Explore Lecture Content" icon="document">
     Take a look at the lecture notes, slides, and course videos.
   </Card>
 </CardGrid>
+
+<!-- Client-side script to filter past events -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentDate = new Date();
+
+    // Hide past lectures
+    const lectureElements = document.querySelectorAll('.lecture-item');
+    lectureElements.forEach(lecture => {
+      const lectureDate = new Date(lecture.dataset.date);
+      if (lectureDate < currentDate) {
+        lecture.style.display = 'none';  // Hide past lectures
+      }
+    });
+
+    // Hide past assignments
+    const assignmentElements = document.querySelectorAll('.assignment-item');
+    assignmentElements.forEach(assignment => {
+      const assignmentDate = new Date(assignment.dataset.date);
+      if (assignmentDate < currentDate) {
+        assignment.style.display = 'none';  // Hide past assignments
+      }
+    });
+
+    // Hide past exams
+    const examElements = document.querySelectorAll('.exam-item');
+    examElements.forEach(exam => {
+      const examDate = new Date(exam.dataset.date);
+      if (examDate < currentDate) {
+        exam.style.display = 'none';  // Hide past exams
+      }
+    });
+  });
+</script>
