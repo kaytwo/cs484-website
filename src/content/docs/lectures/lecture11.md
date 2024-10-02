@@ -12,5 +12,6 @@ readings:
     name: "Astro in 100 Seconds"
     optional: true
 notes: |
-  Reading is a mega-reading, quiz will cover everything after the section on module bundling.
+  Reading is a mega-reading, quiz will cover everything after the section on module bundling. In-class activity will be jump starting the
+  next deliverable for final project: decide on a tech stack and begin designing the architecture of your app.
 ---
