@@ -3,6 +3,7 @@ import { getCollection, getEntry } from "astro:content";
 import { marked } from "marked";
 // marked.use({ mangle: false, headerIds: false });
 import { localizeTime, formatTime } from "../utils";
+import { Badge } from "@astrojs/starlight/components";
 
 const exams = (await getCollection("exams")).map((entry) => {
   return {
@@ -11,6 +12,7 @@ const exams = (await getCollection("exams")).map((entry) => {
     date: localizeTime(entry.data.date),
     content: entry.data.content,
     notes: entry.data.notes,
+    tentative: entry.data.tentative,
   };
 });
 const homeworks = (
@@ -23,6 +25,7 @@ const homeworks = (
       title: entry.data.title,
       date: localizeTime(entry.data.release),
       notes: entry.data.notes,
+      tentative: entry.data.tentative,
     },
     {
       slug: entry.slug,
@@ -43,6 +46,7 @@ const lectures = (
     date: localizeTime(entry.data.date),
     readings: entry.data.readings,
     notes: entry.data.notes,
+    tentative: entry.data.tentative,
   };
 });
 // merge the three above arrays and sort them by date
@@ -66,8 +70,18 @@ const events = [...exams, ...homeworks, ...lectures].sort(
     <tbody>
       {
         events.map((event) => (
-          <tr class="tr-class" data-date={event.date}>
-            <td class="td-class">{event.type}</td>
+          <tr
+            class:list={[
+              {
+                "!bg-[var(--sl-color-accent-low)]": event?.tentative,
+              },
+              "tr-class",
+            ]}
+            data-date={event.date}>
+            <td class="td-class">
+              {event?.tentative && <Badge text="Tentative" variant="tip" />}
+              <div>{event.type}</div>
+            </td>
             <td class="td-class">{formatTime(event.date)}</td>
             <td class="td-class">
               {event.type === "homework release" ||
