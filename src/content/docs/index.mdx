@@ -20,18 +20,24 @@ hero:
 
 import ClassCardGrid from "../../components/ClassCardGrid.astro";
 import TimedRender from "../../components/TimedRender.astro";
-import { Aside } from "@astrojs/starlight/components"
+import { Aside } from "@astrojs/starlight/components";
 
+{ new Date() < new Date("2024-09-06T17:00:00-05:00") &&
 
-{ new Date() < new Date("2024-09-06T17:00:00-05:00") && 
-<Aside type="caution" title="Interested in registering for CS 484 in Fall 2024?">
-If you're interested in registering for this class, you must have turned in the first assignment due on Thursday August 29th. If you did and aren't in the class yet, please follow the instructions mentioned in class and on Piazza.
+<Aside
+  type="caution"
+  title="Interested in registering for CS 484 in Fall 2024?">
+  If you're interested in registering for this class, you must have turned in
+  the first assignment due on Thursday August 29th. If you did and aren't in the
+  class yet, please follow the instructions mentioned in class and on Piazza.
 </Aside>
 }
 
 { new Date() > new Date("2024-12-31T17:00:00-05:00") &&
+
 <Aside type="danger" title="This course has concluded.">
-This is the course website for Fall 2024 CS 484. If you're seeing this note, the course has concluded.
+  This is the course website for Fall 2024 CS 484. If you're seeing this note,
+  the course has concluded.
 </Aside>
 }
 
@@ -42,7 +48,7 @@ This course is taught in person, location LC C6, 2:00pm - 3:15pm Tuesdays and Th
 
 **Piazza**: https://piazza.com/uic/fall2024/cs484
 
-**Gradescope**: https://www.gradescope.com/courses/833367  (Check Piazza for the invite code)
+**Gradescope**: https://www.gradescope.com/courses/833367 (Check Piazza for the invite code)
 
 ### Instructional Team
 
@@ -50,9 +56,9 @@ Chris Kanich, ckanich@uic.edu
 Drop-In Office Hours: 3:30-4:30pm Tuesdays and Wednesdays  
 Drop-In Hours location: SEO 908
 
-Graduate TA: Khanh Le  
-Drop-In Office Hours: TBD  
-Drop-In Hours location: TBD   
+Graduate TA: Khanh Le, nle33@uic.edu  
+Drop-In Office Hours: 11:00-12:00pm Mondays and Wednesdays  
+Drop-In Hours location: CS Lounge and [Zoom](https://uic.zoom.us/j/83302203414?pwd=yrWtdLS8aRlH0Dfw6bL4Sf4OjZGSHa.1)
 
 Graduate TA: Claudio Paloscia, cpalos2@uic.edu  
 Drop-In Office Hours: 10:00-11:00am Thursdays  
