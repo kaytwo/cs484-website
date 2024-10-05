@@ -1,6 +1,6 @@
 ---
 type: lecture
-date: "2024-09-26T14:00:00"
+date: "2024-10-01T14:00:00"
 title: '"Compiling" your client side web app'
 readings:
   - link: /readings/chapter-2-client-side-web-development/development-tooling/

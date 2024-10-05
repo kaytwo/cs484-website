@@ -6,6 +6,7 @@ const exams = z.object({
   date: z.string(),
   content: z.string(),
   notes: z.string().optional(),
+  tentative: z.boolean().default(false),
 });
 
 const lectures = z.object({
@@ -19,6 +20,7 @@ const lectures = z.object({
     }),
   ),
   notes: z.string().optional(),
+  tentative: z.boolean().default(false),
 });
 
 const homeworks = z.object({
@@ -26,6 +28,7 @@ const homeworks = z.object({
   github_link: z.string().url().optional(),
   release: z.string(),
   notes: z.string().optional(),
+  tentative: z.boolean().default(false),
 });
 
 const readings = z.object({
