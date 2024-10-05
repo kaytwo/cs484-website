@@ -1,10 +1,9 @@
 ---
-// ClassCardGrid.astro
 import { Card, CardGrid } from "@astrojs/starlight/components";
 import { localizeTime, formatTime } from "../utils";
 import { getCollection } from "astro:content";
 
-// Fetching lectures, exams, and assignments (same as before)
+// Fetching lectures, exams, and assignments statically (as before)
 const lectures = (await getCollection("docs", (entry) => entry.id.startsWith("lecture"))).map(entry => ({
   slug: entry.slug,
   type: "lecture",
@@ -34,7 +33,7 @@ const assignments = (await getCollection("docs", (entry) => entry.id.startsWith(
   },
 ]);
 
-// Static sorting of upcoming events
+// Static sorting of upcoming events based on the build time
 const upcomingLectures = lectures.filter(lecture => +new Date(lecture.date) > +new Date()).sort((a, b) => +new Date(a.date) - +new Date(b.date));
 const upcomingAssignments = assignments.filter(assignment => +new Date(assignment.due) > +new Date()).sort((a, b) => +new Date(a.due) - +new Date(b.due));
 const upcomingExams = exams.filter(exam => +new Date(exam.date) > +new Date()).sort((a, b) => +new Date(a.date) - +new Date(b.date));
@@ -107,36 +106,43 @@ const upcomingExams = exams.filter(exam => +new Date(exam.date) > +new Date()).s
   </Card>
 </CardGrid>
 
-<!-- Client-side script to filter past events -->
+<!-- Client-side script to filter past events and update content dynamically -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const currentDate = new Date();
 
-    // Hide past lectures
-    const lectureElements = document.querySelectorAll('.lecture-item');
-    lectureElements.forEach(lecture => {
+    // Helper function to update upcoming items
+    const updateUpcomingItems = (selector, message, filterFn) => {
+      const elements = document.querySelectorAll(selector);
+      const upcomingItems = Array.from(elements).filter(filterFn);
+      
+      if (upcomingItems.length === 0) {
+        // Show message if no upcoming items
+        elements[0].innerHTML = message;
+      } else {
+        // Only display the first upcoming item
+        elements.forEach((item, index) => {
+          if (index > 0) item.style.display = 'none'; // Hide other items
+        });
+      }
+    };
+
+    // Filter and show only upcoming lectures
+    updateUpcomingItems('.lecture-item', 'There are no upcoming lectures.', (lecture) => {
       const lectureDate = new Date(lecture.dataset.date);
-      if (lectureDate < currentDate) {
-        lecture.style.display = 'none';  // Hide past lectures
-      }
+      return lectureDate >= currentDate;
     });
 
-    // Hide past assignments
-    const assignmentElements = document.querySelectorAll('.assignment-item');
-    assignmentElements.forEach(assignment => {
+    // Filter and show only upcoming assignments
+    updateUpcomingItems('.assignment-item', 'No assignments are due soon.', (assignment) => {
       const assignmentDate = new Date(assignment.dataset.date);
-      if (assignmentDate < currentDate) {
-        assignment.style.display = 'none';  // Hide past assignments
-      }
+      return assignmentDate >= currentDate;
     });
 
-    // Hide past exams
-    const examElements = document.querySelectorAll('.exam-item');
-    examElements.forEach(exam => {
+    // Filter and show only upcoming exams
+    updateUpcomingItems('.exam-item', 'No upcoming exams scheduled.', (exam) => {
       const examDate = new Date(exam.dataset.date);
-      if (examDate < currentDate) {
-        exam.style.display = 'none';  // Hide past exams
-      }
+      return examDate >= currentDate;
     });
   });
 </script>
