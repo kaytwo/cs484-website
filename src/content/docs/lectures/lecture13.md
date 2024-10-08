@@ -2,7 +2,6 @@
 type: lecture
 date: "2024-10-10T14:00:00"
 title: Authentication in depth
-tentative: true
 readings:
   - name: Authentication best practices
     link: https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html
