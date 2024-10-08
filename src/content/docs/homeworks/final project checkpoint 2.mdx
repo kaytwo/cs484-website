@@ -1,0 +1,36 @@
+---
+title: Final Project checkpoint 2
+description: Precisely enumerate what you want your app to do
+due: "2024-10-08T14:00:00"
+release: "2024-10-24T08:00:00"
+sidebar:
+  order: 22
+---
+
+import { localizeTime, formatTime } from "../../../utils.ts";
+import { Content as Deadlines } from "../../../components/Deadlines.md";
+
+## {frontmatter.description}
+
+**Due**: {formatTime(localizeTime(frontmatter.due))}
+
+TLDR: submit [this form](https://forms.gle/9vWfqfpUCJ4p9bBK7) before the deadline.
+
+
+### What to submit
+
+For this deliverable you must describe, as precisely as possible, the specific architecture that your app will use. If you'll be using any particular framework, library, database, software as a service, etc, identify it and show where it fits into your overall architecture.
+
+I would gently suggest using excalidraw and providing a link to that diagram, but you don't need to if you feel you can adequately describe your architecture without it.
+
+
+### What happens if you don't turn in the checkpoint?
+
+Nothing besides the MVP (due in week 12) and the final project (due at the end
+of week 15) are graded for points. The things that you propose in each
+checkpoint set expectations for what your group will do and how you'll do it. If
+you don't set those expectations, I'll just grade everything based on what I
+think a good project is expected to do - you could receive full points because
+what you did was actually fine, or you could receive zero points because you're
+not implementing what I expected you'd implement. It's highly recommended you do
+the work to prepare and submit this checkpoint.
