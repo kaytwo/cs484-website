@@ -1,7 +1,6 @@
 ---
 type: lecture
 date: "2024-10-15T14:00:00"
-tentative: true
 title: Web APIs
 readings:
   - name: "APIs: The web is your computer"
