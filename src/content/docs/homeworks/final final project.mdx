@@ -1,0 +1,30 @@
+---
+title: Final Final Project!
+description: Make your app do the thing
+release: "2024-11-14T14:00:00"
+due: "2024-12-06T08:00:00"
+sidebar:
+  order: 25
+---
+
+import { localizeTime, formatTime } from "../../../utils.ts";
+import { Content as Deadlines } from "../../../components/Deadlines.md";
+
+## {frontmatter.description}
+
+**Due**: {formatTime(localizeTime(frontmatter.due))}
+
+TLDR: submit [this form](https://forms.gle/n9cdZMK8C24wprqC6) before the deadline.
+
+For this deliverable, you're responsible for four core things:
+
+* Provide a link to your **deployed** app where I can test the functionality.
+* Provide a link to your source repository/repositories where I can see the code.
+* Provide a description of what your **initial** plan was for the functionality of the app, and the **final** functionality of the app. If you realize any time before the deadline that one of your deliverables from checkpoint 1 is not going to be met, contact me ASAP and we can see if we can adjust the scope of the project.
+* Provide any information about which special credentials needed for specific 3rd party API restrictions (i.e. needing to add my google or spotify account to a list of approved testers). This should just be a reminder - you need to reach out to me beforehand if this applies to your project.
+
+# Your deliverable is a deployed website
+
+Rather than testing code, we will be testing a deployed website for this deliverable. This means that while you can continue to work on your app after the deadline, **we can perform our testing at any time, and if your app is in a broken state in production when we test it, you will get the points that that version of the site earns**. In other words, if you wish to continue working on your app after the deadline, you ABSOLUTELY MUST work on new features on a branch besides the main deployed branch (or you can submit a "mvp" branch deploy), and if you do want to push "improvements" to the version that I grade, make darn sure that you've tested it thoroughly before doing so.
+
+

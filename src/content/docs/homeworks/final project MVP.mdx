@@ -1,0 +1,30 @@
+---
+title: Final Project MVP
+description: Make your app do the most basic version of what you want it to do
+release: "2024-10-30T14:00:00"
+due: "2024-11-13T08:00:00"
+sidebar:
+  order: 23
+---
+
+import { localizeTime, formatTime } from "../../../utils.ts";
+import { Content as Deadlines } from "../../../components/Deadlines.md";
+
+## {frontmatter.description}
+
+**Due**: {formatTime(localizeTime(frontmatter.due))}
+
+TLDR: submit [this form](https://forms.gle/zHZahbiG5Tk8Begg7) before the deadline.
+
+For this deliverable, you're responsible for three core things:
+
+* Describe the functionality that you planned to have implemented successfully for your MVP. If I need to I will go back to your checkpoint 2 turnin to confirm.
+* Provide a link to your **deployed** app where I can test the functionality.
+* Provide a link to your source repository/repositories where I can see the code.
+* Provide any "test account" credentials I may need to access your app. Note that for the final deliverable, outside of specific 3rd party API restrictions (i.e. needing to add my google or spotify account to a list of approved testers), you can't use a test account - I will need to go through the entire app sign up / onboarding flow to test your app.
+
+# Your deliverable is a deployed website
+
+Rather than testing code, we will be testing a deployed website for this deliverable. This means that while you can continue to work on your app after the deadline, **we can perform our testing at any time, and if your app is in a broken state in production when we test it, you will get the points that that version of the site earns**. In other words, if you wish to continue working on your app after the deadline, you ABSOLUTELY MUST work on new features on a branch besides the main deployed branch (or you can submit a "mvp" branch deploy), and if you do want to push "improvements" to the version that I grade, make darn sure that you've tested it thoroughly before doing so.
+
+
