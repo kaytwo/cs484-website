@@ -199,6 +199,10 @@ The course grade weighting is:
 | Final Project (5 pt checkpoint + 10 pt final deliverable) | 15               |
 | Module exams                                              | 50               |
 
+### Dropped Assignments
+
+To help students deal with unforeseen circumstances, religious observances, or other issues that may arise during the semester, we will drop your lowest homework, your lowest module exam, and your lowest four quiz scores. You do not need to inform me of the reason for dropping the assignment - this drop is automatic for all students.
+
 #### Final grade assignment
 
 I am committed to making sure the assessment of your learning in this course is
