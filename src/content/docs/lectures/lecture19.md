@@ -8,5 +8,4 @@ readings:
   - link: https://www.usenix.org/system/files/nsdi23-li-zhuqi.pdf
     name: "Dashlet: Taming Swipe Uncertainty for Robust Short Video Streaming"
     grad_only: true
-notes: still tentative while I refine the reading
 ---
