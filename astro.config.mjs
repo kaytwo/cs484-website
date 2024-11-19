@@ -17,6 +17,9 @@ export default defineConfig({
       social: {
         github: "https://github.com/kaytwo/cs484-website",
       },
+      editLink: {
+        baseUrl: "https://github.com/kaytwo/cs484-website/edit/main/",
+      },
       tableOfContents: {
         minHeadingLevel: 1,
         maxHeadingLevel: 3,
@@ -57,6 +60,7 @@ export default defineConfig({
           autogenerate: {
             directory: "readings",
           },
+          collapsed: true,
         },
         {
           label: "Homeworks",
