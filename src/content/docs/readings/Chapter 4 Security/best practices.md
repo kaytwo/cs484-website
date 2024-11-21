@@ -5,7 +5,7 @@ sidebar:
 
 ---
 
-whe web has evolved significantly over the years, and so have the threats and
+The web has evolved significantly over the years, and so have the threats and
 vulnerabilities that applications face. When these threats were first
 discovered, defending against them was quite difficult, and required a lot of
 hard work and creativity to come up with various defenses. However, most threats
