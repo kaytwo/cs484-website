@@ -8,11 +8,9 @@ release: "2024-11-01T08:00:00"
 import { localizeTime, formatTime } from "../../../utils.ts";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
 
-## {frontmatter.description}
-
 **Due**: {formatTime(localizeTime(frontmatter.due))}
 
-# Hacking a juice shop
+# {frontmatter.description}
 
 We will be hacking the UIC [Juiceshop](https://juice-shop.cs.uic.edu:30443/balancer/). This is an intentionally vulnerable full stack web
 application built with Angular, Express, and Sqlite.

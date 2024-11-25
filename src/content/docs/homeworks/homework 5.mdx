@@ -9,11 +9,7 @@ extraCredit: "2024-12-04T14:00:00"
 import { localizeTime, formatTime } from "../../../utils.ts";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
 
-## {frontmatter.description}
-
 **Due**: {formatTime(localizeTime(frontmatter.due))}
-
-## Homework 5
 
 ## Quickstart
 
@@ -28,8 +24,7 @@ dependencies listed in the `package.json` file.
 ## Skeleton code
 
 The homework provided is focused on optimizing React applications using various
-performance-enhancing techniques. You will work through four main problems, each
-highlighting a different optimization strategy:
+performance-enhancing techniques. You will work through four problems, each located in the `/src/components` folder.
 
 - Prevent UI blocking with Web Workers
 - Memoize expensive calculation results with useMemo
