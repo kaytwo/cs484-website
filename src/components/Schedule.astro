@@ -53,7 +53,38 @@ const lectures = (
 const events = [...exams, ...homeworks, ...lectures].sort(
   (a, b) => +a.date! - +b.date!
 );
+
+const upcomingHomework = homeworks
+  .filter((homework) => +homework.date > +new Date())
+  .sort((a, b) => +a.date - +b.date)[0];
+
+const upcomingExam = exams
+  .filter((exam) => +exam.date > +new Date())
+  .sort((a, b) => +a.date - +b.date)[0];
 ---
+
+{
+  upcomingHomework && (
+    <div>
+      <h6 style="display: inline;">Upcoming Homework deadline: </h6>
+      <span>
+        {formatTime(upcomingHomework.date)}{" "}
+        <a href={`/${upcomingHomework.slug}/`}>{upcomingHomework.title}</a>
+      </span>
+    </div>
+  )
+}
+
+{
+  upcomingExam && (
+    <div>
+      <h6 style="display:inline">Upcoming Exam Date: </h6>
+      <span>
+        {formatTime(upcomingExam.date)} {` `} "{upcomingExam.content}"
+      </span>
+    </div>
+  )
+}
 
 <span class="action primary" id="jumpToDateButton">Jump to Nearest Date</span>
 <div class="not-content ml-4 flex items-center sm:ml-0 sm:justify-center">
