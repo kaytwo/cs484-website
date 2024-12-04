@@ -5,6 +5,7 @@ release: "2024-09-24T08:00:00"
 due: "2024-10-04T14:00:00"
 sidebar:
   order: 32
+notes: Watch [the kickoff video](https://youtu.be/0QKOuPO_SAI) for help getting started.
 ---
 
 import { localizeTime, formatTime } from "../../../utils.ts";
@@ -25,6 +26,10 @@ Create a new **private** repository under your own GitHub account
 from [this template](https://github.com/swad-cs-uic/homework2-f24). Sharing your
 code for the assignment, intentionally or unintentionally, is a violation of the
 academic integrity policy in this course.
+
+<Aside>
+  <Fragment set:html={marked(frontmatter.notes)} />
+</Aside>
 
 ## Installing required packages
 
