@@ -1,0 +1,67 @@
+---
+import { getCollection } from "astro:content";
+// marked.use({ mangle: false, headerIds: false });
+import { localizeTime, formatTime } from "../utils";
+
+const exams = (await getCollection("exams")).map((entry) => {
+  return {
+    type: "exam",
+    title: entry.data.title,
+    date: localizeTime(entry.data.date),
+    content: entry.data.content,
+    notes: entry.data.notes,
+    tentative: entry.data.tentative,
+  };
+});
+const homeworks = (
+  await getCollection("docs", (entry) => entry.id.startsWith("homework"))
+).flatMap((entry) => {
+  return [
+    {
+      slug: entry.slug,
+      type: "homework release",
+      title: entry.data.title,
+      date: localizeTime(entry.data.release),
+      notes: entry.data.notes,
+      tentative: entry.data.tentative,
+    },
+    {
+      slug: entry.slug,
+      type: "homework due",
+      title: entry.data.title,
+      date: localizeTime(entry.data.due),
+      notes: entry.data.notes,
+    },
+  ];
+});
+const upcomingHomework = homeworks
+  .filter((homework) => +homework.date > +new Date())
+  .sort((a, b) => +a.date - +b.date)[0];
+
+const upcomingExam = exams
+  .filter((exam) => +exam.date > +new Date())
+  .sort((a, b) => +a.date - +b.date)[0];
+---
+
+{
+  upcomingHomework && (
+    <div>
+      <h6 style="display: inline;">Upcoming Homework deadline: </h6>
+      <span>
+        {formatTime(upcomingHomework.date)}{" "}
+        <a href={`/${upcomingHomework.slug}/`}>{upcomingHomework.title}</a>
+      </span>
+    </div>
+  )
+}
+
+{
+  upcomingExam && (
+    <div>
+      <h6 style="display:inline">Upcoming Exam Date: </h6>
+      <span>
+        {formatTime(upcomingExam.date)} {` `} "{upcomingExam.content}"
+      </span>
+    </div>
+  )
+}
