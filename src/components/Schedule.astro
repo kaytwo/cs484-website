@@ -4,6 +4,7 @@ import { marked } from "marked";
 // marked.use({ mangle: false, headerIds: false });
 import { localizeTime, formatTime } from "../utils";
 import { Badge } from "@astrojs/starlight/components";
+import Highlight from "./Highlight.astro";
 
 const exams = (await getCollection("exams")).map((entry) => {
   return {
@@ -54,6 +55,9 @@ const events = [...exams, ...homeworks, ...lectures].sort(
   (a, b) => +a.date! - +b.date!
 );
 ---
+
+<div>
+  <Highlight server:defer />
 
 <span class="action primary" id="jumpToDateButton">Jump to Nearest Date</span>
 <div class="not-content ml-4 flex items-center sm:ml-0 sm:justify-center">
