@@ -4,6 +4,7 @@ import { marked } from "marked";
 // marked.use({ mangle: false, headerIds: false });
 import { localizeTime, formatTime } from "../utils";
 import { Badge } from "@astrojs/starlight/components";
+import Highlight from "./Highlight.astro";
 
 const exams = (await getCollection("exams")).map((entry) => {
   return {
@@ -53,173 +54,156 @@ const lectures = (
 const events = [...exams, ...homeworks, ...lectures].sort(
   (a, b) => +a.date! - +b.date!
 );
-
-const upcomingHomework = homeworks
-  .filter((homework) => +homework.date > +new Date())
-  .sort((a, b) => +a.date - +b.date)[0];
-
-const upcomingExam = exams
-  .filter((exam) => +exam.date > +new Date())
-  .sort((a, b) => +a.date - +b.date)[0];
 ---
 
-{
-  upcomingHomework && (
-    <div>
-      <h6 style="display: inline;">Upcoming Homework deadline: </h6>
-      <span>
-        {formatTime(upcomingHomework.date)}{" "}
-        <a href={`/${upcomingHomework.slug}/`}>{upcomingHomework.title}</a>
-      </span>
+<!-- <UpcomingEvents client:load events={events} /> -->
+<div>
+  <Highlight server:defer>
+    <div slot="placeholder">
+      <p>Loading...</p>
     </div>
-  )
-}
+  </Highlight>
 
-{
-  upcomingExam && (
-    <div>
-      <h6 style="display:inline">Upcoming Exam Date: </h6>
-      <span>
-        {formatTime(upcomingExam.date)} {` `} "{upcomingExam.content}"
-      </span>
-    </div>
-  )
-}
+  <span class="action primary" id="jumpToDateButton">Jump to Nearest Date</span>
+  <div class="not-content ml-4 flex items-center sm:ml-0 sm:justify-center">
+    <table class="border-separate border-spacing-y-2 text-sm">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Date</th>
+          <th>Topic</th>
+          <th>Content</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          events.map((event) => (
+            <tr
+              class:list={[
+                {
+                  "!bg-[var(--sl-color-accent-low)]": event?.tentative,
+                },
+                "tr-class",
+              ]}
+              data-date={event.date}>
+              <td class="td-class">
+                {event?.tentative && <Badge text="Tentative" variant="tip" />}
+                <div>{event.type}</div>
+              </td>
+              <td class="td-class">{formatTime(event.date)}</td>
+              <td class="td-class">
+                {event.type === "homework release" ||
+                event.type === "homework due" ? (
+                  // @ts-expect-error
+                  <a href={`/${event.slug}/`}>{event.title}</a>
+                ) : (
+                  event.title
+                )}
+              </td>
+              <td class="td-class">
+                {event.type === "exam" && event.content}
+                {event.readings && (
+                  <ul>
+                    {event.readings.map((reading) => (
+                      <li>
+                        <a href={reading.link} target="_blank">
+                          {reading.name}
+                        </a>
+                        {reading.grad_only && <span title="grad only">🧑‍🎓</span>}
+                        {reading.optional && (
+                          <span title="not on quiz">📵</span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </td>
+              <td class="td-class">
+                {event.notes && <Fragment set:html={marked(event.notes)} />}
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
 
-<span class="action primary" id="jumpToDateButton">Jump to Nearest Date</span>
-<div class="not-content ml-4 flex items-center sm:ml-0 sm:justify-center">
-  <table class="border-separate border-spacing-y-2 text-sm">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Date</th>
-        <th>Topic</th>
-        <th>Content</th>
-        <th>Notes</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        events.map((event) => (
-          <tr
-            class:list={[
-              {
-                "!bg-[var(--sl-color-accent-low)]": event?.tentative,
-              },
-              "tr-class",
-            ]}
-            data-date={event.date}>
-            <td class="td-class">
-              {event?.tentative && <Badge text="Tentative" variant="tip" />}
-              <div>{event.type}</div>
-            </td>
-            <td class="td-class">{formatTime(event.date)}</td>
-            <td class="td-class">
-              {event.type === "homework release" ||
-              event.type === "homework due" ? (
-                // @ts-expect-error
-                <a href={`/${event.slug}/`}>{event.title}</a>
-              ) : (
-                event.title
-              )}
-            </td>
-            <td class="td-class">
-              {event.type === "exam" && event.content}
-              {event.readings && (
-                <ul>
-                  {event.readings.map((reading) => (
-                    <li>
-                      <a href={reading.link} target="_blank">
-                        {reading.name}
-                      </a>
-                      {reading.grad_only && <span title="grad only">🧑‍🎓</span>}
-                      {reading.optional && <span title="not on quiz">📵</span>}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </td>
-            <td class="td-class">
-              {event.notes && <Fragment set:html={marked(event.notes)} />}
-            </td>
-          </tr>
-        ))
+    <style>
+      .td-class {
+        @apply border-0 px-4 py-3 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:first:rounded-bl-lg sm:first:rounded-tl-lg sm:last:rounded-b-none sm:last:rounded-br-lg sm:last:rounded-tr-lg;
       }
-    </tbody>
-  </table>
 
-  <style>
-    .td-class {
-      @apply border-0 px-4 py-3 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:first:rounded-bl-lg sm:first:rounded-tl-lg sm:last:rounded-b-none sm:last:rounded-br-lg sm:last:rounded-tr-lg;
-    }
-
-    .tr-class {
-      @apply mb-4 flex flex-col odd:bg-[var(--sl-color-gray-6)] even:bg-[var(--sl-color-gray-7)] sm:table-row;
-    }
-    .action {
-      display: inline-block;
-      cursor: pointer;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-      gap: 0.5em;
-      align-items: center;
-      border-radius: 999rem;
-      padding: 0.5rem 1.125rem;
-      color: var(--sl-color-white);
-      line-height: 1.1875;
-      text-decoration: none;
-      font-size: var(--sl-text-sm);
-    }
-    .action.primary {
-      background: var(--sl-color-text-accent);
-      color: var(--sl-color-black);
-    }
-    ul {
-      padding-left: 0.5rem;
-    }
-    @keyframes fadeHighlight {
-      from {
-        background-color: var(--sl-color-accent);
+      .tr-class {
+        @apply mb-4 flex flex-col odd:bg-[var(--sl-color-gray-6)] even:bg-[var(--sl-color-gray-7)] sm:table-row;
       }
-    }
+      .action {
+        display: inline-block;
+        cursor: pointer;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        gap: 0.5em;
+        align-items: center;
+        border-radius: 999rem;
+        padding: 0.5rem 1.125rem;
+        color: var(--sl-color-white);
+        line-height: 1.1875;
+        text-decoration: none;
+        font-size: var(--sl-text-sm);
+      }
+      .action.primary {
+        background: var(--sl-color-text-accent);
+        color: var(--sl-color-black);
+      }
+      ul {
+        padding-left: 0.5rem;
+      }
+      @keyframes fadeHighlight {
+        from {
+          background-color: var(--sl-color-accent);
+        }
+      }
 
-    .highlight {
-      animation: fadeHighlight 2s ease-out forwards;
-    }
-  </style>
+      .highlight {
+        animation: fadeHighlight 2s ease-out forwards;
+      }
+    </style>
 
-  <script>
-    const today = +new Date();
+    <script>
+      const today = +new Date();
 
-    const jumpToDate = () => {
-      const rows = document.querySelectorAll("tr[data-date]");
-      const nearestRow = Array.from(rows)
-        .filter(
-          (row) => +new Date(row.getAttribute("data-date") ?? today) > today
-        ) // Filter out past events
-        .sort((a, b) => {
-          return (
-            Math.abs(today - +new Date(a.getAttribute("data-date") ?? today)) -
-            Math.abs(today - +new Date(b.getAttribute("data-date") ?? today)) // Sort by diff between today's date and event's date
-          );
-        })[0] as HTMLElement; // Return first item (nearest date)
-      if (!nearestRow) return;
-      const originalColor = window.getComputedStyle(nearestRow).backgroundColor;
-      nearestRow.style.backgroundColor = originalColor; // Set original color inline
-      nearestRow.classList.add("highlight");
+      const jumpToDate = () => {
+        const rows = document.querySelectorAll("tr[data-date]");
+        const nearestRow = Array.from(rows)
+          .filter(
+            (row) => +new Date(row.getAttribute("data-date") ?? today) > today
+          ) // Filter out past events
+          .sort((a, b) => {
+            return (
+              Math.abs(
+                today - +new Date(a.getAttribute("data-date") ?? today)
+              ) -
+              Math.abs(today - +new Date(b.getAttribute("data-date") ?? today)) // Sort by diff between today's date and event's date
+            );
+          })[0] as HTMLElement; // Return first item (nearest date)
+        if (!nearestRow) return;
+        const originalColor =
+          window.getComputedStyle(nearestRow).backgroundColor;
+        nearestRow.style.backgroundColor = originalColor; // Set original color inline
+        nearestRow.classList.add("highlight");
 
-      setTimeout(() => {
-        nearestRow.classList.remove("highlight");
-        nearestRow.style.backgroundColor = ""; // Revert to stylesheet color
-      }, 2000);
+        setTimeout(() => {
+          nearestRow.classList.remove("highlight");
+          nearestRow.style.backgroundColor = ""; // Revert to stylesheet color
+        }, 2000);
 
-      nearestRow.scrollIntoView();
-    };
+        nearestRow.scrollIntoView();
+      };
 
-    document
-      .querySelector("#jumpToDateButton")
-      ?.addEventListener("click", () => {
-        jumpToDate();
-      });
-  </script>
+      document
+        .querySelector("#jumpToDateButton")
+        ?.addEventListener("click", () => {
+          jumpToDate();
+        });
+    </script>
+  </div>
 </div>
