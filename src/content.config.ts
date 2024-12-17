@@ -1,5 +1,7 @@
 import { defineCollection, z } from "astro:content";
 import { docsSchema } from "@astrojs/starlight/schema";
+import { docsLoader } from "@astrojs/starlight/loaders";
+import { glob, type LoaderContext, type Loader } from 'astro/loaders';
 
 const exams = z.object({
   title: z.string(),
@@ -56,6 +58,6 @@ const schema = docsSchema({
 });
 
 export const collections = {
-  docs: defineCollection({ schema: schema }),
-  exams: defineCollection({ schema: exams, type: "data" }),
+  docs: defineCollection({ loader: docsLoader(), schema: schema }),
+  exams: defineCollection({ loader: glob({ pattern: '**/[^_]*.yaml', base: "./src/content/exams" }), schema: exams }),
 };
