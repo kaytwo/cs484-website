@@ -53,9 +53,18 @@ const lectures = (
 const events = [...exams, ...homeworks, ...lectures].sort(
   (a, b) => +a.date! - +b.date!,
 );
+
+// events is already sorted, so just check if the last event is in the past
+const concluded = +new Date(events[events.length - 1].date) < +new Date();
 ---
 
-<span class="action primary" id="jumpToDateButton">Jump to Nearest Date</span>
+{
+  !concluded && (
+    <span class="action primary" id="jumpToDateButton">
+      Jump to Nearest Date
+    </span>
+  )
+}
 <div class="not-content ml-4 flex items-center sm:ml-0 sm:justify-center">
   <table class="border-separate border-spacing-y-2 text-sm">
     <thead>
@@ -158,9 +167,8 @@ const events = [...exams, ...homeworks, ...lectures].sort(
   </style>
 
   <script>
-    const today = +new Date();
-
     const jumpToDate = () => {
+      const today = +new Date();
       const rows = document.querySelectorAll("tr[data-date]");
       const nearestRow = Array.from(rows)
         .filter(
