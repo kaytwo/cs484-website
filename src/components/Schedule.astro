@@ -20,7 +20,7 @@ const homeworks = (
 ).flatMap((entry) => {
   return [
     {
-      slug: entry.slug,
+      slug: entry.id,
       type: "homework release",
       title: entry.data.title,
       date: localizeTime(entry.data.release),
@@ -28,7 +28,7 @@ const homeworks = (
       tentative: entry.data.tentative,
     },
     {
-      slug: entry.slug,
+      slug: entry.id,
       type: "homework due",
       title: entry.data.title,
       date: localizeTime(entry.data.due),
@@ -51,7 +51,7 @@ const lectures = (
 });
 // merge the three above arrays and sort them by date
 const events = [...exams, ...homeworks, ...lectures].sort(
-  (a, b) => +a.date! - +b.date!
+  (a, b) => +a.date! - +b.date!,
 );
 ---
 
@@ -164,7 +164,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
       const rows = document.querySelectorAll("tr[data-date]");
       const nearestRow = Array.from(rows)
         .filter(
-          (row) => +new Date(row.getAttribute("data-date") ?? today) > today
+          (row) => +new Date(row.getAttribute("data-date") ?? today) > today,
         ) // Filter out past events
         .sort((a, b) => {
           return (
