@@ -1,7 +1,7 @@
 ---
 import { getCollection, getEntry } from "astro:content";
 import { marked } from "marked";
-// marked.use({ mangle: false, headerIds: false });
+import DOMPurify from "isomorphic-dompurify";
 import { localizeTime, formatTime } from "../utils";
 import { Badge } from "@astrojs/starlight/components";
 
@@ -118,7 +118,13 @@ const concluded = +new Date(events[events.length - 1].date) < +new Date();
               )}
             </td>
             <td class="td-class">
-              {event.notes && <Fragment set:html={marked(event.notes)} />}
+              {event.notes && (
+                <Fragment
+                  set:html={marked(event.notes, { async: true })
+                    .then((r) => DOMPurify.sanitize(r))
+                    .catch((e) => `Markdown parse failure: ${e}.`)}
+                />
+              )}
             </td>
           </tr>
         ))
