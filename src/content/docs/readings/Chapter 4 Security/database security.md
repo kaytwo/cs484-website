@@ -21,5 +21,6 @@ In the past couple years, there have been two high-profile hacks perpetrated on 
 
 * [gaining access to anyones browser without them even visiting a website](https://kibty.town/blog/arc/)
 * [How I pwned half of America’s fast food chains, simultaneously.](https://mrbruh.com/chattr/)
+* [how to gain code execution on millions of people and hundreds of popular apps](https://kibty.town/blog/todesktop/)
 
 These stories do a great job of explaining how Firebase gets used in production by real companies, as well as how they end up misconfiguring it, and the security implications of those misconfigurations.
