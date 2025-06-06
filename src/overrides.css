@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root,
 ::backdrop {
   --sl-title-min-width: 39rem;
@@ -9,6 +5,22 @@
   --sl-text-h2: var(--sl-text-3xl);
   --sl-text-h3: var(--sl-text-2xl);
   --sl-text-h4: var(--sl-text-xl);
+
+  /* Accent colors */
+  --accent-200: #f9b2bd;
+  --accent-600: #c60051;
+  --accent-900: #610225;
+  --accent-950: #430c1b;
+
+  /* Gray colors */
+  --gray-100: #f0f8fb;
+  --gray-200: #e2f1f7;
+  --gray-300: #b3c5ce;
+  --gray-400: #6e92a1;
+  --gray-500: #3b5e6c;
+  --gray-700: #1b3d4a;
+  --gray-800: #072b38;
+  --gray-900: #0c1a20;
 }
 
 @media (min-width: 50rem) {
