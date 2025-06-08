@@ -1,22 +1,19 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
     starlight({
       lastUpdated: false,
       logo: {
         src: "/public/uic.svg",
       },
       title: "CS 484: Secure Web Application Development",
-      social: {
-        github: "https://github.com/kaytwo/cs484-website",
-      },
+      social: [
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/kaytwo/cs484-website' },
+      ],
       editLink: {
         baseUrl: "https://github.com/kaytwo/cs484-website/edit/main/",
       },
@@ -69,7 +66,9 @@ export default defineConfig({
           },
         },
       ],
-      customCss: ["/src/overrides.css"],
+      customCss: ["/src/styles/global.css", "/src/overrides.css"],
     }),
   ],
+    vite: { plugins: [tailwindcss()] },
+
 });
