@@ -1,6 +1,6 @@
 ---
 type: lecture
-date: "2024-09-17T14:00:00"
+date: '2024-09-17T14:00:00'
 title: HTTP 2 and HTTP 3
 readings:
   - link: https://http2-explained.haxx.se/en/part6
@@ -11,4 +11,8 @@ readings:
   - link: https://blog.cloudflare.com/http3-the-past-present-and-future/
     name: HTTP 3
     optional: true
+relative_date:
+  week: 4
+  day: 1
+  time: '14:00:00'
 ---

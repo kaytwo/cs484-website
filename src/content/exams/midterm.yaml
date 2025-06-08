@@ -1,0 +1,8 @@
+title: "Midterm Exam"
+relative_date:
+  week: 5
+  day: 1
+  time: "14:00:00"
+content: "This is a test exam to verify relative date functionality"
+notes: "Test exam"
+tentative: false 

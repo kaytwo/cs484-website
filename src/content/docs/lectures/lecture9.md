@@ -1,6 +1,6 @@
 ---
 type: lecture
-date: "2024-09-26T14:00:00"
+date: '2024-09-26T14:00:00'
 title: UI Reactivity using React
 readings:
   - link: /readings/chapter-2-client-side-web-development/statefulness-2-reactivity/
@@ -10,6 +10,13 @@ readings:
   - link: /readings/chapter-2-client-side-web-development/other-reactivity-models/
     name: Other reactivity models
     optional: true
-notes: |
-  I recommend you watch the video before and after reading the "why" article - it will clear up some of the topics covered. If you like learning by doing, consider doing the official [React Tutorial](https://react.dev/learn/tutorial-tic-tac-toe).
+notes: >
+  I recommend you watch the video before and after reading the "why" article -
+  it will clear up some of the topics covered. If you like learning by doing,
+  consider doing the official [React
+  Tutorial](https://react.dev/learn/tutorial-tic-tac-toe).
+relative_date:
+  week: 5
+  day: 2
+  time: '14:00:00'
 ---

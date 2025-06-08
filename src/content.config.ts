@@ -1,18 +1,40 @@
 import { defineCollection, z } from "astro:content";
 import { docsSchema } from "@astrojs/starlight/schema";
 import { docsLoader } from "@astrojs/starlight/loaders";
-import { glob, type LoaderContext, type Loader } from 'astro/loaders';
+import { glob } from 'astro/loaders';
+import { calculateAbsoluteDate } from './utils/dateUtils';
+import type { CourseConfig } from './types';
+import yaml from 'js-yaml';
+import fs from 'fs';
+import path from 'path';
+
+// Load course configuration
+const courseConfigPath = path.join(process.cwd(), 'src', 'courseConfig.yaml');
+console.log('Loading course config from:', courseConfigPath);
+const courseConfigRaw = fs.readFileSync(courseConfigPath, 'utf8');
+console.log('Raw course config:', courseConfigRaw);
+const courseConfig = yaml.load(courseConfigRaw) as CourseConfig;
+console.log('Parsed course config:', courseConfig);
+
+// Relative date schema that can be reused
+const relativeDateSchema = z.object({
+  week: z.number(),
+  day: z.number(),
+  time: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/),
+});
 
 const exams = z.object({
   title: z.string(),
-  date: z.string(),
+  date: z.string().optional(), // Make absolute date optional
+  relative_date: relativeDateSchema.optional(), // Add relative date
   content: z.string(),
   notes: z.string().optional(),
   tentative: z.boolean().default(false),
 });
 
 const lectures = z.object({
-  date: z.string(),
+  date: z.string().optional(), // Make absolute date optional
+  relative_date: relativeDateSchema.optional(), // Add relative date
   readings: z.array(
     z.object({
       link: z.string(),
@@ -26,9 +48,11 @@ const lectures = z.object({
 });
 
 const homeworks = z.object({
-  due: z.string(),
+  due: z.string().optional(), // Make absolute date optional
+  relative_due: relativeDateSchema.optional(), // Add relative due date
   github_link: z.string().url().optional(),
-  release: z.string(),
+  release: z.string().optional(), // Make absolute date optional
+  relative_release: relativeDateSchema.optional(), // Add relative release date
   notes: z.string().optional(),
   tentative: z.boolean().default(false),
 });
@@ -57,7 +81,37 @@ const schema = docsSchema({
     .merge(readings.partial()),
 });
 
+// Transform function to handle relative dates
+function transformContent(data: any) {
+  const transformed = { ...data };
+  console.log('Course config:', courseConfig);
+  console.log('Original data:', data);
+
+  // Handle lecture dates
+  if (transformed.relative_date) {
+    console.log('Transforming relative date:', transformed.relative_date);
+    transformed.date = calculateAbsoluteDate(transformed.relative_date, courseConfig).toISOString();
+    console.log('Transformed to:', transformed.date);
+  }
+
+  // Handle homework dates
+  if (transformed.relative_release) {
+    transformed.release = calculateAbsoluteDate(transformed.relative_release, courseConfig).toISOString();
+  }
+  if (transformed.relative_due) {
+    transformed.due = calculateAbsoluteDate(transformed.relative_due, courseConfig).toISOString();
+  }
+
+  return transformed;
+}
+
 export const collections = {
-  docs: defineCollection({ loader: docsLoader(), schema: schema }),
-  exams: defineCollection({ loader: glob({ pattern: '**/[^_]*.yaml', base: "./src/content/exams" }), schema: exams }),
+  docs: defineCollection({
+    loader: docsLoader(),
+    schema: schema,
+  }),
+  exams: defineCollection({
+    loader: glob({ pattern: '**/[^_]*.yaml', base: "./src/content/exams" }),
+    schema: exams,
+  }),
 };
