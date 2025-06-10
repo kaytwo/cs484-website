@@ -2,6 +2,7 @@
 import { getCollection, getEntry } from "astro:content";
 import { marked } from "marked";
 import DOMPurify from "isomorphic-dompurify";
+import dayjs, { type Dayjs } from "dayjs";
 import {
   localizeTime,
   formatTime,
@@ -9,8 +10,6 @@ import {
 } from "../utils/dateUtils";
 import { Badge } from "@astrojs/starlight/components";
 import { transformContentData } from "../utils/contentUtils";
-
-console.log("Starting Schedule component processing...");
 
 interface Reading {
   link: string;
@@ -22,7 +21,7 @@ interface Reading {
 interface BaseEvent {
   type: string;
   title: string;
-  date: Date;
+  date: Dayjs;
   notes?: string;
   tentative?: boolean;
 }
@@ -43,35 +42,28 @@ interface LectureEvent extends BaseEvent {
   readings?: Reading[];
 }
 
-type Event = ExamEvent | HomeworkEvent | LectureEvent;
-
-console.log("Fetching exams...");
 const exams = (await getCollection("exams")).map((entry) => {
-  console.log(`Processing exam: ${entry.id}`);
   const data = transformContentData(entry.data);
   return {
     type: "exam" as const,
     title: data.title,
-    date: localizeTime(data.date),
+    date: localizeTime(data.date!),
     content: data.content,
     notes: data.notes,
     tentative: data.tentative,
   } satisfies ExamEvent;
 });
-console.log(`Processed ${exams.length} exams`);
 
-console.log("Fetching homeworks...");
 const homeworks = (
   await getCollection("docs", (entry) => entry.id.startsWith("homework"))
 ).flatMap((entry) => {
-  console.log(`Processing homework: ${entry.id}`);
   const data = transformContentData(entry.data);
   return [
     {
       slug: entry.id,
       type: "homework release" as const,
       title: data.title,
-      date: localizeTime(data.release),
+      date: localizeTime(data.release!),
       notes: data.notes,
       tentative: data.tentative,
     } satisfies HomeworkEvent,
@@ -79,7 +71,7 @@ const homeworks = (
       slug: entry.id,
       type: "homework due" as const,
       title: data.title,
-      date: localizeTime(data.due),
+      date: localizeTime(data.due!),
       notes: data.notes,
     } satisfies HomeworkEvent,
   ];
@@ -90,13 +82,12 @@ console.log("Fetching lectures...");
 const lectures = (
   await getCollection("docs", (entry) => entry.id.startsWith("lecture"))
 ).map((entry) => {
-  console.log(`Processing lecture: ${entry.id}`);
   const data = transformContentData(entry.data);
   return {
     slug: entry.id,
     type: "lecture" as const,
     title: data.title,
-    date: localizeTime(data.date),
+    date: localizeTime(data.date!),
     readings: data.readings,
     notes: data.notes,
     tentative: data.tentative,
@@ -107,20 +98,25 @@ console.log(`Processed ${lectures.length} lectures`);
 console.log("Merging and sorting events...");
 // merge the three above arrays and sort them by date
 const events = [...exams, ...homeworks, ...lectures].sort(
-  (a, b) => +a.date! - +b.date!,
+  (a, b) => a.date.valueOf() - b.date.valueOf(),
 );
 console.log(`Total events: ${events.length}`);
 
 // events is already sorted, so just check if the last event is in the past
 // class concludes on the Friday of finals week
 
-const concluded =
-  +new Date(
-    calculateAbsoluteDate({ week: 16, day: "Friday", time: "17:00:00" }),
-  ) < +new Date();
+const concluded = calculateAbsoluteDate({
+  week: 16,
+  day: "Friday",
+  time: "17:00:00",
+}).isBefore(dayjs());
 console.log(
   "absolute last day of class:",
-  calculateAbsoluteDate({ week: 16, day: "Friday", time: "17:00:00" }),
+  calculateAbsoluteDate({
+    week: 16,
+    day: "Friday",
+    time: "17:00:00",
+  }).format(),
 );
 console.log("Schedule component processing complete.");
 ---
@@ -153,7 +149,7 @@ console.log("Schedule component processing complete.");
               },
               "tr-class",
             ]}
-            data-date={event.date}>
+            data-date={event.date.toISOString()}>
             <td class="td-class">
               {event?.tentative && <Badge text="Tentative" variant="tip" />}
               <div>{event.type}</div>

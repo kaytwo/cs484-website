@@ -17,5 +17,4 @@ notes: >
 relative_date:
   week: 9
   day: 1
-  time: '14:00:00'
 ---

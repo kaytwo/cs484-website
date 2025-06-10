@@ -1,5 +1,4 @@
 ---
-date: '2024-08-27T14:00:00'
 title: Syllabus, motivation, introduction
 readings:
   - link: /readings/chapter-0/structure/
@@ -19,5 +18,4 @@ notes: In class activity - homework 0 and environment setup
 relative_date:
   week: 1
   day: 1
-  time: '14:00:00'
 ---

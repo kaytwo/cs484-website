@@ -13,26 +13,25 @@ relative_release:
 relative_due:
   week: 3
   day: Friday
-  time: '14:00:00'
 ---
 
-import { Content as Deadlines } from "../../../components/Deadlines.md";
 import DueDate from "../../../components/DueDate.astro";
 import { Aside } from "@astrojs/starlight/components";
 import { marked } from "marked";
 
+**Release:** <DueDate relativeDate={frontmatter.relative_release}  />
+
 **Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
-**Release:** <DueDate relativeDate={frontmatter.relative_release}  />
+<Aside >
+<Fragment set:html={marked(frontmatter.notes)} />
+</Aside>
 
 **Quickstart** Create a new **private** repository under your own GitHub account
 from [this template](https://github.com/swad-cs-uic/homework1-f24). Sharing your
 code for the assignment, intentionally or unintentionally, is a violation of the
 academic integrity policy in this course.
 
-<Aside >
-<Fragment set:html={marked(frontmatter.notes)} />
-</Aside>
 
 # {frontmatter.description}
 

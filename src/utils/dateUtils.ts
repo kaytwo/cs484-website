@@ -1,7 +1,6 @@
-import dayjs from "dayjs";
+import dayjs, { type Dayjs } from "dayjs";
 import utc from "dayjs/plugin/utc";
 import tz from "dayjs/plugin/timezone";
-import type { CourseConfig } from "../types";
 import { courseConfig } from "../courseConfig";
 
 dayjs.extend(utc);
@@ -10,11 +9,11 @@ dayjs.extend(tz);
 export interface RelativeDate {
     week: number;
     day: number | string;
-    time: string;
+    time?: string | undefined;
 }
 
 export const formatTime = (
-    time: Date,
+    time: Dayjs,
     location: string = courseConfig.timeZone,
     includeTimezone: boolean = false
 ) => {
@@ -22,97 +21,77 @@ export const formatTime = (
         dateStyle: "full",
         timeStyle: "medium",
         timeZone: location,
-    }).format(localizeTime(time, location));
+    }).format(time.toDate());
     return `${timeString}` + (includeTimezone ? `, ${location} time` : "");
 };
 
 export const localizeTime = (
-    time: string | Date | undefined,
-    location: string = courseConfig.timeZone
-) => {
-    return dayjs.tz(time, location).toDate();
+    date: string | number | Date | Dayjs,
+): Dayjs => {
+    return dayjs.tz(date, courseConfig.timeZone);
 };
 
 /**
  * Calculates the absolute date for a relative date based on the course configuration.
  * Takes into account skipped weeks and class days.
  */
-export function calculateAbsoluteDate(relativeDate: RelativeDate): Date {
-    console.log('Calculating absolute date for:', relativeDate);
-    console.log('Using config:', courseConfig);
+export function calculateAbsoluteDate(relativeDate: RelativeDate): Dayjs {
+    const { semesterStartDate, classDays, timeZone, defaultClassTime, skippedWeeks = [] } = courseConfig;
+    const { week, day, time = defaultClassTime } = relativeDate;
 
-    const { week, day, time } = relativeDate;
-    const { semesterStartDate, classDays, timeZone, skippedWeeks = [] } = courseConfig;
-
-    // Handle day 0 as a special case - return a default date
-    if (typeof day === 'number' && (day <= 0 || day > classDays.length)) {
+    if (typeof day === 'number' && (day < 1 || day > classDays.length)) {
         throw new Error(`Invalid day index ${day}. Valid days are 1-${classDays.length}`);
     }
 
-    // Start with the semester start date
-    let currentDate = dayjs.tz(semesterStartDate, timeZone);
-    console.log('Starting from:', currentDate.format());
+    // Determine the start date of the target course week.
+    // It's the semester start date plus `week - 1` course weeks.
+    // A course week is a calendar week that is not skipped.
+    let weekStartDate = dayjs.tz(semesterStartDate, timeZone);
+    let courseWeeksPassed = 1;
 
-    // Calculate the target week, taking into account skipped weeks
-    let currentWeek = 1;
-    let calendarWeek = 1;
+    const skippedWeekStarts = skippedWeeks.map(s => dayjs.tz(s.calendarWeekStartDate, timeZone));
 
-    while (currentWeek < week) {
-        // Check if the next calendar week is a skipped week
-        const nextWeekStart = currentDate.add(1, 'week');
-        const isSkippedWeek = skippedWeeks.some(skip =>
-            dayjs.tz(skip.calendarWeekStartDate, timeZone).isSame(nextWeekStart, 'week')
-        );
-
-        if (!isSkippedWeek) {
-            currentWeek++;
+    while (courseWeeksPassed < week) {
+        weekStartDate = weekStartDate.add(1, 'week');
+        if (!skippedWeekStarts.some(skipDate => skipDate.isSame(weekStartDate, 'week'))) {
+            courseWeeksPassed++;
         }
-        calendarWeek++;
-        currentDate = nextWeekStart;
     }
 
-    // Move to the correct day of the week
-    const targetDay = typeof day === 'number' ? classDays[day - 1] : day;
+    const targetDayName = typeof day === 'number' ? classDays[day - 1] : day;
 
-    if (!targetDay) {
-        console.error('Invalid day index:', day, 'Class days:', classDays);
-        throw new Error(`Invalid day index ${day}. Valid days are 1-${classDays.length}`);
+    const dayNameToIndex = {
+        "Sunday": 0, "Monday": 1, "Tuesday": 2, "Wednesday": 3,
+        "Thursday": 4, "Friday": 5, "Saturday": 6
+    } as const;
+
+    type DayName = keyof typeof dayNameToIndex;
+
+    if (!targetDayName || !(targetDayName in dayNameToIndex)) {
+        throw new Error(`Invalid day: ${targetDayName}. It must be a valid day of the week string or a valid index into classDays.`);
     }
 
-    // advance through the week until we find the target day of the week
-    let attempts = 0;
-    const maxAttempts = 7; // Maximum number of days to try
+    const targetDayIndex = dayNameToIndex[targetDayName as DayName];
 
-    while (currentDate.format('dddd') !== targetDay && attempts < maxAttempts) {
-        currentDate = currentDate.add(1, 'day');
-        attempts++;
-        console.log(`Attempt ${attempts}: Current day: ${currentDate.format('dddd')}, Target: ${targetDay}`);
-    }
-
-    if (attempts >= maxAttempts) {
-        console.error('Failed to find matching day after', maxAttempts, 'attempts');
-        console.error('Current date:', currentDate.format());
-        console.error('Target day:', targetDay);
-        console.error('Class days:', classDays);
-        throw new Error(`Could not find matching day for ${targetDay}`);
-    }
+    // Set the date to the correct day within the target week
+    let absoluteDate = weekStartDate.day(targetDayIndex);
 
     // Set the time
     const [hours, minutes, seconds] = time.split(':').map(Number);
-    currentDate = currentDate
+    absoluteDate = absoluteDate
         .hour(hours)
         .minute(minutes)
         .second(seconds);
-    console.log('Final date:', currentDate.format());
 
-    return currentDate.toDate();
+    return absoluteDate;
 }
 
 /**
  * Validates that a relative date is valid according to the course configuration.
  */
 export function validateRelativeDate(relativeDate: RelativeDate): boolean {
-    const { week, day, time } = relativeDate;
+    const { defaultClassTime } = courseConfig;
+    const { week, day, time = defaultClassTime } = relativeDate;
     const { classDays } = courseConfig;
 
     // Validate week is positive

@@ -8,5 +8,4 @@ notes: >-
 relative_date:
   week: 12
   day: 2
-  time: '14:00:00'
 ---

@@ -14,7 +14,6 @@ relative_release:
 relative_due:
   week: 14
   day: Friday
-  time: '14:00:00'
 ---
 
 import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
@@ -23,9 +22,9 @@ import DueDate from "../../../components/DueDate.astro";
 import { Aside } from "@astrojs/starlight/components";
 import { marked } from "marked";
 
-**Due:** <DueDate relativeDate={frontmatter.relative_due} />
-
 **Release:** <DueDate relativeDate={frontmatter.relative_release}  />
+
+**Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
 ## Quickstart
 

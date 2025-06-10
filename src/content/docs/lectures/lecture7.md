@@ -14,5 +14,4 @@ readings:
 relative_date:
   week: 4
   day: 1
-  time: '14:00:00'
 ---

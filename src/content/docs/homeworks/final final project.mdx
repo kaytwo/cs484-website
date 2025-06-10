@@ -8,7 +8,6 @@ sidebar:
 relative_release:
   week: 12
   day: 2
-  time: '14:00:00'
 relative_due:
   week: 14
   day: Friday
@@ -19,14 +18,14 @@ import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/
 import { Content as Deadlines } from "../../../components/Deadlines.md";
 import DueDate from "../../../components/DueDate.astro";
 import { Aside } from "@astrojs/starlight/components"
-import {marked} from "marked"
+import { marked } from "marked"
 
 
 ## {frontmatter.description}
 
-**Due:** <DueDate relativeDate={frontmatter.relative_due} />
-
 **Release:** <DueDate relativeDate={frontmatter.relative_release}  />
+
+**Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
 TLDR: submit [this form](https://forms.gle/n9cdZMK8C24wprqC6) before the deadline.
 
