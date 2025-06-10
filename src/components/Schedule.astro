@@ -2,7 +2,11 @@
 import { getCollection, getEntry } from "astro:content";
 import { marked } from "marked";
 import DOMPurify from "isomorphic-dompurify";
-import { localizeTime, formatTime } from "../utils/dateUtils";
+import {
+  localizeTime,
+  formatTime,
+  calculateAbsoluteDate,
+} from "../utils/dateUtils";
 import { Badge } from "@astrojs/starlight/components";
 import { transformContentData } from "../utils/contentUtils";
 
@@ -111,9 +115,13 @@ console.log(`Total events: ${events.length}`);
 // class concludes on the Friday of finals week
 
 const concluded =
-  +new Date({
-    /* new impl here */
-  }) < +new Date();
+  +new Date(
+    calculateAbsoluteDate({ week: 16, day: "Friday", time: "17:00:00" }),
+  ) < +new Date();
+console.log(
+  "absolute last day of class:",
+  calculateAbsoluteDate({ week: 16, day: "Friday", time: "17:00:00" }),
+);
 console.log("Schedule component processing complete.");
 ---
 

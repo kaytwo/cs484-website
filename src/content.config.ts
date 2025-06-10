@@ -9,7 +9,7 @@ import { courseConfig } from './courseConfig';
 // Relative date schema that can be reused
 const relativeDateSchema = z.object({
   week: z.number(),
-  day: z.number(),
+  day: z.number().or(z.string()),
   time: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/),
 });
 
@@ -80,16 +80,16 @@ function transformContent(data: any) {
   // Handle lecture dates
   if (transformed.relative_date) {
     console.log('Transforming relative date:', transformed.relative_date);
-    transformed.date = calculateAbsoluteDate(transformed.relative_date, courseConfig).toISOString();
+    transformed.date = calculateAbsoluteDate(transformed.relative_date).toISOString();
     console.log('Transformed to:', transformed.date);
   }
 
   // Handle homework dates
   if (transformed.relative_release) {
-    transformed.release = calculateAbsoluteDate(transformed.relative_release, courseConfig).toISOString();
+    transformed.release = calculateAbsoluteDate(transformed.relative_release).toISOString();
   }
   if (transformed.relative_due) {
-    transformed.due = calculateAbsoluteDate(transformed.relative_due, courseConfig).toISOString();
+    transformed.due = calculateAbsoluteDate(transformed.relative_due).toISOString();
   }
 
   return transformed;

@@ -45,39 +45,8 @@ export function calculateAbsoluteDate(relativeDate: RelativeDate): Date {
     const { semesterStartDate, classDays, timeZone, skippedWeeks = [] } = courseConfig;
 
     // Handle day 0 as a special case - return a default date
-    if (day === 0) {
-        console.log('Day is 0, returning default date');
-        // Return a date at the start of the target week
-        let currentDate = dayjs.tz(semesterStartDate, timeZone);
-        let currentWeek = 1;
-        let calendarWeek = 1;
-
-        while (currentWeek < week) {
-            const nextWeekStart = currentDate.add(1, 'week');
-            const isSkippedWeek = skippedWeeks.some(skip =>
-                dayjs.tz(skip.calendarWeekStartDate, timeZone).isSame(nextWeekStart, 'week')
-            );
-
-            if (!isSkippedWeek) {
-                currentWeek++;
-            }
-            calendarWeek++;
-            currentDate = nextWeekStart;
-        }
-
-        // Set to Monday of that week
-        while (currentDate.format('dddd') !== 'Monday') {
-            currentDate = currentDate.add(1, 'day');
-        }
-
-        // Set the time
-        const [hours, minutes, seconds] = time.split(':').map(Number);
-        currentDate = currentDate
-            .hour(hours)
-            .minute(minutes)
-            .second(seconds);
-
-        return currentDate.toDate();
+    if (typeof day === 'number' && (day <= 0 || day > classDays.length)) {
+        throw new Error(`Invalid day index ${day}. Valid days are 1-${classDays.length}`);
     }
 
     // Start with the semester start date
@@ -103,16 +72,14 @@ export function calculateAbsoluteDate(relativeDate: RelativeDate): Date {
     }
 
     // Move to the correct day of the week
-    const targetDay = classDays[day - 1];
-    console.log('Target day:', targetDay);
+    const targetDay = typeof day === 'number' ? classDays[day - 1] : day;
 
-    // Validate target day exists
     if (!targetDay) {
         console.error('Invalid day index:', day, 'Class days:', classDays);
         throw new Error(`Invalid day index ${day}. Valid days are 1-${classDays.length}`);
     }
 
-    // Safety check to prevent infinite loop
+    // advance through the week until we find the target day of the week
     let attempts = 0;
     const maxAttempts = 7; // Maximum number of days to try
 
@@ -151,8 +118,13 @@ export function validateRelativeDate(relativeDate: RelativeDate): boolean {
     // Validate week is positive
     if (week < 1) return false;
 
-    // Validate day is within range of class days
-    if (day < 1 || day > classDays.length) return false;
+    if (typeof day === 'string') {
+        const validDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        if (!validDays.includes(day)) return false;
+    } else {
+        // Validate day is within range of class days
+        if (day < 1 || day > classDays.length) return false;
+    }
 
     // Validate time format (HH:mm:ss)
     const timeRegex = /^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/;
