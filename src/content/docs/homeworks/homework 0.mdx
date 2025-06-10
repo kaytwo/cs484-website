@@ -17,12 +17,9 @@ relative_due:
 ---
 
 import { Content as Deadlines } from "../../../components/Deadlines.md";
-import { DueDate } from "../../../components/DueDate";
+import DueDate from "../../../components/DueDate.astro";
 import { Aside } from "@astrojs/starlight/components";
 import { marked } from "marked";
-
-<DueDate relativeDate={frontmatter.relative_due} />
-<DueDate relativeDate={frontmatter.relative_release} label="Release" />
 
 ## {frontmatter.description}
 
@@ -35,10 +32,9 @@ share it with `kaytwo` and `nkgotcode`. To complete this assignment, make the
 changes described below, ensure that your web application is available on the
 Internet, and then submit via Gradescope.  
 
+**Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
-**Due**: {dueDate}
-
-**Release**: {releaseDate}
+**Release:** <DueDate relativeDate={frontmatter.relative_release}  />
 
 By the end of this assignment you will have your own web app deployed on the web
 for all to see. The coding part is dead simple - you just have to change the

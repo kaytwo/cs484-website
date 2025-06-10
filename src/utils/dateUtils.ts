@@ -9,7 +9,7 @@ dayjs.extend(tz);
 
 export interface RelativeDate {
     week: number;
-    day: number;
+    day: number | string;
     time: string;
 }
 
@@ -100,7 +100,6 @@ export function calculateAbsoluteDate(relativeDate: RelativeDate): Date {
         }
         calendarWeek++;
         currentDate = nextWeekStart;
-        console.log(`Week ${calendarWeek}: currentWeek=${currentWeek}, isSkipped=${isSkippedWeek}`);
     }
 
     // Move to the correct day of the week

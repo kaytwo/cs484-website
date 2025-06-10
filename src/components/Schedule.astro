@@ -108,7 +108,12 @@ const events = [...exams, ...homeworks, ...lectures].sort(
 console.log(`Total events: ${events.length}`);
 
 // events is already sorted, so just check if the last event is in the past
-const concluded = +new Date(events[events.length - 1].date) < +new Date();
+// class concludes on the Friday of finals week
+
+const concluded =
+  +new Date({
+    /* new impl here */
+  }) < +new Date();
 console.log("Schedule component processing complete.");
 ---
 

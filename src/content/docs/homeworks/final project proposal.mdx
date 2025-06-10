@@ -18,18 +18,16 @@ relative_due:
 
 import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
-import { DueDate } from "../../../components/DueDate";
+import DueDate from "../../../components/DueDate.astro";
 import { Aside } from "@astrojs/starlight/components"
 import {marked} from "marked"
 
-const dueDate = formatTime(localizeTime(calculateAbsoluteDate(frontmatter.relative_due)));
-const releaseDate = formatTime(localizeTime(calculateAbsoluteDate(frontmatter.relative_release)));
-
 ## {frontmatter.description}
 
-**Due**: {dueDate}
+**Due:** <DueDate relativeDate={frontmatter.relative_due} />   
 
-**Release**: {releaseDate}
+**Released:** <DueDate relativeDate={frontmatter.relative_release}  />   
+
 
 This is the first checkpoint for your final project. The most important things you must do before turning it in are:
 

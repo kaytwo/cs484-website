@@ -17,18 +17,15 @@ relative_due:
 
 import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
-import { DueDate } from "../../../components/DueDate";
+import DueDate from "../../../components/DueDate.astro";
 import { Aside } from "@astrojs/starlight/components"
 import {marked} from "marked"
 
-const dueDate = formatTime(localizeTime(calculateAbsoluteDate(frontmatter.relative_due)));
-const releaseDate = formatTime(localizeTime(calculateAbsoluteDate(frontmatter.relative_release)));
-
 ## {frontmatter.description}
 
-**Due**: {dueDate}
+**Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
-**Release**: {releaseDate}
+**Release:** <DueDate relativeDate={frontmatter.relative_release} />
 
 TLDR: submit [this form](https://forms.gle/zHZahbiG5Tk8Begg7) before the deadline.
 
@@ -42,8 +39,5 @@ For this deliverable, you're responsible for three core things:
 # Your deliverable is a deployed website
 
 Rather than testing code, we will be testing a deployed website for this deliverable. This means that while you can continue to work on your app after the deadline, **we can perform our testing at any time, and if your app is in a broken state in production when we test it, you will get the points that that version of the site earns**. In other words, if you wish to continue working on your app after the deadline, you ABSOLUTELY MUST work on new features on a branch besides the main deployed branch (or you can submit a "mvp" branch deploy), and if you do want to push "improvements" to the version that I grade, make darn sure that you've tested it thoroughly before doing so.
-
-<DueDate relativeDate={frontmatter.relative_due} />
-<DueDate relativeDate={frontmatter.relative_release} label="Release" />
 
 

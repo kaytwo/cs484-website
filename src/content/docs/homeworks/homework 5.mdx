@@ -19,10 +19,13 @@ relative_due:
 
 import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
+import DueDate from "../../../components/DueDate.astro";
 import { Aside } from "@astrojs/starlight/components";
 import { marked } from "marked";
 
-**Due**: {formatTime(localizeTime(calculateAbsoluteDate(frontmatter.relative_due)))}
+**Due:** <DueDate relativeDate={frontmatter.relative_due} />
+
+**Release:** <DueDate relativeDate={frontmatter.relative_release}  />
 
 ## Quickstart
 
@@ -73,8 +76,8 @@ To test your implementation, run `npm run test`.
 ## Extra Credit
 
 You can earn extra credit by implementing meaningful test cases and submitting
-them to the TA before {formatTime(localizeTime(frontmatter.extraCredit))}.
+them to the TA before <DueDate relativeDate={frontmatter.relative_due} />.
 
 ## Due Date
 
-This homework is due on {formatTime(localizeTime(frontmatter.due))}.
+This homework is due on <DueDate relativeDate={frontmatter.relative_due} />.
