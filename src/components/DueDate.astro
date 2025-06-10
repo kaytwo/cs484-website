@@ -1,0 +1,22 @@
+---
+import {
+  localizeTime,
+  formatTime,
+  calculateAbsoluteDate,
+} from "../utils/dateUtils";
+
+interface Props {
+  relativeDate: {
+    week: number;
+    day: number;
+    time: string;
+  };
+  label?: string;
+}
+
+const { relativeDate, label = "" } = Astro.props;
+const date = formatTime(localizeTime(calculateAbsoluteDate(relativeDate)));
+---
+
+<strong>{label && `${label}:`}</strong>
+{date}

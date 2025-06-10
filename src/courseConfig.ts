@@ -22,5 +22,5 @@ export const courseConfig: CourseConfig = {
 
     // Course metadata
     courseName: "CS 484",
-    semester: "Fall 2024"
+    semester: "Fall 2025"
 }; 
