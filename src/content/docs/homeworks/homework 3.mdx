@@ -15,6 +15,23 @@ relative_due:
   time: '14:00:00'
 ---
 
+import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
+import { Content as Deadlines } from "../../../components/Deadlines.md";
+import { DueDate } from "../../../components/DueDate";
+
+import { Aside } from "@astrojs/starlight/components"
+import {marked} from "marked"
+
+const dueDate = formatTime(localizeTime(calculateAbsoluteDate(frontmatter.relative_due)));
+const releaseDate = formatTime(localizeTime(calculateAbsoluteDate(frontmatter.relative_release)));
+
+<DueDate relativeDate={frontmatter.relative_due} />
+<DueDate relativeDate={frontmatter.relative_release} label="Release" />
+
+**Due**: {dueDate}
+
+**Release**: {releaseDate}
+
 ## Quickstart
 
 Create a new **private** repository under your own GitHub account
@@ -108,7 +125,3 @@ Note that this is not required for the homework.
 | ---------------------------------- | ------ |
 | App Functionality                  | 93     |
 | CI Tests (Lint, Format, Typecheck) | 9      |
-
-## Due date
-
-This assignment is due on Friday, November 1, 2024 2:00 PM. You are highly encouraged to get started early.

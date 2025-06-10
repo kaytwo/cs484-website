@@ -17,12 +17,12 @@ relative_due:
   time: '14:00:00'
 ---
 
-import { localizeTime, formatTime } from "../../../utils.ts";
+import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
 import { Aside } from "@astrojs/starlight/components";
 import { marked } from "marked";
 
-**Due**: {formatTime(localizeTime(frontmatter.due))}
+**Due**: {formatTime(localizeTime(calculateAbsoluteDate(frontmatter.relative_due)))}
 
 ## Quickstart
 

@@ -4,17 +4,7 @@ import { docsLoader } from "@astrojs/starlight/loaders";
 import { glob } from 'astro/loaders';
 import { calculateAbsoluteDate } from './utils/dateUtils';
 import type { CourseConfig } from './types';
-import yaml from 'js-yaml';
-import fs from 'fs';
-import path from 'path';
-
-// Load course configuration
-const courseConfigPath = path.join(process.cwd(), 'src', 'courseConfig.yaml');
-console.log('Loading course config from:', courseConfigPath);
-const courseConfigRaw = fs.readFileSync(courseConfigPath, 'utf8');
-console.log('Raw course config:', courseConfigRaw);
-const courseConfig = yaml.load(courseConfigRaw) as CourseConfig;
-console.log('Parsed course config:', courseConfig);
+import { courseConfig } from './courseConfig';
 
 // Relative date schema that can be reused
 const relativeDateSchema = z.object({

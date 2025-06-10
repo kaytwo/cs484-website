@@ -16,12 +16,20 @@ relative_due:
   time: '14:00:00'
 ---
 
-import { localizeTime, formatTime } from "../../../utils.ts";
+import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
+import { DueDate } from "../../../components/DueDate";
+import { Aside } from "@astrojs/starlight/components"
+import {marked} from "marked"
+
+const dueDate = formatTime(localizeTime(calculateAbsoluteDate(frontmatter.relative_due)));
+const releaseDate = formatTime(localizeTime(calculateAbsoluteDate(frontmatter.relative_release)));
 
 ## {frontmatter.description}
 
-**Due**: {formatTime(localizeTime(frontmatter.due))}
+**Due**: {dueDate}
+
+**Release**: {releaseDate}
 
 This is the first checkpoint for your final project. The most important things you must do before turning it in are:
 
@@ -143,3 +151,5 @@ think a good project is expected to do - you could receive full points because
 what you did was actually fine, or you could receive zero points because you're
 implementing a CRUD app or what you chose isn't substantial enough or what you
 chose is a carbon copy of something else that exists out in the world.
+<DueDate relativeDate={frontmatter.relative_due} />
+<DueDate relativeDate={frontmatter.relative_release} label="Release" />

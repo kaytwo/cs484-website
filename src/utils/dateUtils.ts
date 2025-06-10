@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import tz from "dayjs/plugin/timezone";
 import type { CourseConfig } from "../types";
+import { courseConfig } from "../courseConfig";
 
 dayjs.extend(utc);
 dayjs.extend(tz);
@@ -12,19 +13,36 @@ export interface RelativeDate {
     time: string;
 }
 
+export const formatTime = (
+    time: Date,
+    location: string = courseConfig.timeZone,
+    includeTimezone: boolean = false
+) => {
+    const timeString = new Intl.DateTimeFormat("en-US", {
+        dateStyle: "full",
+        timeStyle: "medium",
+        timeZone: location,
+    }).format(localizeTime(time, location));
+    return `${timeString}` + (includeTimezone ? `, ${location} time` : "");
+};
+
+export const localizeTime = (
+    time: string | Date | undefined,
+    location: string = courseConfig.timeZone
+) => {
+    return dayjs.tz(time, location).toDate();
+};
+
 /**
  * Calculates the absolute date for a relative date based on the course configuration.
  * Takes into account skipped weeks and class days.
  */
-export function calculateAbsoluteDate(
-    relativeDate: RelativeDate,
-    config: CourseConfig
-): Date {
+export function calculateAbsoluteDate(relativeDate: RelativeDate): Date {
     console.log('Calculating absolute date for:', relativeDate);
-    console.log('Using config:', config);
+    console.log('Using config:', courseConfig);
 
     const { week, day, time } = relativeDate;
-    const { semesterStartDate, classDays, timeZone, skippedWeeks = [] } = config;
+    const { semesterStartDate, classDays, timeZone, skippedWeeks = [] } = courseConfig;
 
     // Handle day 0 as a special case - return a default date
     if (day === 0) {
@@ -127,12 +145,9 @@ export function calculateAbsoluteDate(
 /**
  * Validates that a relative date is valid according to the course configuration.
  */
-export function validateRelativeDate(
-    relativeDate: RelativeDate,
-    config: CourseConfig
-): boolean {
+export function validateRelativeDate(relativeDate: RelativeDate): boolean {
     const { week, day, time } = relativeDate;
-    const { classDays } = config;
+    const { classDays } = courseConfig;
 
     // Validate week is positive
     if (week < 1) return false;

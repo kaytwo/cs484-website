@@ -18,17 +18,21 @@ relative_due:
   time: '14:00:00'
 ---
 
-import { localizeTime, formatTime } from "../../../utils.ts";
+import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
+import { DueDate } from "../../../components/DueDate";
 
 import { Aside } from "@astrojs/starlight/components";
 import { marked } from "marked";
 
+const dueDate = formatTime(localizeTime(calculateAbsoluteDate(frontmatter.relative_due)));
+const releaseDate = formatTime(localizeTime(calculateAbsoluteDate(frontmatter.relative_release)));
+
 ## {frontmatter.description}
 
-**Release**: {formatTime(localizeTime(frontmatter.release))}
+**Release**: {releaseDate}
 
-**Due**: {formatTime(localizeTime(frontmatter.due))}
+**Due**: {dueDate}
 
 ## Quickstart
 
@@ -101,3 +105,6 @@ machine" does not count as a valid excuse for failing tests in the autograder. *
 ## Due date
 
 This assignment is due at {formatTime(localizeTime(frontmatter.due))}.
+<DueDate relativeDate={frontmatter.relative_due} />
+<DueDate relativeDate={frontmatter.relative_release} label="Release" />
+

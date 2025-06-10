@@ -15,12 +15,20 @@ relative_due:
   time: '08:00:00'
 ---
 
-import { localizeTime, formatTime } from "../../../utils.ts";
+import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
+import { DueDate } from "../../../components/DueDate";
+import { Aside } from "@astrojs/starlight/components"
+import {marked} from "marked"
+
+const dueDate = formatTime(localizeTime(calculateAbsoluteDate(frontmatter.relative_due)));
+const releaseDate = formatTime(localizeTime(calculateAbsoluteDate(frontmatter.relative_release)));
 
 ## {frontmatter.description}
 
-**Due**: {formatTime(localizeTime(frontmatter.due))}
+**Due**: {dueDate}
+
+**Release**: {releaseDate}
 
 TLDR: submit [this form](https://forms.gle/9vWfqfpUCJ4p9bBK7) before the deadline.
 
@@ -44,3 +52,6 @@ think a good project is expected to do - you could receive full points because
 what you did was actually fine, or you could receive zero points because you're
 not implementing what I expected you'd implement. It's highly recommended you do
 the work to prepare and submit this checkpoint.
+
+<DueDate relativeDate={frontmatter.relative_due} />
+<DueDate relativeDate={frontmatter.relative_release} label="Release" />

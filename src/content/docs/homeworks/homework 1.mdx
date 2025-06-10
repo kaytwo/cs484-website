@@ -1,8 +1,6 @@
 ---
 title: homework 1 - crud apps
 description: Hono + SQLite
-due: '2024-09-13T14:00:00'
-release: '2024-09-03T08:00:00'
 sidebar:
   order: 31
 notes: >-
@@ -18,14 +16,17 @@ relative_due:
   time: '14:00:00'
 ---
 
-import { localizeTime, formatTime } from "../../../utils.ts";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
+import { DueDate } from "../../../components/DueDate";
+import { Aside } from "@astrojs/starlight/components";
+import { marked } from "marked";
 
-import { Aside } from "@astrojs/starlight/components"
-import {marked} from "marked"
+<DueDate relativeDate={frontmatter.relative_due} />
+<DueDate relativeDate={frontmatter.relative_release} label="Release" />
 
+**Due**: {dueDate}
 
-**Due**: {formatTime(localizeTime(frontmatter.due))}
+**Release**: {releaseDate}
 
 **Quickstart** Create a new **private** repository under your own GitHub account
 from [this template](https://github.com/swad-cs-uic/homework1-f24). Sharing your
@@ -36,7 +37,7 @@ academic integrity policy in this course.
 <Fragment set:html={marked(frontmatter.notes)} />
 </Aside>
 
-## {frontmatter.description}
+# {frontmatter.description}
 
 
 This assignment gives you experience building a basic router-based server-side
