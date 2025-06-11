@@ -1,6 +1,4 @@
 ---
-type: lecture
-date: '2024-08-29T14:00:00'
 title: HTTP Fundamentals
 readings:
   - name: Web Architecture Intro

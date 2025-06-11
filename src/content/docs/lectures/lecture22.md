@@ -1,6 +1,4 @@
 ---
-type: lecture
-date: '2024-11-19T14:00:00'
 title: Security 3
 readings:
   - link: https://www.youtube.com/watch?v=it-jVuzYGnM

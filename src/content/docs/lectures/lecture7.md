@@ -1,6 +1,4 @@
 ---
-type: lecture
-date: '2024-09-17T14:00:00'
 title: HTTP 2 and HTTP 3
 readings:
   - link: https://http2-explained.haxx.se/en/part6

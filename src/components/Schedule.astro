@@ -3,11 +3,7 @@ import { getCollection, getEntry } from "astro:content";
 import { marked } from "marked";
 import DOMPurify from "isomorphic-dompurify";
 import dayjs, { type Dayjs } from "dayjs";
-import {
-  localizeTime,
-  formatTime,
-  calculateAbsoluteDate,
-} from "../utils/dateUtils";
+import { formatTime, calculateAbsoluteDate } from "../utils/dateUtils";
 import { Badge } from "@astrojs/starlight/components";
 import { transformContentData } from "../utils/contentUtils";
 
@@ -42,55 +38,65 @@ interface LectureEvent extends BaseEvent {
   readings?: Reading[];
 }
 
-const exams = (await getCollection("exams")).map((entry) => {
-  const data = transformContentData(entry.data);
-  return {
-    type: "exam" as const,
-    title: data.title,
-    date: localizeTime(data.date!),
-    content: data.content,
-    notes: data.notes,
-    tentative: data.tentative,
-  } satisfies ExamEvent;
-});
+const examsCollection = await getCollection("exams");
+const exams = examsCollection
+  .filter((entry) => entry.data.relative_date)
+  .map((entry) => {
+    const data = transformContentData(entry.data);
+    return {
+      type: "exam" as const,
+      title: data.title,
+      date: calculateAbsoluteDate(entry.data.relative_date!),
+      content: data.content,
+      notes: data.notes,
+      tentative: data.tentative,
+    } satisfies ExamEvent;
+  });
 
 const homeworks = (
   await getCollection("docs", (entry) => entry.id.startsWith("homework"))
 ).flatMap((entry) => {
   const data = transformContentData(entry.data);
-  return [
-    {
+  const events = [];
+  if (data.relative_release) {
+    events.push({
       slug: entry.id,
       type: "homework release" as const,
       title: data.title,
-      date: localizeTime(data.release!),
+      date: calculateAbsoluteDate(data.relative_release),
       notes: data.notes,
       tentative: data.tentative,
-    } satisfies HomeworkEvent,
-    {
+    } satisfies HomeworkEvent);
+  }
+  if (data.relative_due) {
+    events.push({
       slug: entry.id,
       type: "homework due" as const,
       title: data.title,
-      date: localizeTime(data.due!),
+      date: calculateAbsoluteDate(data.relative_due),
       notes: data.notes,
-    } satisfies HomeworkEvent,
-  ];
+    } satisfies HomeworkEvent);
+  }
+  return events;
 });
 
-const lectures = (
-  await getCollection("docs", (entry) => entry.id.startsWith("lecture"))
-).map((entry) => {
-  const data = transformContentData(entry.data);
-  return {
-    slug: entry.id,
-    type: "lecture" as const,
-    title: data.title,
-    date: localizeTime(data.date!),
-    readings: data.readings,
-    notes: data.notes,
-    tentative: data.tentative,
-  } satisfies LectureEvent;
-});
+const lecturesCollection = await getCollection("docs", (entry) =>
+  entry.id.startsWith("lecture"),
+);
+const lectures = lecturesCollection
+  .filter((entry) => entry.data.relative_date)
+  .map((entry) => {
+    const data = transformContentData(entry.data);
+    return {
+      slug: entry.id,
+      type: "lecture" as const,
+      title: data.title,
+      date: calculateAbsoluteDate(entry.data.relative_date!),
+      readings: data.readings,
+      notes: data.notes,
+      tentative: data.tentative,
+    } satisfies LectureEvent;
+  });
 
 const events = [...exams, ...homeworks, ...lectures].sort(
   (a, b) => a.date.valueOf() - b.date.valueOf(),

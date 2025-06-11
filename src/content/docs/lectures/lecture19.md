@@ -1,6 +1,4 @@
 ---
-type: lecture
-date: '2024-11-05T14:00:00'
 title: Realtime communication
 readings:
   - link: /readings/chapter-3-server-side-web-development/realtime-communication/

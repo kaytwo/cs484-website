@@ -1,6 +1,4 @@
 ---
-type: lecture
-date: '2024-10-22T14:00:00'
 title: Hydration and SSR
 readings:
   - name: React Server-Side Rendering

@@ -1,6 +1,4 @@
 ---
-type: lecture
-date: '2024-11-21T14:00:00'
 title: Security 4
 readings:
   - link: /readings/chapter-4-security/best-practices/

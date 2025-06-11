@@ -1,6 +1,4 @@
 ---
-type: lecture
-date: '2024-09-05T14:00:00'
 title: Security Fundamentals for Web Developers
 readings:
   - link: /readings/chapter-1-http/security-fundamentals/

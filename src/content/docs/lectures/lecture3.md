@@ -1,6 +1,4 @@
 ---
-type: lecture
-date: '2024-09-03T14:00:00'
 title: JavaScript for Computer Scientists
 readings:
   - link: https://youtu.be/_4PokD3HDkM

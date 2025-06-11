@@ -1,6 +1,4 @@
 ---
-type: lecture
-date: '2024-10-24T14:00:00'
 title: Databases
 readings:
   - name: 'Giving your application memory: databases'

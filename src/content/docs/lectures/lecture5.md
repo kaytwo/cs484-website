@@ -1,6 +1,4 @@
 ---
-type: lecture
-date: '2024-09-10T14:00:00'
 title: HTTPS
 readings:
   - link: /readings/chapter-1-http/https/

@@ -25,25 +25,32 @@ hero:
 import ClassCardGrid from "../../components/ClassCardGrid.astro";
 import TimedRender from "../../components/TimedRender.astro";
 import { Aside } from "@astrojs/starlight/components";
+import { calculateAbsoluteDate } from "../../utils/dateUtils";
+import dayjs from "dayjs";
+import { courseConfig } from "../../courseConfig";
 
-{ new Date() < new Date("2024-09-06T17:00:00-05:00") &&
+{dayjs().isBefore(
+  calculateAbsoluteDate({ week: 2, day: "Friday", time: "17:00:00" }),
+) && (
+  <Aside
+    type="caution"
+    title={`Interested in registering for ${courseConfig.courseName} in ${courseConfig.semester}?`}
+  >
+    If you're interested in registering for this class, you must have turned in
+    the first assignment due on the Thursday of week 2. If you did and aren't in
+    the class yet, please follow the instructions mentioned in class and on
+    Piazza.
+  </Aside>
+)}
 
-<Aside
-  type="caution"
-  title="Interested in registering for CS 484 in Fall 2024?">
-  If you're interested in registering for this class, you must have turned in
-  the first assignment due on Thursday August 29th. If you did and aren't in the
-  class yet, please follow the instructions mentioned in class and on Piazza.
-</Aside>
-}
-
-{ new Date() > new Date("2024-12-15T17:00:00-05:00") &&
-
-<Aside type="danger" title="This course has concluded.">
-  This is the course website for Fall 2024 CS 484. If you're seeing this note,
-  the course has concluded.
-</Aside>
-}
+{dayjs().isAfter(
+  calculateAbsoluteDate({ week: 16, day: "Friday", time: "17:00:00" }),
+) && (
+  <Aside type="danger" title="This course has concluded.">
+    This is the course website for {courseConfig.semester} {courseConfig.courseName}. If you're seeing this
+    note, the course has concluded.
+  </Aside>
+)}
 
 ## Class coordinates
 

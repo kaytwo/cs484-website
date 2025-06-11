@@ -1,6 +1,4 @@
 ---
-type: lecture
-date: '2024-09-24T14:00:00'
 title: Cookies
 readings:
   - link: /readings/chapter-2-client-side-web-development/statefulness-1-cookies/

@@ -1,6 +1,4 @@
 ---
-type: lecture
-date: '2024-10-03T14:00:00'
 title: More on frontend engineering
 readings:
   - link: /readings/chapter-2-client-side-web-development/development-tooling/

@@ -1,6 +1,4 @@
 ---
-type: lecture
-date: '2024-09-26T14:00:00'
 title: UI Reactivity using React
 readings:
   - link: /readings/chapter-2-client-side-web-development/statefulness-2-reactivity/
