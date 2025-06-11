@@ -76,9 +76,7 @@ const homeworks = (
     } satisfies HomeworkEvent,
   ];
 });
-console.log(`Processed ${homeworks.length / 2} homeworks`);
 
-console.log("Fetching lectures...");
 const lectures = (
   await getCollection("docs", (entry) => entry.id.startsWith("lecture"))
 ).map((entry) => {
@@ -93,14 +91,10 @@ const lectures = (
     tentative: data.tentative,
   } satisfies LectureEvent;
 });
-console.log(`Processed ${lectures.length} lectures`);
 
-console.log("Merging and sorting events...");
-// merge the three above arrays and sort them by date
 const events = [...exams, ...homeworks, ...lectures].sort(
   (a, b) => a.date.valueOf() - b.date.valueOf(),
 );
-console.log(`Total events: ${events.length}`);
 
 // events is already sorted, so just check if the last event is in the past
 // class concludes on the Friday of finals week
@@ -110,15 +104,6 @@ const concluded = calculateAbsoluteDate({
   day: "Friday",
   time: "17:00:00",
 }).isBefore(dayjs());
-console.log(
-  "absolute last day of class:",
-  calculateAbsoluteDate({
-    week: 16,
-    day: "Friday",
-    time: "17:00:00",
-  }).format(),
-);
-console.log("Schedule component processing complete.");
 ---
 
 {
