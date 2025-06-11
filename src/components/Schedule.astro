@@ -75,6 +75,7 @@ const homeworks = (
       title: data.title,
       date: calculateAbsoluteDate(data.relative_due),
       notes: data.notes,
+      tentative: data.tentative,
     } satisfies HomeworkEvent);
   }
   return events;
