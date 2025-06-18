@@ -170,17 +170,18 @@ While these tools are amazing, please do not use their existence as an excuse to
 procrastinate on getting started with your assignments. They are good, but they
 aren't that good.
 
-While you can use GenAI on your homeworks, using autocomplete and copy-paste
-until the tests pass is not acceptable. You must understand any code that you
-use. We reserve the right to review your submitted code with you, and if you
-cannot explain the code you submitted, it will be considered a violation of the
-academic integrity code equivalent to plagiarism (see below).
+Generative AI use is **strongly discouraged** for homework assignments. *We will
+not perform any check to see whether you have done so or not*. The grading for
+these assignments is lenient - the expected median grade for the class is 100%.
 
-Please remember that in-class assessments (quizzes and exams) are a
-comparatively large portion of your grade, and you cannot use GenAI on them.
+A substantial portion of the module exam will cover topics that are tightly tied
+to the module's homework assignment. **Working your way through the homeworks
+without the help of Generative AI is the best way to succeed at these
+questions**.
 
-This policy is subject to change as we all learn more about how GenAI works and
-doesn't work as part of learning college level course content.
+Generative AI is **not allowed** on in class assessments. Generative AI use is
+*encouraged* for the final project, studying for in-class quizzes, and studying
+for in-class exams.
 
 ### Grading Policy and Point Breakdown
 
