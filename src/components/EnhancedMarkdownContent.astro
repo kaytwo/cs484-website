@@ -1,0 +1,17 @@
+---
+import Default from "@astrojs/starlight/components/MarkdownContent.astro";
+import { Aside } from "@astrojs/starlight/components";
+
+const { data } = Astro.locals.starlightRoute.entry;
+---
+
+{
+  data.tentative && (
+    <Aside type="caution">
+      This assignment description is <b>tentative</b>. Feel free to take a look,
+      but everything is subject to change for this semester's version of the
+      assignment.
+    </Aside>
+  )
+}
+<Default><slot /></Default>

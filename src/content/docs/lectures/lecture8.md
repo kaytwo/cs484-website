@@ -7,6 +7,6 @@ readings:
     name: The Same-Origin Policy
     optional: true
 relative_date:
-  week: 5
-  day: 1
+  week: 4
+  day: 2
 ---

@@ -9,6 +9,9 @@ readings:
   - name: How does SSO work
     link: https://auth0.com/blog/what-is-and-how-does-single-sign-on-work/
 relative_date:
-  week: 7
-  day: 2
+  week: 11
+  day: 1
+notes: review
+  [databases](/readings/chapter-3-server-side-web-development/databases/) and
+  [cookies](/readings/chapter-2-client-side-web-development/statefulness-1-cookies/)
 ---

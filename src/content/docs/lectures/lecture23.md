@@ -1,14 +1,9 @@
 ---
-title: Security 4
+title: Applying Modern Security Best Practices
 readings:
   - link: /readings/chapter-4-security/best-practices/
     name: Best Practices for New Web Apps
-  - link: https://dl.acm.org/doi/pdf/10.1145/3548606.3560641
-    name: >-
-      Cart-ology: Intercepting Targeted Advertising via Ad Network Identity
-      Entanglement
-    grad_only: true
 relative_date:
-  week: 13
+  week: 11
   day: 2
 ---

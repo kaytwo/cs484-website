@@ -120,15 +120,15 @@ const concluded = calculateAbsoluteDate({
     </span>
   )
 }
-<div class="not-content ml-4 flex items-center sm:ml-0 sm:justify-center">
+<div class="not-content ml-4 flex items-center lg:ml-0 lg:justify-center">
   <table class="border-separate border-spacing-y-2 text-sm">
     <thead>
       <tr>
-        <th>Type</th>
-        <th>Date</th>
-        <th>Topic</th>
-        <th>Content</th>
-        <th>Notes</th>
+        <th class="hidden lg:table-cell lg:min-w-[8rem]">Type</th>
+        <th class="hidden lg:table-cell">Date</th>
+        <th class="hidden lg:table-cell">Topic</th>
+        <th class="hidden lg:table-cell">Content</th>
+        <th class="hidden lg:table-cell">Notes</th>
       </tr>
     </thead>
     <tbody>
@@ -190,11 +190,11 @@ const concluded = calculateAbsoluteDate({
     @reference "tailwindcss";
 
     .td-class {
-      @apply border-0 px-4 py-3 first:rounded-t-lg last:rounded-b-lg sm:first:rounded-t-none sm:first:rounded-bl-lg sm:first:rounded-tl-lg sm:last:rounded-b-none sm:last:rounded-br-lg sm:last:rounded-tr-lg;
+      @apply border-0 px-4 py-3  lg:first:rounded-t-none lg:first:rounded-bl-lg lg:first:rounded-tl-lg lg:last:rounded-b-none lg:last:rounded-br-lg lg:last:rounded-tr-lg;
     }
 
     .tr-class {
-      @apply mb-4 flex flex-col odd:bg-[var(--sl-color-gray-6)] even:bg-[var(--sl-color-gray-7)] sm:table-row;
+      @apply mb-4 flex flex-col rounded-lg odd:bg-[var(--sl-color-gray-6)] even:bg-[var(--sl-color-gray-7)] lg:table-row;
     }
     .action {
       display: inline-block;

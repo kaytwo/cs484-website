@@ -9,6 +9,6 @@ readings:
   - link: /readings/chapter-4-security/attacks/
     name: Canonical web security attacks
 relative_date:
-  week: 12
-  day: 1
+  week: 10
+  day: 2
 ---

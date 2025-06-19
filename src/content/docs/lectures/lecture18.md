@@ -1,10 +1,9 @@
 ---
-title: Managing Authentication server side
-notes: >-
-  No quiz today, review
-  [databases](/readings/chapter-3-server-side-web-development/databases/) and
-  [cookies](/readings/chapter-2-client-side-web-development/statefulness-1-cookies/)
+title: Realtime communication
+readings:
+  - link: /readings/chapter-3-server-side-web-development/realtime-communication/
+    name: Realtime communication
 relative_date:
-  week: 10
-  day: 2
+  week: 9
+  day: 1
 ---

@@ -6,6 +6,10 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   integrations: [
     starlight({
+      components: {
+        // Override the default `SocialIcons` component.
+        MarkdownContent: "./src/components/EnhancedMarkdownContent.astro",
+      },
       lastUpdated: false,
       logo: {
         src: "/public/uic.svg",

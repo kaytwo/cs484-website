@@ -10,6 +10,6 @@ readings:
     link: https://fly.io/blog/all-in-on-sqlite-litestream/
     optional: true
 relative_date:
-  week: 9
+  week: 7
   day: 2
 ---

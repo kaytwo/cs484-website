@@ -1,7 +1,8 @@
 title: Final Exam
 content: Comprehensive Final Exam
 notes: Exam location and exact time is currently **TBD**, this is a placeholder date.
+tentative: true
 relative_date:
   week: 16
   day: Friday
-  time: '16:40:00'
+  time: "16:40:00"

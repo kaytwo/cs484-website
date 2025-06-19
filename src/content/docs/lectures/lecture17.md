@@ -1,5 +1,5 @@
 ---
-title: Non-REST API design
+title: Non-REST APIs
 readings:
   - name: Non-REST APIs
     link: /readings/chapter-3-server-side-web-development/non-rest-apis/
@@ -7,6 +7,6 @@ readings:
     link: https://www.howtographql.com/
     optional: true
 relative_date:
-  week: 10
-  day: 1
+  week: 8
+  day: 2
 ---

@@ -14,5 +14,5 @@ notes: >
   final project.
 relative_date:
   week: 9
-  day: 1
+  day: 2
 ---
