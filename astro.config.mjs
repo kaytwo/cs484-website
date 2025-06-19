@@ -1,18 +1,26 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
     starlight({
+      components: {
+        // Override the default `SocialIcons` component.
+        MarkdownContent: "./src/components/EnhancedMarkdownContent.astro",
+      },
       lastUpdated: false,
       logo: {
         src: "/public/uic.svg",
       },
       title: "CS 484: Secure Web Application Development",
       social: [
-        { icon: 'github', label: 'GitHub', href: 'https://github.com/kaytwo/cs484-website' },
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/kaytwo/cs484-website",
+        },
       ],
       editLink: {
         baseUrl: "https://github.com/kaytwo/cs484-website/edit/main/",
@@ -43,6 +51,10 @@ export default defineConfig({
               link: "/resources",
             },
             {
+              label: "Changelog",
+              link: "/changelog",
+            },
+            {
               label: "Discussion",
               link: "https://piazza.com/uic/fall2024/cs484",
             },
@@ -69,6 +81,5 @@ export default defineConfig({
       customCss: ["/src/styles/global.css", "/src/overrides.css"],
     }),
   ],
-    vite: { plugins: [tailwindcss()] },
-
+  vite: { plugins: [tailwindcss()] },
 });

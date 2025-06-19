@@ -1,19 +1,30 @@
 ---
+tentative: true
 title: Final Project checkpoint 0
 description: Form a group and come up with an idea
-due: "2024-09-12T14:00:00"
-release: "2024-09-03T08:00:00"
-form_url: "https://forms.gle/8GUcdZcUf9jrcX6W9"
+form_url: https://forms.gle/8GUcdZcUf9jrcX6W9
 sidebar:
   order: 20
+relative_release:
+  week: 2
+  day: Monday
+  time: '08:00:00'
+relative_due:
+  week: 3
+  day: 2
 ---
 
-import { localizeTime, formatTime } from "../../../utils.ts";
+import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
+import DueDate from "../../../components/DueDate.astro";
+import { Aside } from "@astrojs/starlight/components"
+import { marked } from "marked"
 
 ## {frontmatter.description}
 
-**Due**: {formatTime(localizeTime(frontmatter.due))}
+**Release:** <DueDate relativeDate={frontmatter.relative_release}  />
+
+**Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
 This is the first checkpoint for your final project. The most important things you must do before turning it in are:
 

@@ -1,18 +1,29 @@
 ---
-title: "Homework 5: Optimization"
+tentative: true
+title: 'Homework 5: Optimization'
 description: Optimization techniques in React
-due: "2024-12-06T14:00:00"
-release: "2024-11-25T08:00:00"
-extraCredit: "2024-12-04T14:00:00"
-notes: Watch [the kickoff video](https://youtu.be/mjxBT8jxRLM) for help getting started.
+extraCredit: '2024-12-04T14:00:00'
+notes: >-
+  Watch [the kickoff video](https://youtu.be/mjxBT8jxRLM) for help getting
+  started.
+relative_release:
+  week: 13
+  day: Monday
+  time: '08:00:00'
+relative_due:
+  week: 14
+  day: Friday
 ---
 
-import { localizeTime, formatTime } from "../../../utils.ts";
+import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
+import DueDate from "../../../components/DueDate.astro";
 import { Aside } from "@astrojs/starlight/components";
 import { marked } from "marked";
 
-**Due**: {formatTime(localizeTime(frontmatter.due))}
+**Release:** <DueDate relativeDate={frontmatter.relative_release}  />
+
+**Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
 ## Quickstart
 
@@ -60,11 +71,6 @@ To test your implementation, run `npm run test`.
 | useCallback         | 25     |
 | List Virtualization | 25     |
 
-## Extra Credit
-
-You can earn extra credit by implementing meaningful test cases and submitting
-them to the TA before {formatTime(localizeTime(frontmatter.extraCredit))}.
-
 ## Due Date
 
-This homework is due on {formatTime(localizeTime(frontmatter.due))}.
+This homework is due on <DueDate relativeDate={frontmatter.relative_due} />.

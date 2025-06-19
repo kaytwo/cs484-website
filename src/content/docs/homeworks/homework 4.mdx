@@ -1,14 +1,29 @@
 ---
-title: "Homework 4: SECURITY"
+tentative: true
+title: 'Homework 4: SECURITY'
 description: Hacking a juice shop 🧃
-due: "2024-11-25T23:59:00"
-release: "2024-11-01T08:00:00"
+sidebar:
+  order: 34
+notes: >-
+  Watch [the kickoff video](https://youtu.be/5xExn6wqHnA) for help getting
+  started.
+relative_release:
+  week: 8
+  day: 1
+  time: '08:00:00'
+relative_due:
+  week: 9
+  day: Friday
 ---
 
-import { localizeTime, formatTime } from "../../../utils.ts";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
+import DueDate from "../../../components/DueDate.astro";
+import { Aside } from "@astrojs/starlight/components";
+import { marked } from "marked";
 
-**Due**: {formatTime(localizeTime(frontmatter.due))}
+**Release:** <DueDate relativeDate={frontmatter.relative_release} />
+
+**Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
 # {frontmatter.description}
 
@@ -117,7 +132,7 @@ Your full score can be computed as:
 
 ## Due date
 
-This homework is due on {formatTime(localizeTime(frontmatter.due))} This deadline is
+This homework is due on <DueDate relativeDate={frontmatter.relative_due} />. This deadline is
 FIRM. This assignment is easier than all of the rest, so please put some time in
 and finish it before the deadline, so you have more time to work on your final
 project.

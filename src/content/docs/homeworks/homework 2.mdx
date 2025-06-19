@@ -1,24 +1,33 @@
 ---
+tentative: true
 title: Homework 2 - Frontend
 description: React
-release: "2024-09-24T08:00:00"
-due: "2024-10-04T14:00:00"
 sidebar:
   order: 32
-notes: Watch [the kickoff video](https://youtu.be/0QKOuPO_SAI) for help getting started.
+notes: >-
+  Watch [the kickoff video](https://youtu.be/0QKOuPO_SAI) for help getting
+  started.
+relative_release:
+  week: 4
+  day: Monday
+  time: '08:00:00'
+relative_due:
+  week: 6
+  day: Friday
 ---
 
-import { localizeTime, formatTime } from "../../../utils.ts";
+import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
+import DueDate from "../../../components/DueDate.astro";
 
 import { Aside } from "@astrojs/starlight/components";
 import { marked } from "marked";
 
 ## {frontmatter.description}
 
-**Release**: {formatTime(localizeTime(frontmatter.release))}
+**Release:** <DueDate relativeDate={frontmatter.relative_release}  />
 
-**Due**: {formatTime(localizeTime(frontmatter.due))}
+**Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
 ## Quickstart
 
@@ -90,4 +99,4 @@ machine" does not count as a valid excuse for failing tests in the autograder. *
 
 ## Due date
 
-This assignment is due at {formatTime(localizeTime(frontmatter.due))}.
+This assignment is due at <DueDate relativeDate={frontmatter.relative_due} />.

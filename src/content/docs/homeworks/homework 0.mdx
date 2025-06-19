@@ -1,14 +1,25 @@
 ---
-title: homework 0 - calibration & assignment turn in
-description: Deploy and test your first web app
-due: "2024-08-29T14:00:00"
-release: "2024-08-26T08:00:00"
+tentative: true
+title: homework 0 - setup
+description: Setup your development environment
 sidebar:
   order: 30
+notes: >-
+  Watch [the kickoff video](https://youtu.be/5xExn6wqHnA) for help getting
+  started.
+relative_release:
+  week: 1
+  day: 1
+  time: '08:00:00'
+relative_due:
+  week: 2
+  day: Friday
 ---
 
-import { formatTime } from "../../../utils.ts";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
+import DueDate from "../../../components/DueDate.astro";
+import { Aside } from "@astrojs/starlight/components";
+import { marked } from "marked";
 
 ## {frontmatter.description}
 
@@ -21,8 +32,9 @@ share it with `kaytwo` and `nkgotcode`. To complete this assignment, make the
 changes described below, ensure that your web application is available on the
 Internet, and then submit via Gradescope.  
 
+**Release:** <DueDate relativeDate={frontmatter.relative_release}  />
 
-**Due**: {formatTime(frontmatter.due)}
+**Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
 By the end of this assignment you will have your own web app deployed on the web
 for all to see. The coding part is dead simple - you just have to change the

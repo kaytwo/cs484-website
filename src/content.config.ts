@@ -1,18 +1,25 @@
 import { defineCollection, z } from "astro:content";
 import { docsSchema } from "@astrojs/starlight/schema";
 import { docsLoader } from "@astrojs/starlight/loaders";
-import { glob, type LoaderContext, type Loader } from 'astro/loaders';
+import { glob } from 'astro/loaders';
+
+// Relative date schema that can be reused
+const relativeDateSchema = z.object({
+  week: z.number(),
+  day: z.number().or(z.string()),
+  time: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/).optional(),
+});
 
 const exams = z.object({
   title: z.string(),
-  date: z.string(),
+  relative_date: relativeDateSchema,
   content: z.string(),
   notes: z.string().optional(),
   tentative: z.boolean().default(false),
 });
 
 const lectures = z.object({
-  date: z.string(),
+  relative_date: relativeDateSchema,
   readings: z.array(
     z.object({
       link: z.string(),
@@ -26,9 +33,9 @@ const lectures = z.object({
 });
 
 const homeworks = z.object({
-  due: z.string(),
+  relative_due: relativeDateSchema.optional(),
   github_link: z.string().url().optional(),
-  release: z.string(),
+  relative_release: relativeDateSchema.optional(), // Add relative release date
   notes: z.string().optional(),
   tentative: z.boolean().default(false),
 });
@@ -58,6 +65,12 @@ const schema = docsSchema({
 });
 
 export const collections = {
-  docs: defineCollection({ loader: docsLoader(), schema: schema }),
-  exams: defineCollection({ loader: glob({ pattern: '**/[^_]*.yaml', base: "./src/content/exams" }), schema: exams }),
+  docs: defineCollection({
+    loader: docsLoader(),
+    schema: schema,
+  }),
+  exams: defineCollection({
+    loader: glob({ pattern: '**/[^_]*.yaml', base: "./src/content/exams" }),
+    schema: exams,
+  }),
 };

@@ -1,18 +1,30 @@
 ---
+tentative: true
 title: Final Final Project!
 description: Make your app do the thing
-release: "2024-11-14T14:00:00"
-due: "2024-12-06T08:00:00"
 sidebar:
   order: 25
+relative_release:
+  week: 12
+  day: 2
+relative_due:
+  week: 14
+  day: Friday
+  time: '08:00:00'
 ---
 
-import { localizeTime, formatTime } from "../../../utils.ts";
+import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
+import DueDate from "../../../components/DueDate.astro";
+import { Aside } from "@astrojs/starlight/components"
+import { marked } from "marked"
+
 
 ## {frontmatter.description}
 
-**Due**: {formatTime(localizeTime(frontmatter.due))}
+**Release:** <DueDate relativeDate={frontmatter.relative_release}  />
+
+**Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
 TLDR: submit [this form](https://forms.gle/n9cdZMK8C24wprqC6) before the deadline.
 

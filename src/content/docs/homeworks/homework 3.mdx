@@ -1,11 +1,28 @@
 ---
+tentative: true
 title: Homework 3 - Authentication/Serverless
 description: Authentication/Serverless
-release: "2024-10-16T08:00:00"
-due: "2024-11-01T14:00:00"
 sidebar:
   order: 32
+relative_release:
+  week: 8
+  day: Wednesday
+  time: '08:00:00'
+relative_due:
+  week: 10
+  day: Friday
 ---
+
+import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
+import { Content as Deadlines } from "../../../components/Deadlines.md";
+import DueDate from "../../../components/DueDate.astro";
+
+import { Aside } from "@astrojs/starlight/components"
+import { marked } from "marked"
+
+**Release:** <DueDate relativeDate={frontmatter.relative_release} />
+
+**Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
 ## Quickstart
 
@@ -100,7 +117,3 @@ Note that this is not required for the homework.
 | ---------------------------------- | ------ |
 | App Functionality                  | 93     |
 | CI Tests (Lint, Format, Typecheck) | 9      |
-
-## Due date
-
-This assignment is due on Friday, November 1, 2024 2:00 PM. You are highly encouraged to get started early.

@@ -1,32 +1,40 @@
 ---
+tentative: true
 title: homework 1 - crud apps
 description: Hono + SQLite
-due: "2024-09-13T14:00:00"
-release: "2024-09-03T08:00:00"
 sidebar:
   order: 31
-notes: Watch [the kickoff video](https://youtu.be/5xExn6wqHnA) for help getting started.
+notes: >-
+  Watch [the kickoff video](https://youtu.be/5xExn6wqHnA) for help getting
+  started.
+relative_release:
+  week: 2
+  day: 1
+  time: '08:00:00'
+relative_due:
+  week: 3
+  day: Friday
 ---
 
-import { localizeTime, formatTime } from "../../../utils.ts";
-import { Content as Deadlines } from "../../../components/Deadlines.md";
+import DueDate from "../../../components/DueDate.astro";
+import { Aside } from "@astrojs/starlight/components";
+import { marked } from "marked";
 
-import { Aside } from "@astrojs/starlight/components"
-import {marked} from "marked"
+**Release:** <DueDate relativeDate={frontmatter.relative_release}  />
 
+**Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
-**Due**: {formatTime(localizeTime(frontmatter.due))}
+<Aside >
+<Fragment set:html={marked(frontmatter.notes)} />
+</Aside>
 
 **Quickstart** Create a new **private** repository under your own GitHub account
 from [this template](https://github.com/swad-cs-uic/homework1-f24). Sharing your
 code for the assignment, intentionally or unintentionally, is a violation of the
 academic integrity policy in this course.
 
-<Aside >
-<Fragment set:html={marked(frontmatter.notes)} />
-</Aside>
 
-## {frontmatter.description}
+# {frontmatter.description}
 
 
 This assignment gives you experience building a basic router-based server-side
@@ -140,6 +148,6 @@ submissions.**
 
 ## Due Date
 
-This assignment is due at{formatTime(localizeTime(frontmatter.due))}. Extra
+This assignment is due at <DueDate relativeDate={frontmatter.relative_due} />. Extra
 credit in the course is available for anyone who writes meaningful test cases
 and submits them to the TA by Sunday, September 3rd.

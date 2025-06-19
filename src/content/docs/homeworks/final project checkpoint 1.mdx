@@ -1,18 +1,29 @@
 ---
+tentative: true
 title: Final Project checkpoint 1
 description: Precisely enumerate what you want your app to do
-due: "2024-10-03T14:00:00"
-release: "2024-09-20T08:00:00"
 sidebar:
   order: 21
+relative_release:
+  week: 4
+  day: Monday
+  time: '08:00:00'
+relative_due:
+  week: 6
+  day: 2
 ---
 
-import { localizeTime, formatTime } from "../../../utils.ts";
+import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
+import DueDate from "../../../components/DueDate.astro";
+import { Aside } from "@astrojs/starlight/components"
+import { marked } from "marked"
 
 ## {frontmatter.description}
 
-**Due**: {formatTime(localizeTime(frontmatter.due))}
+**Release:** <DueDate relativeDate={frontmatter.relative_release}  />
+
+**Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
 TLDR: submit [this form](https://forms.gle/FySzRBae1QJhUCs97) before the deadline.
 
