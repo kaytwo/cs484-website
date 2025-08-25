@@ -37,16 +37,19 @@ Internet, and then submit via Gradescope.
 **Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
 By the end of this assignment you will have your own web app deployed on the web
-for all to see. The coding part is dead simple - you just have to change the
-text in a few files. The more important part is getting your tools set up for
-_Continuous Integration_ and _Continuous Deployment_.
+for all to see. You can make this web app as simple or as complex as you want -
+all it _needs_ to do is show your UIC email address and the text "CS 484
+Homework 0" (case sensitive). The more important part is confirming that you can
+use the course assignment submission system (Gradescope), and getting your tools
+set up for _Continuous Integration_ and _Continuous Deployment_.
 
 ### Unix-based development environment required
 
 One of the awesome things about web development is that on the server side and
 the client side, it's pretty cross-platform. However, once you get into more
 advanced topics, you'll find that the vast majority of web servers are running
-Linux, and many developers are using Macs or Linux machines for local development.
+Unix-based operating systems (mostly Linux), and many developers are using Macs
+or Linux machines for local development.
 
 If you're on a Mac or Linux, you're all set for the first couple assignments,
 local development will work as expected. If you're on Windows, you have a few
@@ -59,25 +62,43 @@ options:
   more heavyweight than WSL, but it's a good option if you want to get used to
   using Linux. If you're on a new ARM Windows laptop, this might not work as
   expected, and I can't provide support as I don't have one to test with.
-* When developing in your repository in the `ckanich-classrooms` GitHub
-  orgnaization, you have access to GitHub Codespaces, which provisions a web
-  based IDE. This is especially helpful if you aren't running Linux natively and
-  have restricted RAM on your laptop - while it's possible to use WSL and/or
-  Docker with 8GB of RAM, it can get pretty tight.  I've enabled Codespaces for
-  this assignment, but haven't tested it extensively. If you have issues, please
-  let me know.
 
 One tricky part is that _most_ things will work on Windows, but many things will
 start breaking in unexpected ways. So unless you're really intent on developing
 in Windows, I'd suggest using one of the options above for working on your
-assignments in this class.
+assignments in this class (and other advanced CS classes).
+
+## Requirements vs. Recommendations
+
+The only _requirement_ for this assignment is to get your email address and the
+string "CS 484 Homework 0" hosted on the Internet at a given URL. Once you've
+done that, put the URL in the file `url.txt`, put that file in a github
+repository, and submit it to Gradescope. That's it, that's the assignment.
+
+However, I **recommend** that you configure a continuous development environment
+to allow you to update that web application simply by pushing an update to
+your GitHub repository. 
+
+For some of you, this is something you've never done before and don't even know
+where to get started. No worries! We'll walk you through it. For those that have
+done this dozens of times before, perhaps take this as an opportunity to use a
+different platform, language, or framework than you're used to using.
+
+For the example I'll be doing in the kickoff video, I'll be using [Cloudflare
+Workers](https://workers.cloudflare.com/) to build and host the app, and
+[Astro](https://astro.build/) as the framework. Feel free to experiment with
+anything you'd like - there's a huge list of [services with free
+tiers](https://free-for.dev/) for developers, including many for free web
+hosting.
 
 ### Local development
 
-After creating your own personal private repository using the template linked
-above, you can clone this repository in your development environment and open
-that directory in your favorite IDE. I recommend VS Code, as I will be using
-that for my demonstrations.
+Before getting started with this course, I assume you have some familiarity with:
+
+* Using git
+and GitHub to manage source code
+* Using a code editor or IDE (VSCode (and derivatives like Cursor) is good, I'm
+  currently using [Zed](https://zed.dev/))
 
 #### Installing Node.js
 
@@ -89,26 +110,30 @@ programs from the command line, and use the node package manager `npm` to
 download dependencies for your project, install additional packages, run package
 scripts, and more.
 
+### Creating and deploying a template repository
+
+Cloudflare, like many other web services, offers a "CLI" (command line
+interface) that allows developers to quickly and easily access their services.
+Once you've got Node installed, you can run this single command and follow its
+prompts to deploy an Astro-based web app on Cloudflare's network.
+
+```bash
+npm create cloudflare@latest -- my-484-app --framework=astro
+```
+
 #### Running the template
 
-Open your new project in your IDE, and in the console run `npm install` to
-download the code for all of the dependencies needed to fully run the project.
-You can then run the code in development mode by invoking the `dev` script by
-running the command `npm run dev`. This will run your app in a special mode
-where any updates to your source code are immediately pushed to the browser via
-a special plugin that isn't included in your code when you actually build it
-for production.
+Once the template has been created and published, you can open your new project
+in your IDE and edit it as you please. You can run a *local development server* which
+simulates how your web application will operate when it is hosted on the Internet by running:
 
-#### Codespaces option
+```bash
+npm run dev
+```
 
-I've also enabled to the GitHub Codespaces feature. Codespaces creates a linux
-container in the cloud that allows you to run a fully featured Visual Studio
-Code, with access to all extensions and even extra linux containers for things
-like databases, without having to install anything on your local machine.
-
-I haven't tested it yet as a way to start working on _this assignment
-specifically_, but it should allow you to do every assignment for this class
-directly from your browser.
+This will run your app in a special mode where any updates to your source code
+are immediately pushed to the browser via a special plugin that isn't included
+in your code when you actually build it for production.
 
 ### Getting the most out of your IDE
 
@@ -116,36 +141,22 @@ Modern programming makes extensive use of strong typing - the ability to declare
 (or infer) at build time what type any given symbol refers to. Importantly, this
 allows your IDE to understand your code as you type, and give you suggestions
 for which methods to call, what value an argument should take, or inform you
-when you've used something incorrectly.
+when you've used something incorrectly. VSCode and Zed both have "out of the box"
+integration with TypeScript to validate your code as you type, and provide suggestions
+based on the types of various symbols in your source code.
 
-To get full credit on this assignment, you must pass a **formatting** checker, a
-a **type** checker, and a **lint** checker.
+In addition to type checking, you should also configure your IDE to perform
+format checking and lint checking as you type. This will help you avoid common
+mistakes, and ensure that your code is formatted correctly according to the
+standards we will be using in this class. This is all optional right now - we'll
+go into more detail about these topics later in class.
 
-#### Format checking
+For fresh JavaScript/TypeScript based projects, I recommend using
+[biome.js](https://biomejs.dev/). [Prettier](https://prettier.io/) for
+formatting and [ESLint](https://eslint.org/) for linting are also good options,
+but biome.js does both, much faster, and with a much cleaner configuration.
 
-Formatting your code according to a standard makes it easy to look at code
-diffs, both by making the code easy to read, and by minimizing the chances that
-changes that don't impact the functionality of your code (like whitespace and
-newlines) show up in the diffs at all. **Your brain capacity** is the limiting
-factor in good programming, and you should be using tools that minimize your
-mental effort whenever possible.
-
-In this project, we use [Prettier](https://prettier.io/) with the default
-settings. In VSCode, you can install the extension and turn on
-`editor.formatOnSave` and set Prettier as the default formatter, and your code
-will be formatted correctly automatically. The points you get for proper
-formatting should be the three easiest points you've ever gotten.
-
-#### Type checking
-
-TypeScript introduces strong typing to JavaScript through a superset of the
-language. The TypeScript compiler can confirm every use of a symbol against the
-types for those objects/functions/operators/etc, and ensure that they are being
-used correctly. Visual Studio Code performs type checking by default on
-TypeScript files, so you should see any type errors by default as red squiggles
-and in the "Problems" panel.
-
-#### Lint checking
+#### What is Lint checking?
 
 Linting checks for issues that will not necessarily cause your code to crash or
 even run incorrectly, but nonetheless are very usually errors. Take for instance
@@ -166,97 +177,75 @@ if (a) {
 
 The call to `baz()` will never happen, and it's very likely there's some
 programmer error happening here. Linters are designed with [dozens of
-rules](https://eslint.org/docs/latest/rules/) that help find issues like these
+rules](https://biomejs.dev/linter/javascript/rules/) that help find issues like these
 for you.
 
 ### How to "fix" the code
 
-You only need to change two files in the repository: you need to edit
-`student.json` in the root of the repository to include your email address, and
-you need to change `src/main.ts` to include your own email address instead of
-`ckanich@uic.edu`. You'll need to edit `student.json` again later, but that's
-all for now.
+You only need to change two files in the repository: you need to add `url.txt`
+in the root of the repository to include your deployed web app's URL, and you
+need to edit the code in whatever way makes your UIC email and "CS 484 Homework
+0" show up on that URL. 
 
 ### How to look at your website
 
-If you want to experiment with your website, you can run `npm run dev` and your
-email address should show up as soon as you save `main.ts`. As long as my email
-address doesn't show up in the text of the site, and yours does as part of the
-string "website of youremail@uic.edu", you can make it look as pretty or ugly or
-ridiculous as you want. Go nuts!
+If you want to experiment with the Astro template, you can run `npm run dev` and
+your email address should show up as soon as you save `src/pages/index.astro`.
+As long as you've met the listed requirements, you can make your app look
+as pretty or ugly or ridiculous as you want. Go nuts!
 
-### Local testing
+## Web App Deployment
 
-Once you have edited those files, you can run the local tests by running `npm
-run test` script. This script will look through your repository for specially
-named files (in our case, files that end in `.test.ts`, of which there is only
-one), and run them in the testing environment. The tests in this assignment are
-all in `src/main.test.ts` and are worth taking a look at to understand.
+So far, we've deployed the basic template, built and run our code locally, and
+updated the local version to list our own email address. Now for the fun part -
+deploying our web app. You must deploy your web app to the Internet for credit
+on this assignment. Cloudflare is probably the easiest, but you can use Amazon,
+Vercel, Netlify, GitHub pages, or any other service as long as the web app can
+be deployed successfully and stays online (**we may re-run the autograder at any
+time!**).
 
-Before getting to the Continuous Deployment section, you should be able to get
-the two "on the dev server" tests running for 10 points.
+Once you've made an update to the source code, you can immediately update the
+global deployment by running this command from the root of your project:
 
-### Remote testing
+```bash
+npm run deploy
+```
 
-**AKA Continuous Integration**
-
-When you're the only person working on a repository, it makes sense to run the
-tests locally. But once you start working in larger teams on important software,
-it's important that there's one source of truth for whether the tests are
-passing or not. To simulate that, this repository is set up to use GitHub
-actions to do continuous integration testing. The file
-`.github/workflows/ci.yaml` describes the list of tests that are run; it simply
-installs all of the dependencies, then runs the three format, lint, and type
-check scripts, and fails if any of them fail. You can see the output of the CI
-runs in the Actions tab for your repository.
+This command will build your app using Astro's build system, and then connect to
+Cloudflare and upload all of the newly compiled code. After a few seconds, your
+web app will be updated on the Internet.
 
 ### Continuous Deployment
 
-So far, we've built and run our code locally, and on GitHub's servers. Now for
-the fun part - deploying our web app. You must deploy your web app to the
-Internet for full credit on this assignment. There are many free places to do
-so, including [Cloudflare
-Pages](https://developers.cloudflare.com/pages/framework-guides/deploy-anything/)
-and [Render](https://docs.render.com/static-sites). I recommend using one of
-those as they are the easiest to set up and have features we will use later on
-in class, but you can use Amazon, Vercel, Netlify, GitHub pages, or any other
-service as long as the web app can be deployed successfully and stays online
-(**we may re-run the autograder at any time!**). The one thing you may need to
-configure is the build command: we are using the [vite](https://vitejs.dev)
-build tool, so the command to build your code is `npm run build` and the files
-that should be served (the output of the build) are in `dist/`.
+While it's all well and good to manually run `npm run deploy` every time you
+make a change, it's much better to have this happen automatically whenever you
+push a change to your GitHub repository. This allows different people to work on
+the same web app at the same time, allows you to perform more checks before
+pushign to your *production* server, and makes the builds more reproducible by
+always running the same build process on the same infrastructure.
 
-To get the next 10 points, you need to follow the instructions at any of those
-services and deploy your web page. They will give you a url that ends in
-`pages.dev`, `onrender.sh` respectively (sometimes they give
-you a random string, but you can customize it if you want). Replace
-**http://domain.invalid** in `student.json` with your new web app URL, and
-deploy your app. If you've correctly set up the deployment service, all you need
-to do to deploy your app is `git push` your edits, and the service will receive
-a notification from GitHub that your code changed, then it will pull the code,
-build the website, and push the built website out to the Internet.
+For Cloudflare Workers, the easiest way to get Continuous Deployment working is
+to log in to the web dashboard and connect your GitHub repository to Cloudflare.
+This will allow Cloudflare to automatically build and deploy your app whenever
+you push a change to your repository. I go over this in the kickoff video.
 
-If you've done all of this without introducing any type/format/lint errors, `npm
-run test` should all be passing and you are well on your way to 100% in the
-class. Great job! 🎉
+## Submitting your work
 
-### Submitting your work
-
-After you are confident that you are passing all of the tests, you can submit it
-via Gradescope. **Check Piazza for the Gradescope invitation code**. All the
-Gradescope autograder does is re-run the same tests again; if your tests are
-passing both on your local machine and on GitHub, it shouldn't fail on
-Gradescope. If you have issues with the autograder, please contact us via Piazza
-ASAP.
+After you are confident that your web app is running as expected, you can submit
+it via Gradescope. **Check Piazza for the Gradescope invitation code**. All the
+Gradescope autograder does is reads `url.txt`, grabs that URL, and checks for
+your email address and the static string mentioned above. **Gradescope will only
+allow GitHub based submissions** - you must add `url.txt` to your repository and
+submit it through Gradescope. If you have issues with the autograder, please
+contact us via Piazza ASAP.
 
 <Deadlines />
 
 ## Points
 
-Each test is worth five points, each source check is worth three points, for a
-total of 23 points. Note that this implicitly tests your ability to download
-Node, install packages, edit files, upload to github, etc.
-
-This is almost certainly the easiest assignment, so I recommend you aim for full
-points. Getting this done should take less than a half an hour, even if you've
-never used JavaScript before.
+This assignment is all-or-nothing: if you deploy a web app that has the right
+text in it, you get full credit. If you don't, you don't. If you follow along
+with either these instructions or the kickoff video, you should be able to
+finish this assignment in less than 30 minutes, even if you've never used
+JavaScript before. This is almost certainly the easiest assignment, so I
+recommend you aim for full points.
