@@ -7,8 +7,8 @@ readings:
     name: HTTP, the web protocol
   - link: /readings/chapter-1-http/browser-intro/
     name: Browser basics
-  - link: https://forms.gle/zy3urcjk6J29HRgy8
-    name: Complete this survey before class (required)
+  - link: https://forms.gle/bsaHb74FJRujVTk69
+    name: Complete this survey before class (required). Make sure to record the personal response code you receive at the end!
 notes: >
   In class activity: Web app history, final project intro, PR review if we have
   time

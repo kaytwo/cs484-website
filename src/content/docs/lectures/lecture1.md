@@ -7,7 +7,7 @@ readings:
     name: Syllabus
   - link: https://youtu.be/XLdcXU8teKI
     optional: true
-    name: Course intro & motivation (video version, from last year)
+    name: Course intro & motivation (video version, from 2023)
   - link: https://github.com/readme/guides/formatters-linters-compilers
     name: Important IDE features
     optional: true

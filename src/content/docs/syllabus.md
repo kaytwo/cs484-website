@@ -9,24 +9,22 @@ slug: syllabus
 
 ## **I. Instructor & Course Details**
 
-Chris Kanich, <ckanich@uic.edu>  
-Drop-In Office Hours: 3:30-4:30pm Tuesdays & Wednesdays  
-Drop-In Hours location: SEO 908
+Chris Kanich, ckanich@uic.edu  
+Drop-In Office Hours: 3:30-4:30pm Mondays and Tuesdays  
+Drop-In Hours location: CDRLC 4411  
 
-Graduate TA: Khanh Le, <nle33@uic.edu>  
-Drop-In Office Hours (in-person or virtual): TBD  
+Graduate TA: TBD  
+Drop-In Office Hours: TBD  
 Drop-In Hours location: TBD
 
-**Course Modality and Schedule**: This course is taught in person, in LC C6,
-2:00pm - 3:15pm Tuesdays and Thursdays. Please bring your laptop for in-class
-activities.
+**Course Modality and Schedule**: This course is taught in person, location LC
+C6, 2:00pm - 3:15pm Tuesdays and Thursdays. Please bring your laptop (with
+battery if our classroom doesn't have plugs) for in-class activities.
 
-**Blackboard Course Site**:
-<https://uic.blackboard.com/ultra/courses/_277927_1/cl/outline>
+**Piazza**: https://piazza.com/uic/fall2025/cs484 (this is open to all UIC CS students during the first two weeks of class - if you are not in the class and want to be allowed in off of the waitlist, please join to get the Gradescope invite code to turn in hw0)
 
-**Piazza**: <https://piazza.com/uic/fall2024/cs484>
-
-**Gradescope**: <https://www.gradescope.com/courses/833367>
+**Gradescope**: https://www.gradescope.com/courses/1073379 (Check Piazza for the
+invite code if you were not added automatically)
 
 ### Course Announcements
 
@@ -38,7 +36,7 @@ for the reading schedule and ensuring that you complete all assignments, and
 keeping up to date on Piazza for any corrections/clarifications regarding
 assignments or other important information.
 
-Blackboard will not be used in this course besides to communicate final grades.
+Blackboard will not be used in this course beyond the things which require it.
 For all technical questions about Blackboard, email the Learning Technology
 Solutions team at [LTS@uic.edu](mailto:LTS@uic.edu).
 
@@ -71,7 +69,7 @@ completion of assignments.
 ## II. Course Information
 
 Web applications integrate concepts from software engineering, systems
-programming, and computer security. THis course teaches security through web
+programming, and computer security. This course teaches security through web
 development, enabling students to design, deploy, scale, attack, and defend
 modern web applications.
 
@@ -202,7 +200,11 @@ The course grade weighting is:
 
 ### Dropped Assignments
 
-To help students deal with unforeseen circumstances, religious observances, or other issues that may arise during the semester, we will drop your lowest homework, your lowest module exam, and your lowest four quiz scores. You do not need to inform me of the reason for dropping the assignment - this drop is automatic for all students.
+To help students deal with unforeseen circumstances, religious observances, or
+other issues that may arise during the semester, we will drop your lowest
+homework, your lowest module exam, and your lowest four quiz scores. You do not
+need to inform me of the reason for dropping the assignment - this drop is
+automatic for all students.
 
 #### Final grade assignment
 
@@ -226,10 +228,10 @@ you have concerns about your grade in the course, please email me to schedule a
 time for you to speak with me or your TA so that we can discuss study techniques
 or alternative strategies to help you.
 
-**New this year** - after setting the letter grade cutoffs and dropping the
-lowest exam (see below for more information), all students must have an exam
-average that is greater than or equal to the overall grade cutoff for a passing
-(D or better) grade in the course.
+After setting the letter grade cutoffs and dropping the lowest exam (see below
+for more information), all students must have an exam average that is greater
+than or equal to the overall grade cutoff for a passing (D or better) grade in
+the course.
 
 #### Homework late policy
 
