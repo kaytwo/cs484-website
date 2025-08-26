@@ -18,7 +18,7 @@ Drop-In Office Hours: TBD
 Drop-In Hours location: TBD
 
 **Course Modality and Schedule**: This course is taught in person, location LC
-C6, 2:00pm - 3:15pm Tuesdays and Thursdays. Please bring your laptop (with
+C1, 2:00pm - 3:15pm Tuesdays and Thursdays. Please bring your laptop (with
 battery if our classroom doesn't have plugs) for in-class activities.
 
 **Piazza**: https://piazza.com/uic/fall2025/cs484 (this is open to all UIC CS students during the first two weeks of class - if you are not in the class and want to be allowed in off of the waitlist, please join to get the Gradescope invite code to turn in hw0)
