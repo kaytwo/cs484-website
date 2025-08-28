@@ -32,6 +32,43 @@ The code running on the client side is usually a web browser running on a user's
 
 While most user-facing client-side web programming is targeted at the browser, not all of it is. A web client can also be a web scraping script, a mobile application, or even a web server making a request to a different web server. Sometimes these clients execute (or simulate) the entire web browser platform's functionality, and sometimes they simply send raw http requests and return the resulting bytes of the response to the client: `curl` and `wget` are the most common ways to make raw requests from the command line in this fashion.
 
-## The distributed nature of web programming makes things interesting
+# The Web as a Distributed System
 
-One of the first and most important aspects of security in the web development context is that in most cases, the client side computer and the web browser that they're using are owned, managed, and operated by the end user. This is one of the first things that makes web programming _dangerous_ from a security perspective: you as a web developer are writing code that is instantly deployed to and executed on a client's computer ([relevant XKCD](https://xkcd.com/1367/)), and nearly all of those clients will be normal browsers faithfully following the instructions that your server sent to it. But every once in a while that client will be an attacker attempting to extract private data, a scraping bot attempting to download your entire website for inclusion in their awesome new LLM, or even an end user with an aggressive ad blocker manipulating the way that their browser does (or doesn't) make certain requests.
+The traditional programming model that you learn in Computer Science courses
+assumes one CPU, one memory, and one collection of inputs and outputs (those
+could be from user input, or bytes saved to disk, or network connections, etc).
+The web is fundamentally different from this model because it is a _distributed
+system_: there are multiple independent computers, each with their own CPU,
+memory, and inputs and outputs. These computers communicate with each other over
+a network (the Internet) using a well defined protocol (HTTP/HTTPS).
+
+The fact that there is more than one "brain" (CPU) involved makes things tricky.
+For the purposes of this class, we can think about a web application like this:
+
+![The web as a distributed system](../../../../assets/images/distributed.svg)
+
+The first aspect of this that's interesting, important, and challenging is that
+being in charge of keeping two brains in sync is hard. The client and server
+each have their own memory, and they each have their own inputs and outputs. The
+only way that they can communicate is by sending messages to each other over the
+network. Messages over the network can take a long time to arrive or even get
+dropped. So if you want to keep some state (data) in sync between
+the client and server, you have to explicitly send messages back and forth to do
+so. This is a lot harder than just keeping everything in one place.
+
+
+## The distributed nature of web programming makes SECURITY interesting
+
+One of the first and most important aspects of security in the web development
+context is that in most cases, the client side computer and the web browser that
+they're using are owned, managed, and operated by the end user. As mentioned
+above, this is hard enough to get right. However, this is **also** one of the
+first things that makes web programming _dangerous_ from a security perspective:
+you as a web developer are writing code that is instantly deployed to and
+executed on a client's computer ([relevant XKCD](https://xkcd.com/1367/)), and
+nearly all of those clients will be normal browsers faithfully following the
+instructions that your server sent to it. But every once in a while that client
+will be an attacker attempting to extract private data, a scraping bot
+attempting to download your entire website for inclusion in their awesome new
+LLM, or even an end user with an aggressive ad blocker manipulating the way that
+their browser does (or doesn't) make certain requests.
