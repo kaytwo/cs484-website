@@ -307,10 +307,8 @@ const concluded = calculateAbsoluteDate({
         dataArray.push(""); // For description
 
         // Connects the pushed strings
-        if ((i + 1) % 1 === 0) {
           csvData.push(dataArray.join(','));
           dataArray.length = 0; // resets array
-        }
       }
 
       // Combine all lines
