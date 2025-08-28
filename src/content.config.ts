@@ -1,13 +1,16 @@
 import { defineCollection, z } from "astro:content";
 import { docsSchema } from "@astrojs/starlight/schema";
 import { docsLoader } from "@astrojs/starlight/loaders";
-import { glob } from 'astro/loaders';
+import { glob } from "astro/loaders";
 
 // Relative date schema that can be reused
 const relativeDateSchema = z.object({
   week: z.number(),
   day: z.number().or(z.string()),
-  time: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/).optional(),
+  time: z
+    .string()
+    .regex(/^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/)
+    .optional(),
 });
 
 const exams = z.object({
@@ -70,7 +73,7 @@ export const collections = {
     schema: schema,
   }),
   exams: defineCollection({
-    loader: glob({ pattern: '**/[^_]*.yaml', base: "./src/content/exams" }),
+    loader: glob({ pattern: "**/[^_]*.yaml", base: "./src/content/exams" }),
     schema: exams,
   }),
 };

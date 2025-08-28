@@ -7,9 +7,12 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "biome format --write .",
+    "lint": "biome lint --apply ."
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.4",
     "@astrojs/cloudflare": "^12.6.5",
     "@astrojs/react": "^4.3.0",
     "@astrojs/starlight": "^0.35.2",
@@ -23,6 +26,10 @@
     "marked": "^16.2.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "tailwindcss": "^4.1.12"
+    "tailwindcss": "^4.1.12",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3"
   }
 }
