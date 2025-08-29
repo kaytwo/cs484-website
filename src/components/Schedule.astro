@@ -118,6 +118,9 @@ const concluded = calculateAbsoluteDate({
     <span class="action primary" id="jumpToDateButton">
       Jump to Nearest Date
     </span>
+    <span class="action primary" id="downloadCsvButton">
+        Download Calendar CSV
+    </span>
   )
 }
 <div class="not-content ml-4 flex items-center lg:ml-0 lg:justify-center">
@@ -259,6 +262,72 @@ const concluded = calculateAbsoluteDate({
       .querySelector("#jumpToDateButton")
       ?.addEventListener("click", () => {
         jumpToDate();
+      });
+  </script>
+  <script>
+    // Helper function to convert dates and times to calendar format
+    function formatDateCSV(str: string, endTime: boolean) {
+      const cleanStr = str.replace(' at ', ' ');
+      const date = new Date(cleanStr);
+      const pad = (n: number) => n.toString().padStart(2, '0');
+      const year = date.getFullYear();
+      const month = pad(date.getMonth() + 1); // +1 because it's 0 for january
+      const day = pad(date.getDate());
+      let hours = date.getHours();
+      // Make every event 1 hour long
+      if (endTime) {
+        hours += 1;
+      }
+      const minutes = pad(date.getMinutes());
+      const amOrPm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      if (hours === 0) hours = 12;
+      const formattedHours = pad(hours);
+      return `${month}/${day}/${year} ${formattedHours}:${minutes} ${amOrPm}`;
+    }
+
+    const sendCSV = () => {
+      // This is the csv format the google calendar expects
+      const csvData = ['Subject,Start Date,All Day Event,Start Time,End Time,Location,Description'];
+
+      // Finds all table rows representing events by searching for rows with a data-date attribute in the live DOM
+      const rows = document.querySelectorAll("tr[data-date]");
+      const dataArray = [];
+
+      for (let i = 0; i < rows.length; i++) {
+        // This lets me access each cell from the incrementing rows
+        const cells = rows[i].querySelectorAll(".td-class");
+
+        dataArray.push("\"" + cells[0].textContent.trim() + ': ' + cells[2].textContent.trim() + "\""); // Combines then pushes the type and topic to be used for calendar subject
+        dataArray.push(formatDateCSV(cells[1].textContent.split(",").slice(1).join(",").trim(), false).substring(0, 10)); // Pushes the date in calendar format
+        dataArray.push(""); // For all day event
+        dataArray.push(formatDateCSV(cells[1].textContent.split(",").slice(1).join(",").trim(), false).split(' ').slice(1).join(' ')); // Gets the start time in calendar format and pushes it
+        dataArray.push(formatDateCSV(cells[1].textContent.split(",").slice(1).join(",").trim(), true).split(' ').slice(1).join(' ')); // Gets the end time in calendar format and pushes it
+        dataArray.push(""); // For location
+        dataArray.push(""); // For description
+
+        // Connects the pushed strings
+          csvData.push(dataArray.join(','));
+          dataArray.length = 0; // resets array
+      }
+
+      // Combine all lines
+      const csvString = csvData.join('\n');
+
+      // Creates blob with csv and the download element
+      const blob = new Blob([csvString], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'calendar-CS484.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+
+    document
+      .querySelector("#downloadCsvButton")
+      ?.addEventListener("click", () => {
+        sendCSV();
       });
   </script>
 </div>
