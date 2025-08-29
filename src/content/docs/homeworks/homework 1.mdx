@@ -41,9 +41,9 @@ from the database.
 
 ## Project structure
 
-### `db/schema.ts` & `wrangler.jsonc`
+### `db/schema.ts`
 
-These files define the database schema and the database connection. We're using
+This defines the database schema to be used. We're using
 drizzle to interact with the database. This allows us to switch out the
 underlying database technology without changing the code much / at all. The
 important things you'll need to be able to do are run the relevant queries
@@ -53,10 +53,17 @@ sql-like queries or Drizzle's [`sql` template string
 creator](https://orm.drizzle.team/docs/sql#sql-template), which is especially useful
 if you already know SQL and just want to run queries against the database.
 
+### `wrangler.jsonc`
+
+This is the Cloudflare Workers config file that tells Wrangler how to run the app.
+In this project it declares the worker entry (main), sets the compatibility_date,
+and most importantly binds the D1 database via "d1_databases" so that the app is able to used
+c.env.DB
+
 ### `drizzle/0000_wealthy_katie_power.sql`
 
 The post installation script uses `0000_wealthy_katie_power.sql` to create the high score database
-with the schema defined under schema.ts. Once, the table is created under '.wrangler' folder, then
+with the schema defined under schema.ts. Once, the table is created under `.wrangler/state` folder, then
 drizzle is used to interact and update the values in the database. If you were to delete .wrangler folder
 by mistake, you can run command " npx wrangler d1 migrations apply test-db --local " to have database
 created again as described under wrangler.jsonc file
@@ -67,30 +74,18 @@ The public directory holds all of the static files that your web application
 needs to serve without any processing. For our app, this includes images and CSS
 files.
 
-### `src/app.js` and `src/template.js`
+### `src/worker/index.ts`
 
-These files are the main ones you need to understand, and for `app.js`, the one
-that you will be editing to complete this assignment. `template.js` exports a
-single function, `generateHTML`, which takes in various substrings and returns a
-well-formatted page populated with all of the relevant information for every
-_view_ that our application has. The views you need to create are:
+These files are the main ones you need to understand, and for `worker/index.ts`, the one
+that you will be editing to complete this assignment. This would contain the required functions
+to interact with the database as the react app on the frontend. You need to make appropriate changes
+to the Hono api functions so that you are able to achieve the following goals:
 
-- the main page: it should just list all of the products, 10 at a time, with a
-  list of pages along the bottom.
-- the search result page: it should list all of the products that match the
-  given search. This can be implemented very similarly to the home page.
-
-#### Additional routes
-
-In addition to search results and the home page, the two other functionalities
-that must be added are add and delete items. You should take a look at the
-functionality in the forms on the main page to determine how those will be
-invoked - you can even just load the empty main page and look at what requests
-are being sent using the network tab in your browser's developer tools.
-
-You are free to implement these routes either directly by passing the result to
-the browser as a response to the request, or by redirecting the user back to the
-main page after the route's functionality has been completed.
+- Save High Score: It can be used to save the high score for the given session by clicking on it.
+- Display High Score: When user comes in for first time , high score of 0 is shown. Once user saves high score and
+  later returns to play around with the counter. Last saved High Score would be displayed under the Save High Score
+  Button. If user scores more than the high score and saves the score, then that particular high score would be stored
+  for the user.
 
 ## Checking your work
 
@@ -108,10 +103,10 @@ are meant to look like the type of test you might write for your own code to
 ensure that it works correctly, NOT a very high confidence test that you have
 actually coded everything up such that it works properly. For instance, it would
 be very easy to write code that passes the tests but does not provide a
-functional CRUD app showing the products from the database.
+functional CRUD app showing the high score from the database.
 
 We reserve the right to investigate any submission to ensure that it is actually
-showing the products from teh database rather than simply passing the tests by
+showing the high score from the database rather than simply passing the tests by
 injecting nonsense markup that passes the tests.
 
 ## Deploying your Application.
@@ -136,16 +131,13 @@ submissions.**
 
 ## Points
 
-| Task                                                 | Points |
-| ---------------------------------------------------- | ------ |
-| "display products on home page"                      | 5      |
-| navigate through pages and display products          | 5      |
-| add a new product and confirm it appears on the page | 5      |
-| delete a product and confirm it is not visible       | 5      |
-| search for a product and display the results         | 5      |
+| Task                                            | Points |
+| ----------------------------------------------- | ------ |
+| Display high score as 0 when table is empty.    | 5      |
+| Save the high score and display the high score. | 5      |
 
 ## Due Date
 
 This assignment is due at <DueDate relativeDate={frontmatter.relative_due} />. Extra
 credit in the course is available for anyone who writes meaningful test cases
-and submits them to the TA by Sunday, September 3rd.
+and submits them to the TA by Thursday, September 4th.
