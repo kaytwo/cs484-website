@@ -1,7 +1,7 @@
 ---
-tentative: true
+tentative: false
 title: homework 1 - crud apps
-description: Hono + SQLite
+description: Hono + SQLite + Cloudfare Workers
 sidebar:
   order: 31
 notes: >-
@@ -10,7 +10,7 @@ notes: >-
 relative_release:
   week: 2
   day: 1
-  time: '08:00:00'
+  time: "08:00:00"
 relative_due:
   week: 3
   day: Friday
@@ -24,27 +24,24 @@ import { marked } from "marked";
 
 **Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
-<Aside >
-<Fragment set:html={marked(frontmatter.notes)} />
+<Aside>
+  <Fragment set:html={marked(frontmatter.notes)} />
 </Aside>
 
 **Quickstart** Create a new **private** repository under your own GitHub account
-from [this template](https://github.com/swad-cs-uic/homework1-f24). Sharing your
+from [this template](https://github.com/swad-cs-uic/homework1-f25). Sharing your
 code for the assignment, intentionally or unintentionally, is a violation of the
 academic integrity policy in this course.
 
-
 # {frontmatter.description}
 
-
-This assignment gives you experience building a basic router-based server-side
-web application. There is no JavaScript functionality on the front end. You
-simply need to implement the absolute basics of listing, adding and removing
-items from a product database.
+This assignment gets you hands-on with a minimal “cookie-cutter” web application. There is a basic React app on the front end. You
+simply need to implement the absolute basics of adding and getting high scores
+from the database.
 
 ## Project structure
 
-### `src/db.js` and `src/schema.js`
+### `db/schema.ts` & `wrangler.jsonc`
 
 These files define the database schema and the database connection. We're using
 drizzle to interact with the database. This allows us to switch out the
@@ -52,15 +49,17 @@ underlying database technology without changing the code much / at all. The
 important things you'll need to be able to do are run the relevant queries
 against the database: you can do this however you like, but I'd recommend using
 either the [Drizzle style](https://orm.drizzle.team/docs/overview#why-sql-like)
-sql-like queries or Drizzle's  [`sql` template string
+sql-like queries or Drizzle's [`sql` template string
 creator](https://orm.drizzle.team/docs/sql#sql-template), which is especially useful
 if you already know SQL and just want to run queries against the database.
 
-### `src/seed.js` and `src/products.sql`
+### `drizzle/0000_wealthy_katie_power.sql`
 
-The seed script uses `products.sql` to populate the database with the known good
-list of products. You can run this via `node src/seed.js` whenever you like and
-it will reset the database to the known good state.
+The post installation script uses `0000_wealthy_katie_power.sql` to create the high score database
+with the schema defined under schema.ts. Once, the table is created under '.wrangler' folder, then
+drizzle is used to interact and update the values in the database. If you were to delete .wrangler folder
+by mistake, you can run command " npx wrangler d1 migrations apply test-db --local " to have database
+created again as described under wrangler.jsonc file
 
 ### `public/`
 
@@ -76,9 +75,9 @@ single function, `generateHTML`, which takes in various substrings and returns a
 well-formatted page populated with all of the relevant information for every
 _view_ that our application has. The views you need to create are:
 
-* the main page: it should just list all of the products, 10 at a time, with a
+- the main page: it should just list all of the products, 10 at a time, with a
   list of pages along the bottom.
-* the search result page: it should list all of the products that match the
+- the search result page: it should list all of the products that match the
   given search. This can be implemented very similarly to the home page.
 
 #### Additional routes
@@ -92,7 +91,6 @@ are being sent using the network tab in your browser's developer tools.
 You are free to implement these routes either directly by passing the result to
 the browser as a response to the request, or by redirecting the user back to the
 main page after the route's functionality has been completed.
-
 
 ## Checking your work
 
@@ -138,13 +136,13 @@ submissions.**
 
 ## Points
 
-| Task                                                                 | Points |
-| -------------------------------------------------------------------- | ------ |
-|"display products on home page" | 5    |
-| navigate through pages and display products                     | 5    |
-| add a new product and confirm it appears on the page                                   | 5     |
-| delete a product and confirm it is not visible      |5     |
-| search for a product and display the results                  | 5     |
+| Task                                                 | Points |
+| ---------------------------------------------------- | ------ |
+| "display products on home page"                      | 5      |
+| navigate through pages and display products          | 5      |
+| add a new product and confirm it appears on the page | 5      |
+| delete a product and confirm it is not visible       | 5      |
+| search for a product and display the results         | 5      |
 
 ## Due Date
 
