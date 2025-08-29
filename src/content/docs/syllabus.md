@@ -13,9 +13,9 @@ Chris Kanich, ckanich@uic.edu
 Drop-In Office Hours: 3:30-4:30pm Mondays and Tuesdays  
 Drop-In Hours location: CDRLC 4411  
 
-Graduate TA: TBD  
-Drop-In Office Hours: TBD  
-Drop-In Hours location: TBD
+Graduate TA: Iman Deol  
+Drop-In Office Hours: 1:00pm-3:00pm Wednesdays  
+Drop-In Hours location: CDRLC 2404
 
 **Course Modality and Schedule**: This course is taught in person, location LC
 C1, 2:00pm - 3:15pm Tuesdays and Thursdays. Please bring your laptop (with
