@@ -252,7 +252,7 @@ const concluded = calculateAbsoluteDate({
         nearestRow.style.backgroundColor = ""; // Revert to stylesheet color
       }, 2000);
 
-      nearestRow.scrollIntoView();
+      nearestRow.scrollIntoView({behavior: "smooth", block: "start"});
     };
 
     document
