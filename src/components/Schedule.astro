@@ -120,6 +120,17 @@ const concluded = calculateAbsoluteDate({
     </span>
   )
 }
+<!-- Filter Selector -->
+<span>
+  <label for="scheduleFilter">Filter</label>
+  <select id="scheduleFilter">
+    <option value="all">All</option>
+    <option value="lecture">Lectures</option>
+    <option value="homework">Homeworks</option>
+    <option value="exam">Exams</option>
+  </select>
+</span>
+
 <div class="not-content ml-4 flex items-center lg:ml-0 lg:justify-center">
   <table class="border-separate border-spacing-y-2 text-sm">
     <thead>
@@ -141,7 +152,15 @@ const concluded = calculateAbsoluteDate({
               },
               "tr-class",
             ]}
-            data-date={event.date.toISOString()}>
+            data-date={event.date.toISOString()}
+            data-type={
+              event.type === "lecture"
+                ? "lecture"
+                : event.type === "exam"
+                  ? "exam"
+                  : "homework"
+            }
+          >
             <td class="td-class">
               {event?.tentative && <Badge text="Tentative" variant="tip" />}
               <div>{event.type}</div>
@@ -226,12 +245,17 @@ const concluded = calculateAbsoluteDate({
     .highlight {
       animation: fadeHighlight 2s ease-out forwards;
     }
+    /* Ensure hidden attribute wins over flex/table display from classes */
+    tr[hidden] {
+      display: none !important;
+    }
   </style>
 
   <script>
+    // function to jump to the nearest date, button and functionality is set here
     const jumpToDate = () => {
       const today = +new Date();
-      const rows = document.querySelectorAll("tr[data-date]");
+      const rows = document.querySelectorAll("tr[data-date]:not([hidden])");
       const nearestRow = Array.from(rows)
         .filter(
           (row) => +new Date(row.getAttribute("data-date") ?? today) > today,
@@ -252,13 +276,30 @@ const concluded = calculateAbsoluteDate({
         nearestRow.style.backgroundColor = ""; // Revert to stylesheet color
       }, 2000);
 
-      nearestRow.scrollIntoView({behavior: "smooth", block: "start"});
+      nearestRow.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+    const applyFilter = () => {
+      const select = document.querySelector("#scheduleFilter");
+      const value = select ? (select as any).value : "all";
+      const rows = document.querySelectorAll("tr[data-date]");
+      rows.forEach((row) => {
+        const type = row.getAttribute("data-type");
+        const show = value === "all" || type === value;
+        (row as HTMLElement).hidden = !show;
+      });
     };
 
     document
       .querySelector("#jumpToDateButton")
       ?.addEventListener("click", () => {
         jumpToDate();
+      });
+
+    document
+      .querySelector("#scheduleFilter")
+      ?.addEventListener("change", () => {
+        applyFilter();
       });
   </script>
 </div>
