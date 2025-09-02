@@ -5,7 +5,7 @@ description: Hono + SQLite + Cloudfare Workers
 sidebar:
   order: 31
 notes: >-
-  Watch [the kickoff video](https://youtu.be/5xExn6wqHnA) for help getting
+  Watch [the kickoff video](https://www.example.com) for help getting
   started.
 relative_release:
   week: 2
@@ -29,7 +29,7 @@ import { marked } from "marked";
 </Aside>
 
 **Quickstart** Create a new **private** repository under your own GitHub account
-from [this template](https://github.com/swad-cs-uic/homework1-f25). Sharing your
+from [this template](https://github.com/swad-cs-uic/homework1-f25-skeleton). Sharing your
 code for the assignment, intentionally or unintentionally, is a violation of the
 academic integrity policy in this course.
 
@@ -73,11 +73,12 @@ c.env.DB
 
 ### `drizzle/0000_wealthy_katie_power.sql`
 
-The post installation script uses `0000_wealthy_katie_power.sql` to create the high score database
-with the schema defined under schema.ts. Once, the table is created under `.wrangler/state` folder, then
-drizzle is used to interact and update the values in the database. If you were to delete .wrangler folder
-by mistake, you can run command " npx wrangler d1 migrations apply test-db --local " to have database
-created again as described under wrangler.jsonc file
+The post installation script uses `0000_wealthy_katie_power.sql` to create the
+high score database with the schema defined under schema.ts. Once, the table is
+created under `.wrangler/state` folder, then drizzle is used to interact and
+update the values in the database. If you were to delete .wrangler folder by
+mistake, you can run command `npx wrangler d1 migrations apply test-db --local`
+to have the database created again as described under wrangler.jsonc file
 
 ### `public/`
 
@@ -87,16 +88,33 @@ files.
 
 ### `src/worker/index.ts`
 
-These files are the main ones you need to understand, and for `worker/index.ts`, the one
-that you will be editing to complete this assignment. This would contain the required functions
-to interact with the database as the react app on the frontend. You need to make appropriate changes
-to the Hono api functions so that you are able to achieve the following goals:
+This file is the main one you need to understand, and for `worker/index.ts`,
+the one that you will be editing to complete this assignment. This would contain
+the required functions to interact with the database as the react app on the
+frontend. You need to make appropriate changes to the Hono api functions so that
+you are able to achieve the following goals:
 
 - Save High Score: It can be used to save the high score for the given session by clicking on it.
 - Display High Score: When user comes in for first time , high score of 0 is shown. Once user saves high score and
   later returns to play around with the counter. Last saved High Score would be displayed under the Save High Score
   Button. If user scores more than the high score and saves the score, then that particular high score would be stored
   for the user.
+  
+### `src/react-app/`
+
+This directory contains the client side web application. The _code_ here isn't
+important to understand for this assignment, however _what it does_ is
+important. You should experiment with interacting with the client side web app
+while you've got the network tab open in your devtools to see what is happening
+behind the scenes as a result of the client side JavaScript that's running in
+the browser.
+
+Feel free to take a look at the code, but nothing you need to do for this
+assignment, and nothing about how the code is written will be covered on the
+exam. However, for the first exam, you will need to understand that code is
+running on the client side, and how that interacts with the server side.
+
+Our next assignment will go into more detail about client side web programming.
 
 ## Checking your work
 
@@ -129,7 +147,11 @@ most straightforward way to do so. However if you'd like some experience
 deploying to a serverless provider, you can reconfigure [Hono to work on a
 serverless app platform](https://hono.dev/docs/concepts/web-standard) and
 [Drizzle ORM](https://orm.drizzle.team/learn/tutorials) to use a serverless
-database provider.
+database provider. Cloudflare is the easiest way to do so (because this project
+is already written with D1 in mind), but you can also easily use a different
+hosting provider along with [Turso](https://turso.tech/),
+[Supabase](https://supabase.com/), or any of the other providers listed in the
+[drizzle docs](https://orm.drizzle.team/docs/get-started).
 
 ## Submitting your work
 
