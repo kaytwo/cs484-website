@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import { marked } from "marked";
 import DOMPurify from "isomorphic-dompurify";
 import dayjs, { type Dayjs } from "dayjs";
@@ -115,21 +115,19 @@ const concluded = calculateAbsoluteDate({
 
 {
   !concluded && (
-    <span class="action primary" id="jumpToDateButton">
-      Jump to Nearest Date
-    </span>
+    <div class="controls-container">
+      <span class="action primary" id="jumpToDateButton">
+        Jump to Nearest Date
+      </span>
+      
+      <!-- Filter Buttons -->
+      <span class="action primary filter-button" id="filterAll" data-filter="all">All</span>
+      <span class="action secondary filter-button" id="filterLecture" data-filter="lecture">Lectures</span>
+      <span class="action secondary filter-button" id="filterHomework" data-filter="homework">Homeworks</span>
+      <span class="action secondary filter-button" id="filterExam" data-filter="exam">Exams</span>
+    </div>
   )
 }
-<!-- Filter Selector -->
-<span>
-  <label for="scheduleFilter">Filter</label>
-  <select id="scheduleFilter">
-    <option value="all">All</option>
-    <option value="lecture">Lectures</option>
-    <option value="homework">Homeworks</option>
-    <option value="exam">Exams</option>
-  </select>
-</span>
 
 <div class="not-content ml-4 flex items-center lg:ml-0 lg:justify-center">
   <table class="border-separate border-spacing-y-2 text-sm">
@@ -224,6 +222,41 @@ const concluded = calculateAbsoluteDate({
     .even-stripe {
       background-color: var(--sl-color-gray-7) !important;
     }
+
+    /* Controls container for same-row layout */
+    .controls-container {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    }
+
+    /* Mobile-specific styling */
+    @media (max-width: 768px) {
+      .controls-container {
+        gap: 0.75rem;
+        justify-content: center; /* Center buttons on mobile */
+      }
+      
+      .action {
+        padding: 0.75rem 1.5rem;
+        font-size: var(--sl-text-base);
+        min-width: 80px; /* Ensure minimum width for circular appearance */
+        text-align: center;
+      }
+    }
+
+    /* Filter container styling */
+    .filter-container {
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
     .action {
       display: inline-block;
       cursor: pointer;
@@ -237,6 +270,7 @@ const concluded = calculateAbsoluteDate({
       line-height: 1.1875;
       text-decoration: none;
       font-size: var(--sl-text-sm);
+      border: 1px solid var(--sl-color-text-accent);
     }
     .action.primary {
       background: var(--sl-color-text-accent);
@@ -308,29 +342,104 @@ const concluded = calculateAbsoluteDate({
       });
     };
 
-    const applyFilter = () => {
-      const select = document.querySelector("#scheduleFilter");
-      const value = select ? (select as any).value : "all";
+    // Map URL hash to filter type
+    const hashToFilter: Record<string, string> = {
+      '#all': 'all',
+      '#lectures': 'lecture',
+      '#homeworks': 'homework',
+      '#exams': 'exam'
+    };
+
+    // Map filter type to URL hash
+    const filterToHash: Record<string, string> = {
+      'all': '#all',
+      'lecture': '#lectures',
+      'homework': '#homeworks',
+      'exam': '#exams'
+    };
+
+    // Handles button colors, when a user selects a button that becomes the "active" filter indicated by color
+    const updateLinkButtonVariants = (activeFilter: string) => {
+      const buttons = document.querySelectorAll('.filter-button');
+      buttons.forEach((button) => {
+        const filterType = button.getAttribute('data-filter');
+        const isActive = filterType === activeFilter;
+        
+        // Update the class for styling
+        if (isActive) {
+          button.classList.remove('secondary');
+          button.classList.add('primary');
+        } else {
+          button.classList.remove('primary');
+          button.classList.add('secondary');
+        }
+      });
+    };
+
+    const applyFilter = (filterType = 'all') => {
       const rows = document.querySelectorAll("tr[data-date]");
       rows.forEach((row) => {
         const type = row.getAttribute("data-type");
-        const show = value === "all" || type === value;
+        const show = filterType === "all" || type === filterType;
         (row as HTMLElement).hidden = !show;
       });
+      
       // Update zebra striping after filtering
       updateZebraStriping();
+      
+      // Update button variants
+      updateLinkButtonVariants(filterType);
+      
+      // Update URL without triggering page reload
+      const newHash = filterToHash[filterType] || '#all';
+      if (window.location.hash !== newHash) {
+        history.replaceState(null, '', newHash);
+      }
     };
+
+    // Grab the filter from the url if there is one
+    const getFilterFromUrl = () => {
+      const hash = window.location.hash || '#all';
+      return hashToFilter[hash] || 'all';
+    };
+
+    // Initialize filter based on URL hash
+    document.addEventListener("DOMContentLoaded", () => {
+      const initialFilter = getFilterFromUrl();
+      applyFilter(initialFilter);
+    });
+
+    // Listen for hash changes (browser back/forward, manual URL changes)
+    window.addEventListener('hashchange', () => {
+      const newFilter = getFilterFromUrl();
+      applyFilter(newFilter);
+    });
+
+    // Add click handlers for filter buttons
+    document.querySelector("#filterAll")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      applyFilter('all');
+    });
+
+    document.querySelector("#filterLecture")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      applyFilter('lecture');
+    });
+
+    document.querySelector("#filterHomework")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      applyFilter('homework');
+    });
+
+    document.querySelector("#filterExam")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      applyFilter('exam');
+    });
 
     document
       .querySelector("#jumpToDateButton")
       ?.addEventListener("click", () => {
         jumpToDate();
-      });
-
-    document
-      .querySelector("#scheduleFilter")
-      ?.addEventListener("change", () => {
-        applyFilter();
       });
   </script>
 </div>
