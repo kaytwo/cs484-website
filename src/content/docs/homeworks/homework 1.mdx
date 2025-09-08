@@ -1,16 +1,16 @@
 ---
-tentative: true
+tentative: false
 title: homework 1 - crud apps
-description: Hono + SQLite
+description: Hono + SQLite + Cloudfare Workers
 sidebar:
   order: 31
 notes: >-
-  Watch [the kickoff video](https://youtu.be/5xExn6wqHnA) for help getting
+  Watch [the kickoff video](https://www.youtube.com/watch?v=SGqbpD6BJOo) for help getting
   started.
 relative_release:
   week: 2
   day: 1
-  time: '08:00:00'
+  time: "08:00:00"
 relative_due:
   week: 3
   day: Friday
@@ -24,43 +24,60 @@ import { marked } from "marked";
 
 **Due:** <DueDate relativeDate={frontmatter.relative_due} />
 
-<Aside >
-<Fragment set:html={marked(frontmatter.notes)} />
+<Aside>
+  <Fragment set:html={marked(frontmatter.notes)} />
 </Aside>
 
 **Quickstart** Create a new **private** repository under your own GitHub account
-from [this template](https://github.com/swad-cs-uic/homework1-f24). Sharing your
+from [this template](https://github.com/swad-cs-uic/homework1-f25-skeleton). Sharing your
 code for the assignment, intentionally or unintentionally, is a violation of the
 academic integrity policy in this course.
 
-
 # {frontmatter.description}
 
+This assignment gets you hands-on with a minimal "cookie-cutter" web
+application. There is a basic React app on the front end. Your job is to
+implement the basics of adding and getting high scores from the database.
 
-This assignment gives you experience building a basic router-based server-side
-web application. There is no JavaScript functionality on the front end. You
-simply need to implement the absolute basics of listing, adding and removing
-items from a product database.
+## Preliminaries
+
+After you've cloned the repository, all you have is the basic source code of
+this app - you don't have the libraries that are needed to actually run the code
+(nor the compiled web application that's ready to be run on the server and on
+the client. To get all of the dependencies ready to go, you'll need to run `npm
+install` within the directory. The install script will probably prompt you to do
+a _database migration_ - this is normal and you just need to hit "y" to
+continue. After that, you should be ready to start developing.
 
 ## Project structure
 
-### `src/db.js` and `src/schema.js`
+### `db/schema.ts`
 
-These files define the database schema and the database connection. We're using
+This defines the database schema to be used. We're using
 drizzle to interact with the database. This allows us to switch out the
 underlying database technology without changing the code much / at all. The
 important things you'll need to be able to do are run the relevant queries
 against the database: you can do this however you like, but I'd recommend using
 either the [Drizzle style](https://orm.drizzle.team/docs/overview#why-sql-like)
-sql-like queries or Drizzle's  [`sql` template string
+sql-like queries or Drizzle's [`sql` template string
 creator](https://orm.drizzle.team/docs/sql#sql-template), which is especially useful
 if you already know SQL and just want to run queries against the database.
 
-### `src/seed.js` and `src/products.sql`
+### `wrangler.jsonc`
 
-The seed script uses `products.sql` to populate the database with the known good
-list of products. You can run this via `node src/seed.js` whenever you like and
-it will reset the database to the known good state.
+This is the Cloudflare Workers config file that tells Wrangler how to run the app.
+In this project it declares the worker entry (main), sets the compatibility_date,
+and most importantly binds the D1 database via "d1_databases" so that the app is able to used
+c.env.DB
+
+### `drizzle/0000_wealthy_katie_power.sql`
+
+The post installation script uses `0000_wealthy_katie_power.sql` to create the
+high score database with the schema defined under schema.ts. Once, the table is
+created under `.wrangler/state` folder, then drizzle is used to interact and
+update the values in the database. If you were to delete .wrangler folder by
+mistake, you can run command `npx wrangler d1 migrations apply test-db --local`
+to have the database created again as described under wrangler.jsonc file
 
 ### `public/`
 
@@ -68,31 +85,35 @@ The public directory holds all of the static files that your web application
 needs to serve without any processing. For our app, this includes images and CSS
 files.
 
-### `src/app.js` and `src/template.js`
+### `src/worker/index.ts`
 
-These files are the main ones you need to understand, and for `app.js`, the one
-that you will be editing to complete this assignment. `template.js` exports a
-single function, `generateHTML`, which takes in various substrings and returns a
-well-formatted page populated with all of the relevant information for every
-_view_ that our application has. The views you need to create are:
+This file is the main one you need to understand, and for `worker/index.ts`,
+the one that you will be editing to complete this assignment. This would contain
+the required functions to interact with the database as the react app on the
+frontend. You need to make appropriate changes to the Hono api functions so that
+you are able to achieve the following goals:
 
-* the main page: it should just list all of the products, 10 at a time, with a
-  list of pages along the bottom.
-* the search result page: it should list all of the products that match the
-  given search. This can be implemented very similarly to the home page.
+- Save High Score: It can be used to save the high score for the given session by clicking on it.
+- Display High Score: When user comes in for first time , high score of 0 is shown. Once user saves high score and
+  later returns to play around with the counter. Last saved High Score would be displayed under the Save High Score
+  Button. If user scores more than the high score and saves the score, then that particular high score would be stored
+  for the user.
 
-#### Additional routes
+### `src/react-app/`
 
-In addition to search results and the home page, the two other functionalities
-that must be added are add and delete items. You should take a look at the
-functionality in the forms on the main page to determine how those will be
-invoked - you can even just load the empty main page and look at what requests
-are being sent using the network tab in your browser's developer tools.
+This directory contains the client side web application. The _code_ here isn't
+important to understand for this assignment, however _what it does_ is
+important. You should experiment with interacting with the client side web app
+while you've got the network tab open in your devtools to see what is happening
+behind the scenes as a result of the client side JavaScript that's running in
+the browser.
 
-You are free to implement these routes either directly by passing the result to
-the browser as a response to the request, or by redirecting the user back to the
-main page after the route's functionality has been completed.
+Feel free to take a look at the code, but nothing you need to do for this
+assignment, and nothing about how the code is written will be covered on the
+exam. However, for the first exam, you will need to understand that code is
+running on the client side, and how that interacts with the server side.
 
+Our next assignment will go into more detail about client side web programming.
 
 ## Checking your work
 
@@ -110,10 +131,10 @@ are meant to look like the type of test you might write for your own code to
 ensure that it works correctly, NOT a very high confidence test that you have
 actually coded everything up such that it works properly. For instance, it would
 be very easy to write code that passes the tests but does not provide a
-functional CRUD app showing the products from the database.
+functional CRUD app showing the high score from the database.
 
 We reserve the right to investigate any submission to ensure that it is actually
-showing the products from teh database rather than simply passing the tests by
+showing the high score from the database rather than simply passing the tests by
 injecting nonsense markup that passes the tests.
 
 ## Deploying your Application.
@@ -125,7 +146,11 @@ most straightforward way to do so. However if you'd like some experience
 deploying to a serverless provider, you can reconfigure [Hono to work on a
 serverless app platform](https://hono.dev/docs/concepts/web-standard) and
 [Drizzle ORM](https://orm.drizzle.team/learn/tutorials) to use a serverless
-database provider.
+database provider. Cloudflare is the easiest way to do so (because this project
+is already written with D1 in mind), but you can also easily use a different
+hosting provider along with [Turso](https://turso.tech/),
+[Supabase](https://supabase.com/), or any of the other providers listed in the
+[drizzle docs](https://orm.drizzle.team/docs/get-started).
 
 ## Submitting your work
 
@@ -138,16 +163,16 @@ submissions.**
 
 ## Points
 
-| Task                                                                 | Points |
-| -------------------------------------------------------------------- | ------ |
-|"display products on home page" | 5    |
-| navigate through pages and display products                     | 5    |
-| add a new product and confirm it appears on the page                                   | 5     |
-| delete a product and confirm it is not visible      |5     |
-| search for a product and display the results                  | 5     |
+| Task                                                           | Points |
+| -------------------------------------------------------------- | ------ |
+| Display high score as 0 when table is empty.                   | 5      |
+| Save the high score and display the high score.                | 5      |
+| API returns JSON with a name                                   | 5      |
+| POST API rejects invalid scores                                | 5      |
+| Return the maximum score after multiple entries into database. | 5      |
 
 ## Due Date
 
 This assignment is due at <DueDate relativeDate={frontmatter.relative_due} />. Extra
 credit in the course is available for anyone who writes meaningful test cases
-and submits them to the TA by Sunday, September 3rd.
+and submits them to the TA by Thursday, September 4th.

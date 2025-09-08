@@ -11,11 +11,11 @@ slug: syllabus
 
 Chris Kanich, ckanich@uic.edu  
 Drop-In Office Hours: 3:30-4:30pm Mondays and Tuesdays  
-Drop-In Hours location: CDRLC 4411  
+Drop-In Hours location: CDRLC 4411
 
-Graduate TA: TBD  
-Drop-In Office Hours: TBD  
-Drop-In Hours location: TBD
+Graduate TA: Iman Deol, ideol@uic.edu  
+Drop-In Office Hours: 1:00pm-3:00pm Wednesdays  
+Drop-In Hours location: CDRLC 2404
 
 **Course Modality and Schedule**: This course is taught in person, location LC
 C1, 2:00pm - 3:15pm Tuesdays and Thursdays. Please bring your laptop (with
@@ -168,8 +168,8 @@ While these tools are amazing, please do not use their existence as an excuse to
 procrastinate on getting started with your assignments. They are good, but they
 aren't that good.
 
-Generative AI use is **strongly discouraged** for homework assignments. *We will
-not perform any check to see whether you have done so or not*. The grading for
+Generative AI use is **strongly discouraged** for homework assignments. _We will
+not perform any check to see whether you have done so or not_. The grading for
 these assignments is lenient - the expected median grade for the class is 100%.
 
 A substantial portion of the module exam will cover topics that are tightly tied
@@ -178,7 +178,7 @@ without the help of Generative AI is the best way to succeed at these
 questions**.
 
 Generative AI is **not allowed** on in class assessments. Generative AI use is
-*encouraged* for the final project, studying for in-class quizzes, and studying
+_encouraged_ for the final project, studying for in-class quizzes, and studying
 for in-class exams.
 
 ### Grading Policy and Point Breakdown
