@@ -214,12 +214,12 @@ const concluded = calculateAbsoluteDate({
       @apply mb-4 flex flex-col rounded-lg odd:bg-[var(--sl-color-gray-6)] even:bg-[var(--sl-color-gray-7)] lg:table-row;
     }
     
-    /* Dynamic zebra striping classes for filtered content */
-    .odd-stripe {
+    /* Dynamic zebra striping classes for filtered content - higher specificity */
+    tr[data-date].odd-stripe {
       background-color: var(--sl-color-gray-6);
     }
     
-    .even-stripe {
+    tr[data-date].even-stripe {
       background-color: var(--sl-color-gray-7);
     }
 
