@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import { marked } from "marked";
 import DOMPurify from "isomorphic-dompurify";
 import dayjs, { type Dayjs } from "dayjs";
@@ -115,11 +115,20 @@ const concluded = calculateAbsoluteDate({
 
 {
   !concluded && (
-    <span class="action primary" id="jumpToDateButton">
-      Jump to Nearest Date
-    </span>
+    <div class="controls-container">
+      <span class="action primary" id="jumpToDateButton">
+        Jump to Nearest Date
+      </span>
+      
+      <!-- Filter Buttons -->
+      <span class="action primary filter-button" id="filterAll" data-filter="all">All</span>
+      <span class="action secondary filter-button" id="filterLecture" data-filter="lecture">Lectures</span>
+      <span class="action secondary filter-button" id="filterHomework" data-filter="homework">Homeworks</span>
+      <span class="action secondary filter-button" id="filterExam" data-filter="exam">Exams</span>
+    </div>
   )
 }
+
 <div class="not-content ml-4 flex items-center lg:ml-0 lg:justify-center">
   <table class="border-separate border-spacing-y-2 text-sm">
     <thead>
@@ -141,7 +150,15 @@ const concluded = calculateAbsoluteDate({
               },
               "tr-class",
             ]}
-            data-date={event.date.toISOString()}>
+            data-date={event.date.toISOString()}
+            data-type={
+              event.type === "lecture"
+                ? "lecture"
+                : event.type === "exam"
+                  ? "exam"
+                  : "homework"
+            }
+          >
             <td class="td-class">
               {event?.tentative && <Badge text="Tentative" variant="tip" />}
               <div>{event.type}</div>
@@ -196,6 +213,50 @@ const concluded = calculateAbsoluteDate({
     .tr-class {
       @apply mb-4 flex flex-col rounded-lg odd:bg-[var(--sl-color-gray-6)] even:bg-[var(--sl-color-gray-7)] lg:table-row;
     }
+    
+    /* Dynamic zebra striping classes for filtered content - higher specificity */
+    tr[data-date].odd-stripe {
+      background-color: var(--sl-color-gray-6);
+    }
+    
+    tr[data-date].even-stripe {
+      background-color: var(--sl-color-gray-7);
+    }
+
+    /* Controls container for same-row layout */
+    .controls-container {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    }
+
+    /* Mobile-specific styling */
+    @media (max-width: 768px) {
+      .controls-container {
+        gap: 0.75rem;
+        justify-content: center; /* Center buttons on mobile */
+      }
+      
+      .action {
+        padding: 0.75rem 1.5rem;
+        font-size: var(--sl-text-base);
+        min-width: 80px; /* Ensure minimum width for circular appearance */
+        text-align: center;
+      }
+    }
+
+    /* Filter container styling */
+    .filter-container {
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
     .action {
       display: inline-block;
       cursor: pointer;
@@ -209,6 +270,7 @@ const concluded = calculateAbsoluteDate({
       line-height: 1.1875;
       text-decoration: none;
       font-size: var(--sl-text-sm);
+      border: 1px solid var(--sl-color-text-accent);
     }
     .action.primary {
       background: var(--sl-color-text-accent);
@@ -226,12 +288,17 @@ const concluded = calculateAbsoluteDate({
     .highlight {
       animation: fadeHighlight 2s ease-out forwards;
     }
+    /* Ensure hidden attribute wins over flex/table display from classes */
+    tr[hidden] {
+      display: none !important;
+    }
   </style>
 
   <script>
+    // function to jump to the nearest date, button and functionality is set here
     const jumpToDate = () => {
       const today = +new Date();
-      const rows = document.querySelectorAll("tr[data-date]");
+      const rows = document.querySelectorAll("tr[data-date]:not([hidden])");
       const nearestRow = Array.from(rows)
         .filter(
           (row) => +new Date(row.getAttribute("data-date") ?? today) > today,
@@ -252,8 +319,122 @@ const concluded = calculateAbsoluteDate({
         nearestRow.style.backgroundColor = ""; // Revert to stylesheet color
       }, 2000);
 
-      nearestRow.scrollIntoView();
+      // Check for prefers-reduced-motion setting
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      nearestRow.scrollIntoView({ 
+        behavior: prefersReducedMotion ? "auto" : "smooth", 
+        block: "start" 
+      });
     };
+
+    const updateZebraStriping = () => {
+      const visibleRows = document.querySelectorAll("tr[data-date]:not([hidden])");
+      visibleRows.forEach((row, index) => {
+        const htmlRow = row as HTMLElement;
+        // Remove existing odd/even classes
+        htmlRow.classList.remove('odd-stripe', 'even-stripe');
+        // Add appropriate class based on visible index
+        if (index % 2 === 0) {
+          htmlRow.classList.add('even-stripe');
+        } else {
+          htmlRow.classList.add('odd-stripe');
+        }
+      });
+    };
+
+    // Map URL hash to filter type
+    const hashToFilter: Record<string, string> = {
+      '#all': 'all',
+      '#lectures': 'lecture',
+      '#homeworks': 'homework',
+      '#exams': 'exam'
+    };
+
+    // Map filter type to URL hash
+    const filterToHash: Record<string, string> = {
+      'all': '#all',
+      'lecture': '#lectures',
+      'homework': '#homeworks',
+      'exam': '#exams'
+    };
+
+    // Handles button colors, when a user selects a button that becomes the "active" filter indicated by color
+    const updateLinkButtonVariants = (activeFilter: string) => {
+      const buttons = document.querySelectorAll('.filter-button');
+      buttons.forEach((button) => {
+        const filterType = button.getAttribute('data-filter');
+        const isActive = filterType === activeFilter;
+        
+        // Update the class for styling
+        if (isActive) {
+          button.classList.remove('secondary');
+          button.classList.add('primary');
+        } else {
+          button.classList.remove('primary');
+          button.classList.add('secondary');
+        }
+      });
+    };
+
+    const applyFilter = (filterType = 'all') => {
+      const rows = document.querySelectorAll("tr[data-date]");
+      rows.forEach((row) => {
+        const type = row.getAttribute("data-type");
+        const show = filterType === "all" || type === filterType;
+        (row as HTMLElement).hidden = !show;
+      });
+      
+      // Update zebra striping after filtering
+      updateZebraStriping();
+      
+      // Update button variants
+      updateLinkButtonVariants(filterType);
+      
+      // Update URL without triggering page reload
+      const newHash = filterToHash[filterType] || '#all';
+      if (window.location.hash !== newHash) {
+        history.replaceState(null, '', newHash);
+      }
+    };
+
+    // Grab the filter from the url if there is one
+    const getFilterFromUrl = () => {
+      const hash = window.location.hash || '#all';
+      return hashToFilter[hash] || 'all';
+    };
+
+    // Initialize filter based on URL hash
+    document.addEventListener("DOMContentLoaded", () => {
+      const initialFilter = getFilterFromUrl();
+      applyFilter(initialFilter);
+    });
+
+    // Listen for hash changes (browser back/forward, manual URL changes)
+    window.addEventListener('hashchange', () => {
+      const newFilter = getFilterFromUrl();
+      applyFilter(newFilter);
+    });
+
+    // Add click handlers for filter buttons
+    document.querySelector("#filterAll")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      applyFilter('all');
+    });
+
+    document.querySelector("#filterLecture")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      applyFilter('lecture');
+    });
+
+    document.querySelector("#filterHomework")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      applyFilter('homework');
+    });
+
+    document.querySelector("#filterExam")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      applyFilter('exam');
+    });
 
     document
       .querySelector("#jumpToDateButton")
