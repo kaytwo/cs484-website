@@ -1,22 +1,25 @@
 ---
-tentative: true
 title: Homework 2 - Frontend
 description: React
 sidebar:
   order: 32
 notes: >-
-  Watch [the kickoff video](https://youtu.be/0QKOuPO_SAI) for help getting
+  Watch [the kickoff video](https://example.com) for help getting
   started.
 relative_release:
   week: 4
-  day: Monday
-  time: '08:00:00'
+  day: Thursday
+  time: "14:00:00"
 relative_due:
   week: 6
   day: Friday
 ---
 
-import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
+import {
+  localizeTime,
+  formatTime,
+  calculateAbsoluteDate,
+} from "../../../utils/dateUtils";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
 import DueDate from "../../../components/DueDate.astro";
 
@@ -32,7 +35,7 @@ import { marked } from "marked";
 ## Quickstart
 
 Create a new **private** repository under your own GitHub account
-from [this template](https://github.com/swad-cs-uic/homework2-f24). Sharing your
+from [this template](https://github.com/swad-cs-uic/homework2-f25). Sharing your
 code for the assignment, intentionally or unintentionally, is a violation of the
 academic integrity policy in this course.
 
@@ -46,8 +49,7 @@ Open the terminal window and type in `npm install`. This will install all the de
 
 ## Skeleton code
 
-The skeleton code of the application is designed to give you a better understanding on React and its features. The given project is 70% done, requiring some functionalities to be implemented. You just need to add the logic as described in the TODOs. There may be a few TODOs missing, but they're easily detectable when debugging.
-Don't worry about anything inside the backend folder, nothing is missing there.
+The skeleton code of the application is designed to give you a better understanding on React and its features along with backend in Hono. The given project is 70% done, requiring some functionalities to be implemented in React application and in the worker/index.ts for server. You just need to add the logic as described in the TODOs. There may be a few TODOs missing, but they're easily detectable when debugging.
 
 ## Starting the project and navigating
 
@@ -55,19 +57,20 @@ Before running the project please make sure that you have installed all the depe
 
 If you just cloned the skeleton, the app won't work because some crucial code is missing.
 
-To start navigating through the project, start with the `index.html` page and then follow the path to check how components are used. The main component used in this app is `App` (you can find the code for this in `App.tsx`). From here check the other components used, and how they're supposed to interact with the rest of the application. All other components are in `/components` folder.
+To start navigating through the project, start with the `index.html` page and then follow the path to check how components are used. The main component used in this app is `App` (you can find the code for this in `App.tsx`). From here check the other components used, and how they're supposed to interact with the rest of the application. All the components are in `/src/react-app` folder.
 
-Note: You should only need to change files in `/frontend` folder, specifically the `App.tsx` and the files in `/frontend/components` folder. It can be useful to take a look at `backend/api.ts` to understand what parameters the API is expecting, but nothing is missing there.
+Note: You should only need to change files in `/src` folder, specifically the `App.tsx` and the files in `/react-app/pages` folder. For the backend, you need to make changes in the src/worker/index.ts for the API to be fully functional and interact with the frontend.
 
 ## Deliverables
 
 Your code must function identically to the fully functional application.
 
-1. The homepage shows a page with a list of products from Costco. Each product has an image, a name and the ID.
-2. You should be able to search products through the input box displayed.
-3. Selecting the icon to the left (add), a form titled "Add New Product" should appear. Clicking "Add product" after entering **at least** the product name should add the new product to the list and the view should go back to the homepage.
-4. Selecting the icon to the right (bin), a form titled "Delete Product" should appear. Clicking "Delete product" after entering the product ID should delete the product from the list and the view should go back to the homepage.
-5. In the homepage, it should be possible to navigate through the pages using numbers displayed under the grid of elements. Note that the current page should have the class **active**.
+1. The homepage has **Expenses** table (Sr No., Description, Date, Cost, Actions) having 20 expenses per page. By default it’s sorted by **Date (newest first)**; users can switch to **Cost** and toggle sort direction via the chip next to each header.
+2. The top navbar lets you navigate between **Expenses**, **Add Expense**, and **Total**.
+3. Clicking **Add Expense** should open a form titled **“Add Expense”**. Submit a new expense with a description, a valid date, and cost adds the expense and returning to the homepage.
+4. Each row supports **Edit** (inline, with Save/Cancel) and **Delete** (removes the expense; list updates accordingly).
+5. Homepage should have pagination using **Prev/Next** buttons with an indicator **“Page X of Y”**. **Prev** and **Next** should be enabled/disabled according to the page.
+6. The **Total** page displays the grand total of all non-deleted expenses, formatted as currency.
 
 ## Testing your code
 
@@ -78,24 +81,21 @@ machine" does not count as a valid excuse for failing tests in the autograder. *
 
 ## Points
 
-| Task                                                                         | Points |
-| ---------------------------------------------------------------------------- | ------ |
-| **Displays products on the home page**                                       | 10     |
-| **Navigates through pages and displays correct products**                    | 10     |
-| **Returns correct number of products for pagination**                        | 10     |
-| **Adds a new product and confirms it appears on the page**                   | 10     |
-| **Searches for a product and displays the results**                          | 10     |
-| **Deletes a product and confirms it is not visible**                         | 10     |
-| **Displays error message when it's impossible to connect to the server**     | 10     |
-| **Calls setQuery and setCurrentPage with correct arguments on input change** | 5      |
-| **Submits correct data in add mode**                                         | 5      |
-| **Handles API error gracefully in add mode**                                 | 5      |
-| **Resets form fields after successful submission in add mode**               | 5      |
-| **Submits correct data in delete mode**                                      | 5      |
-| **Handles API error gracefully in delete mode**                              | 5      |
-| **Displays products on page**                                                | 5      |
-| **Navigates through pages**                                                  | 5      |
-| **Bonus: CI Tests (Lint, Format, Typecheck)**                                | 9      |
+| Task                                                                                        | Points |
+| ------------------------------------------------------------------------------------------- | ------ |
+| **Navigates between Expenses, Add Expense and Total from the navbar**                       | 10     |
+| **Shows expenses by Date (newest first) as default, and toggles Cost ascending/descending** | 10     |
+| **Split the expenses 20 per page; enable or disable Prev/Next buttons appropriately**       | 10     |
+| **Creates a new expense and returns to the list**                                           | 10     |
+| **Updates an existing expense, then deletes it**                                            | 10     |
+| **Compute and display the correct total on Total Page**                                     | 10     |
+| **Adding an expense: rejects invalid input**                                                | 10     |
+| **Adding an expense: succeeds and returns the created row**                                 | 10     |
+| **Getting expenses: returns only non-deleted items, sorted newest first**                   | 10     |
+| **Updating an expense: updates the record and returns it**                                  | 10     |
+| **Updating an expense: returns error 404 if the record doesn't exist**                      | 10     |
+| **Deleting an expense: soft-deletes the record and returns success**                        | 10     |
+| **Bonus: CI Tests (Lint, Format, Typecheck)**                                               | 9      |
 
 ## Due date
 
