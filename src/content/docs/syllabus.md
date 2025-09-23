@@ -10,7 +10,7 @@ slug: syllabus
 ## **I. Instructor & Course Details**
 
 Chris Kanich, ckanich@uic.edu  
-Drop-In Office Hours: 3:30-4:30pm Mondays and Tuesdays  
+Drop-In Office Hours: 4pm-5pm Mondays, 3:30-4:30pm Tuesdays  
 Drop-In Hours location: CDRLC 4411
 
 Graduate TA: Iman Deol, ideol@uic.edu  
