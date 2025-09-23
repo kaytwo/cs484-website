@@ -15,5 +15,5 @@ notes: >
   Tutorial](https://react.dev/learn/tutorial-tic-tac-toe).
 relative_date:
   week: 5
-  day: 2
+  day: 1
 ---
