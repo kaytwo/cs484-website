@@ -13,6 +13,6 @@ readings:
     link: https://www.cs.uic.edu/~ckanich/papers/snyder2017most.pdf
     grad_only: true
 relative_date:
-  week: 8
+  week: 7
   day: 1
 ---
