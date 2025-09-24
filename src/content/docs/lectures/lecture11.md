@@ -1,16 +1,18 @@
 ---
-title: Full Stack Web Apps (server side intro)
+title: '"Compiling" your client side web app'
 readings:
-  - link: https://www.youtube.com/watch?v=Sklc_fQBmcs
-    name: Next.js in 100 Seconds
+  - link: /readings/chapter-2-client-side-web-development/development-tooling/
+    name: Software Engineering for the Frontend
+  - link: >-
+      https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1
+    name: CJS vs ESM in depth
     optional: true
-  - link: https://www.youtube.com/watch?v=dsTXcSeAZq8
-    name: Astro in 100 Seconds
+  - link: https://www.youtube.com/watch?v=KCrXgy8qtjM
+    name: Vite in 100 Seconds
     optional: true
 notes: >
-  No reading quiz, lecture starts after the exam is collected.
+  Reading is a mega-reading, try to get started on it early.
 relative_date:
   week: 6
-  day: 2
-  time: 14:25:00
+  day: 1
 ---
