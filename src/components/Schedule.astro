@@ -295,18 +295,23 @@ const concluded = calculateAbsoluteDate({
   </style>
 
   <script>
+    import dayjs from "dayjs";
+
     // function to jump to the nearest date, button and functionality is set here
     const jumpToDate = () => {
-      const today = +new Date();
+      const today = dayjs();
       const rows = document.querySelectorAll("tr[data-date]:not([hidden])");
       const nearestRow = Array.from(rows)
         .filter(
-          (row) => +new Date(row.getAttribute("data-date") ?? today) > today,
+          (row) => {
+            const rowDate = dayjs(row.getAttribute("data-date"));
+            return rowDate.isSame(today, 'day') || rowDate.isAfter(today, 'day')
+          },
         ) // Filter out past events
         .sort((a, b) => {
           return (
-            Math.abs(today - +new Date(a.getAttribute("data-date") ?? today)) -
-            Math.abs(today - +new Date(b.getAttribute("data-date") ?? today)) // Sort by diff between today's date and event's date
+            Math.abs(today.diff(dayjs(a.getAttribute("data-date")) ?? today)) -
+            Math.abs(today.diff(dayjs(b.getAttribute("data-date")) ?? today)) // Sort by diff between today's date and event's date
           );
         })[0] as HTMLElement; // Return first item (nearest date)
       if (!nearestRow) return;
