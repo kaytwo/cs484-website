@@ -304,14 +304,14 @@ const concluded = calculateAbsoluteDate({
       const nearestRow = Array.from(rows)
         .filter(
           (row) => {
-            const rowDate = dayjs(row.getAttribute("data-date"));
+            const rowDate = dayjs(row.getAttribute("data-date") ?? today);
             return rowDate.isSame(today, 'day') || rowDate.isAfter(today, 'day')
           },
         ) // Filter out past events
         .sort((a, b) => {
           return (
-            Math.abs(today.diff(dayjs(a.getAttribute("data-date")) ?? today)) -
-            Math.abs(today.diff(dayjs(b.getAttribute("data-date")) ?? today)) // Sort by diff between today's date and event's date
+            Math.abs(today.diff(dayjs(a.getAttribute("data-date") ?? today))) -
+            Math.abs(today.diff(dayjs(b.getAttribute("data-date") ?? today))) // Sort by diff between today's date and event's date
           );
         })[0] as HTMLElement; // Return first item (nearest date)
       if (!nearestRow) return;
