@@ -69,7 +69,7 @@ SQL databases (relational databases) are widely regarded as the standard for sto
 
 ****Common SQL Databases****:
 
-- ****Standalone****: PostgreSQL, MySQL (MariaDB as an open-source fork)
+- ****Standalone****: PostgreSQL, MySQL (MariaDB is an open-source fork)
 
 - ****Cloud-Based****: Amazon RDS, Google Cloud SQL, Azure SQL
 
