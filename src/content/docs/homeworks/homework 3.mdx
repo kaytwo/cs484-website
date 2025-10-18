@@ -1,24 +1,27 @@
 ---
-tentative: true
 title: Homework 3 - Authentication/Serverless
 description: Authentication/Serverless
 sidebar:
   order: 32
 relative_release:
   week: 8
-  day: Wednesday
-  time: '08:00:00'
-relative_due:
-  week: 10
   day: Friday
+  time: "18:00:00"
+relative_due:
+  week: 11
+  day: Monday
 ---
 
-import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
+import {
+  localizeTime,
+  formatTime,
+  calculateAbsoluteDate,
+} from "../../../utils/dateUtils";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
 import DueDate from "../../../components/DueDate.astro";
 
-import { Aside } from "@astrojs/starlight/components"
-import { marked } from "marked"
+import { Aside } from "@astrojs/starlight/components";
+import { marked } from "marked";
 
 **Release:** <DueDate relativeDate={frontmatter.relative_release} />
 
@@ -27,57 +30,49 @@ import { marked } from "marked"
 ## Quickstart
 
 Create a new **private** repository under your own GitHub account
-from [this template](https://github.com/swad-cs-uic/homework3-f24). Sharing your
+from [this template](https://github.com/swad-cs-uic/homework3-f25). Sharing your
 code for the assignment, intentionally or unintentionally, is a violation of the
 academic integrity policy in this course.
 
 ### Installing required packages and setting up firebase.
 
 - Creating and setting up firebase Project.
-
   1.  Create a .env file pasting the content of the .env.example.
   1.  Go to [Firebase website](https://firebase.google.com) and click `Go to console` on the top right of the page.
   1.  Create a new project.
-  1.  While adding disable Google Analytics for the project.
-  1.  On the project overview page, look-out for "Get started by adding Firebase to your app" and select Web.
+  1.  While adding disable Google Analytics and Google Gemini for the project.
+  1.  On the project overview page, look-out for "+ Add App" under your project name and choose web.
   1.  Register your app by giving it a name. Do not setup Firebase hosting. Once done you will be shown Step 2: Add Firebase SDK.
-  1.  Copy the values inside the firebase config and paste them in `client-credentials.json.example`, then rename it `client-credentials.json`.
-  1.  Next let's set-up the service/admin account that is responsible for managing Auth, writing to Firestore etc.
-  1.  On the right of Project Overview button, click on Settings and select Project Settings. Go to service account, select Firebase Admin SDK.
-  1.  Select Node.js and click generate new private key. The json file will be downloaded. Rename it `server-credentials.json` and save it at the root of your repository. Check that the structure is the same as `server-credentials.json.example`.
-  1.  Replace the value of `default` in `.firebaserc.example` with your project id, and rename the file `.firebaserc`.
+  1.  Copy the values inside the firebase config and paste them in `.env.example` and rename the file to `.env`.
+  1.  Replace the value of `default` in `.firebaserc.example` with your project id, and rename the file `.firebaserc`. Also, you can run `npm run emulators` command to login into your firebase account and choose your project id.
 
 - Make sure you have Java installed on your system. This is required for running Firebase emulator.
 - Open the terminal window and type in `npm install`. This will install all the dependencies listed in the `package.json` file and will create a folder `node_modules` where all these dependencies will be installed.
-- Next we install playwright chromium browser required for testing.
-  1. `npx playwright install chromium`
-- If everything is set-up nice, you should be able to start by running `npm run emulators` and `npm run dev` in two separate tabs of the terminal. The first command will start the emulators. It also displays the links to the UI, to help you understand what's happening in the backend when using the application.
-- The .env file provided in the template has a control switch called PUBLIC_EMULATOR. Make sure it is set to 1 allowing you to use the emulator.
+- If everything is set-up nice, you should be able to start by running `npm run dev` in the terminal. The command would simultaneously start the firebase emulators and dev server for the website.
 
 ## Expected Schema for Firebase
 
-- products (collection) -> id (document) -> id, name, image_url, deleted (fields)
+- users (collection) -> uid (document) -> expenses (subcollection) -> expenseId (document) -> description, date, cost, deleted, createdAt (fields)
 
-1. Start with a collection called products. Inside this collection create documents by the ID of the product.
-2. Every id (document) has the id itself, the name of the product, the image_url and the boolean "deleted".
+1. Start with a collection called users and leave it empty. Inside this collection, the utils code will take care of setting up the document based on uid of the user.
+2. Further, expenses subcollection is created which contains the document (ExpenseId) having the description, the date, the cost of the expense, the "createdAt" timestamp and the boolean "deleted".
 
 ## Skeleton code
 
-The skeleton code of the application is designed to foster your knowledge on using serverless services and reactivity. This assignment can be considered as Assignment 2 on steroids. It uses [Astro](https://astro.build/) which allows you use components from different JS frameworks. Also provides flexibility of play between CSR and SSR. Firebase is being used to provide a serverless datastore that your application interacts with. Furthermore, the assignment also has an emulator that allows you to develop and test your application connected with Firebase locally [including the Auth and Firestore], instead of affecting your Live Firebase account. With the end of this assignment you should have a good knowledge of how to convert a static-project to a dynamic project using one of the most in-demand serverless service.
+The skeleton code of the application is designed to foster your knowledge on using serverless services and reactivity. This assignment can be considered as Assignment 2 on steroids. It uses [Vite](https://vitejs.dev/) which provides a fast development environment and supports modern JavaScript frameworks like React. It also offers excellent flexibility for working with client-side rendering (CSR) and integration with serverless backends. Firebase is being used to provide a serverless datastore that your application interacts with. Furthermore, the assignment includes a Firebase emulator that allows you to develop and test your application locally, covering both Auth and Firestore without affecting your live Firebase project. By the end of this assignment, you should have a solid understanding of how to convert a static project into a dynamic, reactive one using one of the most in-demand serverless platforms.
 
 ## Navigating and starting project
 
-Before running the project please make sure that you have installed all the dependencies mentioned in the step `Installing required packages`. Start the project by typing `npm run emulators` in a tab of the terminal, then `npm run dev` in a different tab and open the URL in a browser.
+Before running the project please make sure that you have installed all the dependencies mentioned in the step `Installing required packages`. Start the project by typing `npm run dev` in a tab of the terminal, which would simultaneously start the firebase emulators and dev server for the website. Open the URL for website in the browser and start working on the assignment.
 
-When you browse the link, it should take you to the `Signin` Page that will show you a Sign In and Create Account buttons. Explore the app by navigating to the various tabs to get a understanding about the features of the application.
+When you browse the link, it should take you to the **Sign In** page that will show you **Sign In** and **Create Account** buttons. Explore the app by navigating through the various tabs after creating an account/signing in to see the expense of a particular user.
 
-To start navigating through the project start with the `index.astro` page inside src/pages. Being a Multi-paged application, every file in the pages directory corresponds to an URL endpoint.
-The application is the same that you created as part of Homework 2. You can now understand how using Astro makes lives easier. And it's not just React. You can have different components coming from various frameworks and plug them inside your Astro App.
-Due to the fact that we are now using Firestore for the DB, we slightly changed the way we fetch and filter the products, moving all the logic to our application instead of doing it through the queries.
+To start navigating through the project, begin with the **`App.tsx`** file inside the `src` directory. Being a multi-paged React application powered by **Vite**, each component under the `src/pages` directory corresponds to a unique route handled through **React Router**.
 
-- Inside pages > there is an api directory. This is responsible for providing server-side interaction with the client. It has the sub-directory auth and the file api.ts, which are used by the client to maintain authenticity and interaction with Firebase.
-- Inside src, the firebase directory sets up the client and server for you.
-- Before jumping over any TODOs, I would highly encourage to understand the different parts of the application, and how they are interacting with each-other. How are layouts getting used, how are the APIs getting called. Understand what is SSR, what's the difference between CSR and SSR. How is this single application using a hybrid approach allowing SSR and CSR. It's always good to know what you're doing to make work exciting.
+Since we are now using **Firestore** as the database, the way we fetch and filter expenses has slightly changed—moving the logic from Firestore queries to the client-side application. This gives you more control over the fetched data and allows easier handling of state and reactivity in React.
+
+- Inside src, there is utils containing the authentication and database crud functions to connect with Firebase. Complete the TODOs inside each function to implement the Firebase CRUD operations required for the app.
+- Also, the firebase directory sets up the required connection for authentication and database based on your Firebase's config.
 
 ## Deliverables
 
@@ -85,27 +80,23 @@ Your code must function identically to the fully functional application.
 
 1. There are TODOs and expected behaviors well commented for your reference.
 
-2. As part of this assignment you are required to complete the APIs that will enable storing, retrieval and deletion from Firestore.
+2. As part of this assignment, you are required to complete the util APIs that enable storing, retrieval and deletion of data from Firestore.
 
 3. You also need to complete the registration, login and logout service for your application.
-
-4. Once your APIs are set-up you then need to handle authorization in the .astro files and modify how ProductList decides which products to render on screen.
 
 ## Testing your code
 
 To use the provided test suite run `npm run test:integration`. This will spawn the firebase emulators for you and run the vitest. For this reason, make sure to have closed any running instance of the emulators.
 
+If you already have emulators running, then you can run `npm run test` to run the test cases against the Firebase emulators.
+
 As with other assignments, any reasonable-quality test cases that you provide to the class (integration or unit, take your pick) will be eligible for extra credit.
-
-## Possible issues and how to solve them
-
-- ` There is no user record corresponding to the provided identifier`: this error is due to the fact that when you login into the application, a cookie is saved on the browser to identify the session. If after saving the cookie you restart your project, the new instance of the application will detect the old cookie and will throw the error because it isn't recognized. To solve this issue, you must delete the cookie from your browser. An easy way to do it is by opening the DevTools > Application > Cookies.
 
 ## Using live Firebase
 
-The tests for the homework are executed using the emulators. However, if you want to use your app with the live Firebase project, then you need to:
+The tests for this homework are executed using the **Firebase Emulators**. However, if you want to run your app with the **live Firebase project**, you need to:
 
-1. Set PUBLIC_EMULATORS to 0
+1. Set the environment variable **`VITE_FB_USE_EMULATORS`** to **`0`**.
 1. Go to your project console, select Authentication > Sign-in method and enable `Email/Password`
 1. Go to your project console, select Cloud Firestore > Create database > Next > Start in test mode
 
@@ -113,7 +104,6 @@ Note that this is not required for the homework.
 
 ## Points
 
-| Task                               | Points |
-| ---------------------------------- | ------ |
-| App Functionality                  | 93     |
-| CI Tests (Lint, Format, Typecheck) | 9      |
+| Task              | Points |
+| ----------------- | ------ |
+| App Functionality | 100    |
