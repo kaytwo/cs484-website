@@ -1,8 +1,7 @@
 ---
-title: Final Project Demos
+title: Final Exam Q&A
 relative_date:
   week: 15
   day: 2
-  time: '14:25:00'
-notes: After the exam, everyone can show off their projects to each other. 
+notes: Before the exam, you can pepper me with questions about the course content.
 ---
