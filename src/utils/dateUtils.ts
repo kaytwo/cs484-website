@@ -1,6 +1,6 @@
 import dayjs, { type Dayjs } from "dayjs";
-import utc from "dayjs/plugin/utc";
 import tz from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 import { courseConfig } from "../courseConfig";
 
 dayjs.extend(utc);
@@ -93,13 +93,13 @@ export function calculateAbsoluteDate(relativeDate: RelativeDate): Dayjs {
   const targetDayIndex = dayNameToIndex[targetDayName as DayName];
 
   // Set the date to the correct day within the target week
-  let absoluteDate = weekStartDate.day(targetDayIndex);
+  const dateOnCorrectDay = weekStartDate.day(targetDayIndex);
 
-  // Set the time
-  const [hours, minutes, seconds] = time.split(":").map(Number);
-  absoluteDate = absoluteDate.hour(hours).minute(minutes).second(seconds);
-
-  return absoluteDate;
+  // By combining the date and time into a single string and then parsing it
+  // with the timezone, we avoid potential issues with DST where sequentially
+  // setting the time components might not behave as expected.
+  const dateString = dateOnCorrectDay.format("YYYY-MM-DD");
+  return dayjs.tz(`${dateString}T${time}`, timeZone);
 }
 
 /**
