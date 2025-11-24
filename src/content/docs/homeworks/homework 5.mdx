@@ -1,21 +1,25 @@
 ---
-tentative: true
-title: 'Homework 5: Optimization'
+tentative: false
+title: "Homework 5: Optimization"
 description: Optimization techniques in React
-extraCredit: '2024-12-04T14:00:00'
+extraCredit: "2024-12-04T14:00:00"
 notes: >-
-  Watch [the kickoff video](https://youtu.be/mjxBT8jxRLM) for help getting
+  Watch [the kickoff video](https://youtu.be/WwgDimt7o5c) for help getting
   started.
 relative_release:
   week: 13
-  day: Monday
-  time: '08:00:00'
-relative_due:
-  week: 14
   day: Friday
+  time: "18:00:00"
+relative_due:
+  week: 15
+  day: Wednesday
 ---
 
-import { localizeTime, formatTime, calculateAbsoluteDate } from "../../../utils/dateUtils";
+import {
+  localizeTime,
+  formatTime,
+  calculateAbsoluteDate,
+} from "../../../utils/dateUtils";
 import { Content as Deadlines } from "../../../components/Deadlines.md";
 import DueDate from "../../../components/DueDate.astro";
 import { Aside } from "@astrojs/starlight/components";
@@ -28,7 +32,7 @@ import { marked } from "marked";
 ## Quickstart
 
 Create a new **private** repository under your own GitHub account
-from [this template](https://github.com/swad-cs-uic/homework5-f24).
+from [this template](https://github.com/swad-cs-uic/homework5-f25).
 
 <Aside>
   <Fragment set:html={marked(frontmatter.notes)} />
@@ -44,8 +48,8 @@ dependencies listed in the `package.json` file.
 The homework provided is focused on optimizing React applications using various
 performance-enhancing techniques. You will work through four problems, each located in the `/src/components` folder.
 
-- Prevent UI blocking with Web Workers
 - Memoize expensive calculation results with useMemo
+- Prevent UI blocking with Web Workers
 - Optimize event handlers with useCallback and memo
 - Virtualize long lists with react-window
 
@@ -66,8 +70,8 @@ To test your implementation, run `npm run test`.
 
 | Problem             | Points |
 | ------------------- | ------ |
-| Web Workers         | 25     |
 | useMemo             | 25     |
+| Web Workers         | 25     |
 | useCallback         | 25     |
 | List Virtualization | 25     |
 
