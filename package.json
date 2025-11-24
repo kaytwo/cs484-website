@@ -23,7 +23,7 @@
     "astro": "^5.16.0",
     "dayjs": "^1.11.19",
     "isomorphic-dompurify": "^2.30.0",
-    "marked": "^16.4.1",
+    "marked": "^17.0.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tailwindcss": "^4.1.17",
