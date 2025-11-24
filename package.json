@@ -20,7 +20,7 @@
     "@tailwindcss/vite": "^4.1.17",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.3",
-    "astro": "^5.16.0",
+    "astro": "^5.14.7",
     "dayjs": "^1.11.19",
     "isomorphic-dompurify": "^2.30.0",
     "marked": "^16.4.1",
