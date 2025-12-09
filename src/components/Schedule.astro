@@ -296,10 +296,10 @@ const events = [...exams, ...homeworks, ...lectures].sort(
     const isDesktop = window.innerWidth >= 1024;
     
     // events is already sorted, so just check if the last event is in the past
-    // class concludes on the Friday after finals week
+    // class concludes on the Friday before finals week
     
     const courseIsConcluded = calculateAbsoluteDate({
-      week: 16,
+      week: 15,
       day: "Friday",
       time: "17:00:00",
     }).isBefore(dayjs());
