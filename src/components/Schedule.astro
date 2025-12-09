@@ -7,6 +7,7 @@ import { marked } from "marked";
 import { transformContentData } from "../utils/contentUtils";
 import { calculateAbsoluteDate, formatTime } from "../utils/dateUtils";
 
+
 interface Reading {
   link: string;
   name: string;
@@ -107,7 +108,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
 // class concludes on the Friday of finals week
 
 const concluded = calculateAbsoluteDate({
-  week: 15,
+  week: 16,
   day: "Friday",
   time: "17:00:00",
 }).isBefore(dayjs());
@@ -327,53 +328,33 @@ const concluded = calculateAbsoluteDate({
       }, duration);
     };
 
-    // Simple confetti effect across the screen for a short duration
-    const launchConfetti = () => {
-      const duration = 2500;
-      const endTime = Date.now() + duration;
-      const colors = ["#f94144", "#f3722c", "#f9c74f", "#90be6d", "#43aa8b", "#577590"];
+    // Confetti effect using dynamically imported canvas-confetti (bundled)
+    const launchConfetti = async () => {
+      try {
+        const { default: confetti } = await import("canvas-confetti");
 
-      const createPiece = () => {
-        const piece = document.createElement("div");
-        const size = Math.random() * 8 + 6; // 6px - 14px
-        piece.style.position = "fixed";
-        piece.style.top = "-20px";
-        piece.style.left = Math.random() * 100 + "vw";
-        piece.style.width = size + "px";
-        piece.style.height = size * 0.6 + "px";
-        piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        piece.style.transform = `rotate(${Math.random() * 360}deg)`;
-        piece.style.opacity = "0.9";
-        piece.style.zIndex = "9999";
-        piece.style.borderRadius = "2px";
-        piece.style.willChange = "transform, top, left, opacity";
-        document.body.appendChild(piece);
+        // Responsive side bursts with optional mid-screen burst on desktop
+        const isDesktop = window.innerWidth >= 1024;
+        const desktop = { particleCount: 360, spread: 200, startVelocity: 34, decay: 0.88, scalar: 1.05, gravity: 0.85, y: 0.30 };
+        const mobile  = { particleCount: 170,  spread: 50,  startVelocity: 25, decay: 0.94, scalar: 0.85, gravity: 1.1, y: 0.7 };
+        const cfg = isDesktop ? desktop : mobile;
 
-        const fallDuration = Math.random() * 1500 + 1500; // 1.5s - 3s
-        const horizontalDrift = (Math.random() - 0.5) * 40; // -20px to 20px
-        const spin = (Math.random() - 0.5) * 720; // -360deg to 360deg
+        // Side bursts (left and right)
+        confetti({ particleCount: cfg.particleCount, angle: 60, origin: { x: -0.1, y: cfg.y }, spread: cfg.spread, startVelocity: cfg.startVelocity, decay: cfg.decay, scalar: cfg.scalar, gravity: cfg.gravity });
+        confetti({ particleCount: cfg.particleCount, angle: 120, origin: { x: 1.1, y: cfg.y }, spread: cfg.spread, startVelocity: cfg.startVelocity, decay: cfg.decay, scalar: cfg.scalar, gravity: cfg.gravity });
 
-        const start = performance.now();
-        const animate = (now: number) => {
-          const t = Math.min(1, (now - start) / fallDuration);
-          piece.style.top = `${t * 100}vh`;
-          piece.style.left = `calc(${piece.style.left} + ${t * horizontalDrift}px)`;
-          piece.style.transform = `rotate(${t * spin}deg)`;
-          piece.style.opacity = `${1 - t}`;
+        // Optional mid-screen burst to fill center, desktop only
+        if (isDesktop) {
+          setTimeout(() => {
+            confetti({ particleCount: 140, angle: 90, origin: { x: 0.5, y: 1.0 }, spread: 120, startVelocity: 26, decay: 0.90, scalar: 1.0, gravity: 0.9 });
+          }, 150);
+        }
 
-          if (t < 1) {
-            requestAnimationFrame(animate);
-          } else {
-            piece.remove();
-          }
-        };
-        requestAnimationFrame(animate);
-      };
-
-      const interval = setInterval(() => {
-        for (let i = 0; i < 12; i++) createPiece();
-        if (Date.now() > endTime) clearInterval(interval);
-      }, 200);
+        // Falling effect is handled by these bursts; no repeated interval.
+      } catch (e) {
+        // Fallback: log and continue without confetti
+        console.warn("Confetti unavailable:", e);
+      }
     };
 
     // function to jump to the nearest date, button and functionality is set here
