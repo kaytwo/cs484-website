@@ -1,6 +1,6 @@
 import { defineCollection, z } from "astro:content";
-import { docsSchema } from "@astrojs/starlight/schema";
 import { docsLoader } from "@astrojs/starlight/loaders";
+import { docsSchema } from "@astrojs/starlight/schema";
 import { glob } from "astro/loaders";
 
 // Relative date schema that can be reused
