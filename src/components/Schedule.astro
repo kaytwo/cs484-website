@@ -108,8 +108,8 @@ const events = [...exams, ...homeworks, ...lectures].sort(
 ---
 
 <div class="controls-container">
-  <span class="action primary" id="jumpToDateButton">
-    Jump to Nearest Date
+  <span class="action primary" id="jumpToNextEvent">
+    Jump to Next Event
   </span>
 
   <!-- Filter Buttons -->
@@ -371,8 +371,8 @@ const events = [...exams, ...homeworks, ...lectures].sort(
       }
     };
 
-    // function to jump to the nearest date, button and functionality is set here
-    const jumpToDate = () => {
+    // function to jump to the next event after today, button and functionality is set here
+    const jumpToNextEvent = () => {
       const today = dayjs();
       const rows = document.querySelectorAll("tr[data-date]:not([hidden])");
       const nearestRow = Array.from(rows)
@@ -516,9 +516,9 @@ const events = [...exams, ...homeworks, ...lectures].sort(
     });
 
     document
-      .querySelector("#jumpToDateButton")
+      .querySelector("#jumpToNextEvent")
       ?.addEventListener("click", () => {
-        const btn = document.querySelector("#jumpToDateButton") as HTMLElement | null;
+        const btn = document.querySelector("#jumpToNextEvent") as HTMLElement | null;
         if (courseIsConcluded) {
           // Trigger celebratory confetti
           launchConfetti();
@@ -547,7 +547,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
           return;
         }
 
-        jumpToDate();
+        jumpToNextEvent();
       });
   </script>
 </div>
