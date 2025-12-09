@@ -104,18 +104,11 @@ const events = [...exams, ...homeworks, ...lectures].sort(
   (a, b) => a.date.valueOf() - b.date.valueOf(),
 );
 
-// events is already sorted, so just check if the last event is in the past
-// class concludes on the Friday of finals week
 
-const concluded = calculateAbsoluteDate({
-  week: 16,
-  day: "Friday",
-  time: "17:00:00",
-}).isBefore(dayjs());
 ---
 
 <div class="controls-container">
-  <span class="action primary" id="jumpToDateButton" data-concluded={concluded}>
+  <span class="action primary" id="jumpToDateButton">
     Jump to Nearest Date
   </span>
 
@@ -298,6 +291,16 @@ const concluded = calculateAbsoluteDate({
 
   <script>
     import dayjs from "dayjs";
+    import { calculateAbsoluteDate } from "../utils/dateUtils";
+    
+    // events is already sorted, so just check if the last event is in the past
+    // class concludes on the Friday after finals week
+    
+    const courseIsConcluded = calculateAbsoluteDate({
+      week: 16,
+      day: "Friday",
+      time: "17:00:00",
+    }).isBefore(dayjs());
 
     // Lightweight toast helper reused across interactions
     const showToast = (message: string, duration = 3000) => {
@@ -505,8 +508,7 @@ const concluded = calculateAbsoluteDate({
       .querySelector("#jumpToDateButton")
       ?.addEventListener("click", () => {
         const btn = document.querySelector("#jumpToDateButton") as HTMLElement | null;
-        const isConcluded = btn?.getAttribute("data-concluded") === "true";
-        if (isConcluded) {
+        if (courseIsConcluded) {
           // Trigger celebratory confetti
           launchConfetti();
 
