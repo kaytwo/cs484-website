@@ -107,7 +107,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
 // class concludes on the Friday of finals week
 
 const concluded = calculateAbsoluteDate({
-  week: 16,
+  week: 15,
   day: "Friday",
   time: "17:00:00",
 }).isBefore(dayjs());
@@ -272,6 +272,11 @@ const concluded = calculateAbsoluteDate({
       background: var(--sl-color-text-accent);
       color: var(--sl-color-black);
     }
+    .action[aria-disabled="true"] {
+      pointer-events: none;
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
     ul {
       padding-left: 0.5rem;
     }
@@ -320,6 +325,55 @@ const concluded = calculateAbsoluteDate({
       (toast as any)._hideTimer = window.setTimeout(() => {
         toast!.style.opacity = "0";
       }, duration);
+    };
+
+    // Simple confetti effect across the screen for a short duration
+    const launchConfetti = () => {
+      const duration = 2500;
+      const endTime = Date.now() + duration;
+      const colors = ["#f94144", "#f3722c", "#f9c74f", "#90be6d", "#43aa8b", "#577590"];
+
+      const createPiece = () => {
+        const piece = document.createElement("div");
+        const size = Math.random() * 8 + 6; // 6px - 14px
+        piece.style.position = "fixed";
+        piece.style.top = "-20px";
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.width = size + "px";
+        piece.style.height = size * 0.6 + "px";
+        piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+        piece.style.opacity = "0.9";
+        piece.style.zIndex = "9999";
+        piece.style.borderRadius = "2px";
+        piece.style.willChange = "transform, top, left, opacity";
+        document.body.appendChild(piece);
+
+        const fallDuration = Math.random() * 1500 + 1500; // 1.5s - 3s
+        const horizontalDrift = (Math.random() - 0.5) * 40; // -20px to 20px
+        const spin = (Math.random() - 0.5) * 720; // -360deg to 360deg
+
+        const start = performance.now();
+        const animate = (now: number) => {
+          const t = Math.min(1, (now - start) / fallDuration);
+          piece.style.top = `${t * 100}vh`;
+          piece.style.left = `calc(${piece.style.left} + ${t * horizontalDrift}px)`;
+          piece.style.transform = `rotate(${t * spin}deg)`;
+          piece.style.opacity = `${1 - t}`;
+
+          if (t < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            piece.remove();
+          }
+        };
+        requestAnimationFrame(animate);
+      };
+
+      const interval = setInterval(() => {
+        for (let i = 0; i < 12; i++) createPiece();
+        if (Date.now() > endTime) clearInterval(interval);
+      }, 200);
     };
 
     // function to jump to the nearest date, button and functionality is set here
@@ -469,10 +523,18 @@ const concluded = calculateAbsoluteDate({
     document
       .querySelector("#jumpToDateButton")
       ?.addEventListener("click", () => {
-        const btn = document.querySelector("#jumpToDateButton");
+        const btn = document.querySelector("#jumpToDateButton") as HTMLElement | null;
         const isConcluded = btn?.getAttribute("data-concluded") === "true";
         if (isConcluded) {
-          showToast("This course has concluded. There are no upcoming dates to jump to.");
+          // Trigger celebratory confetti
+          launchConfetti();
+
+          // Replace button text and disable further interaction
+          if (btn) {
+            btn.textContent = "Course Concluded!";
+            btn.setAttribute("aria-disabled", "true");
+            btn.setAttribute("title", "Course Concluded!");
+          }
           return;
         }
 
