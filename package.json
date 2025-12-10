@@ -32,6 +32,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.6",
-    "@types/canvas-confetti": "^1.6.1"
+    "@types/canvas-confetti": "^1.9.0"
   }
 }
