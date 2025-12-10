@@ -293,7 +293,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
     import dayjs from "dayjs";
     import { calculateAbsoluteDate } from "../utils/dateUtils";
     
-    const isDesktop = window.innerWidth >= 1024;
+    const getIsDesktop = () => window.innerWidth >= 1024;
     
     // events is already sorted, so just check if the last event is in the past
     // class concludes on the Friday before finals week
@@ -312,7 +312,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
         toast.id = "schedule-toast";
         toast.style.position = "fixed";
         toast.style.bottom = "20px";
-        if (!isDesktop) {
+        if (!getIsDesktop()) {
           toast.style.left = "12px";
           toast.style.right = "12px";
           toast.style.transform = "";
@@ -323,7 +323,7 @@ const events = [...exams, ...homeworks, ...lectures].sort(
           toast.style.left = "";
           toast.style.transform = "";
         }
-        toast.style.maxWidth = isDesktop ? "320px" : "none";
+        toast.style.maxWidth = getIsDesktop() ? "320px" : "none";
         toast.style.padding = "12px 16px";
         toast.style.borderRadius = "8px";
         toast.style.boxShadow = "0 4px 12px rgba(0,0,0,0.2)";
@@ -351,14 +351,14 @@ const events = [...exams, ...homeworks, ...lectures].sort(
         // Responsive side bursts with optional mid-screen burst on desktop
         const desktop = { particleCount: 360, spread: 200, startVelocity: 34, decay: 0.88, scalar: 1.05, gravity: 0.85, y: 0.30 };
         const mobile  = { particleCount: 170,  spread: 50,  startVelocity: 25, decay: 0.94, scalar: 0.85, gravity: 1.1, y: 0.7 };
-        const cfg = isDesktop ? desktop : mobile;
+        const cfg = getIsDesktop() ? desktop : mobile;
 
         // Side bursts (left and right)
         confetti({ ...cfg, angle: 60, origin: { x: -0.1, y: cfg.y } });
         confetti({ ...cfg, angle: 120, origin: { x: 1.1, y: cfg.y } });
 
         // Optional mid-screen burst to fill center, desktop only
-        if (isDesktop) {
+        if (getIsDesktop()) {
           setTimeout(() => {
             confetti({ particleCount: 140, angle: 90, origin: { x: 0.5, y: 1.0 }, spread: 120, startVelocity: 26, decay: 0.90, scalar: 1.0, gravity: 0.9 });
           }, 150);
