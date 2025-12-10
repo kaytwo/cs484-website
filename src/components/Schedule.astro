@@ -354,8 +354,8 @@ const events = [...exams, ...homeworks, ...lectures].sort(
         const cfg = isDesktop ? desktop : mobile;
 
         // Side bursts (left and right)
-        confetti({ particleCount: cfg.particleCount, angle: 60, origin: { x: -0.1, y: cfg.y }, spread: cfg.spread, startVelocity: cfg.startVelocity, decay: cfg.decay, scalar: cfg.scalar, gravity: cfg.gravity });
-        confetti({ particleCount: cfg.particleCount, angle: 120, origin: { x: 1.1, y: cfg.y }, spread: cfg.spread, startVelocity: cfg.startVelocity, decay: cfg.decay, scalar: cfg.scalar, gravity: cfg.gravity });
+        confetti({ ...cfg, angle: 60, origin: { x: -0.1, y: cfg.y } });
+        confetti({ ...cfg, angle: 120, origin: { x: 1.1, y: cfg.y } });
 
         // Optional mid-screen burst to fill center, desktop only
         if (isDesktop) {
