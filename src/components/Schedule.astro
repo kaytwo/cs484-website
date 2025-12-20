@@ -310,6 +310,9 @@ const events = [...exams, ...homeworks, ...lectures].sort(
       if (!toast) {
         toast = document.createElement("div");
         toast.id = "schedule-toast";
+        toast.setAttribute("role", "alert");
+        toast.setAttribute("aria-live", "assertive");
+        toast.setAttribute("aria-atomic", "true");
         toast.style.position = "fixed";
         toast.style.bottom = "20px";
         if (!getIsDesktop()) {
