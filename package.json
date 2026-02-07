@@ -12,24 +12,24 @@
     "lint": "biome lint --apply ."
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.5",
-    "@astrojs/cloudflare": "^12.6.11",
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/react": "^4.4.2",
-    "@astrojs/starlight": "^0.36.2",
+    "@astrojs/starlight": "^0.37.6",
     "@astrojs/starlight-tailwind": "^4.0.2",
-    "@tailwindcss/vite": "^4.1.17",
-    "@types/react": "^19.2.2",
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
-    "astro": "^5.16.0",
+    "astro": "^5.17.1",
     "dayjs": "^1.11.19",
-    "isomorphic-dompurify": "^2.30.0",
-    "marked": "^16.4.1",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "tailwindcss": "^4.1.17",
+    "isomorphic-dompurify": "^2.36.0",
+    "marked": "^16.4.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.2.6"
+    "@biomejs/biome": "^2.3.14"
   }
 }
