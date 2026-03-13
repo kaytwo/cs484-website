@@ -22,7 +22,7 @@
     "@types/react-dom": "^19.2.3",
     "astro": "^5.16.0",
     "dayjs": "^1.11.19",
-    "isomorphic-dompurify": "^2.30.0",
+    "isomorphic-dompurify": "^3.3.0",
     "marked": "^16.4.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
