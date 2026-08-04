@@ -160,17 +160,16 @@ announcements and in writing via this website.
 ### Generative AI
 
 You will almost certainly be using GenAI (ChatGPT, GitHub Copilot, Grammarly,
-etc) in some way for the rest of your career. You are encouraged to use whatever
-GenAI tools you would like to complete the assignments and final project in this
-class.
-
-While these tools are amazing, please do not use their existence as an excuse to
-procrastinate on getting started with your assignments. They are good, but they
-aren't that good.
+etc) in some way for the rest of your career. While these tools are amazing,
+please do not use their existence as an excuse to procrastinate on getting
+started with your assignments. They are good, but they aren't that good.
 
 Generative AI use is **strongly discouraged** for homework assignments. _We will
 not perform any check to see whether you have done so or not_. The grading for
 these assignments is lenient - the expected median grade for the class is 100%.
+These assignments are intended as **exercises** - being able to produce a solution
+is not the goal of the assignment, but rather expending the effort to learn how to
+solve the problem is the goal.
 
 A substantial portion of the module exam will cover topics that are tightly tied
 to the module's homework assignment. **Working your way through the homeworks
