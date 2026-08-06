@@ -1,6 +1,6 @@
-import { calculateAbsoluteDate } from "./dateUtils";
-import type { ContentData } from "../types/content";
 import { courseConfig } from "../courseConfig";
+import type { ContentData } from "../types/content";
+import { calculateAbsoluteDate } from "./dateUtils";
 
 /**
  * Transforms content data by converting relative dates to absolute dates
