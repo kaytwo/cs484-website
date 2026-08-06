@@ -69,7 +69,7 @@ SQL databases (relational databases) are widely regarded as the standard for sto
 
 ****Common SQL Databases****:
 
-- ****Standalone****: PostgreSQL, MySQL (MariaDB as an open-source fork)
+- ****Standalone****: PostgreSQL, MySQL (MariaDB is an open-source fork)
 
 - ****Cloud-Based****: Amazon RDS, Google Cloud SQL, Azure SQL
 
@@ -147,6 +147,8 @@ Managed databases shift the operational burden to a cloud provider, allowing dev
 
 - Limited control over specific configurations or optimizations.
 
+- In practice, often lock you in to a certain cloud vendor.
+
 ## Embedded Databases
 
 Embedded databases, like SQLite, are packaged within an application and typically run in memory or on local storage. Rather than connecting to a separate process, embedded databases are effectively libraries that you include into your own code to operate directly on the files that make up the database. SQLite has become one of the most popular database technologies in the world implementing this model.
@@ -162,6 +164,8 @@ Recently, SQLite has been used in production environments for web applications, 
 ****Disadvantages****:
 
 - Not ideal for distributed environments or high-concurrency applications.
+
+- Often have fewer features than non-embedded databases.
 
 # Outsourcing Database Infrastructure
 
